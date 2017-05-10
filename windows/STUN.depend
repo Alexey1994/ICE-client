@@ -1,0 +1,273 @@
+# depslib dependency file v1.0
+1494396256 source:c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\main.c
+	"extends/extends.c"
+	"system library/system library.c"
+	"data structures/character/character.c"
+	"data structures/string/string.c"
+	"data structures/random access structure/random access structure.c"
+	"data structures/array/array.c"
+	"stream/stream.c"
+	"error/error.c"
+	"logger/logger.c"
+	"network/network connection/network connection.c"
+	"network/network info/network info.c"
+	"network/STUN/attributes/ALTERNATE_SERVER.c"
+	"network/STUN/attributes/CHANGE_REQUEST.c"
+	"network/STUN/attributes/CHANGED_ADDRESS.c"
+	"network/STUN/attributes/ERROR_CODE.c"
+	"network/STUN/attributes/FINGERPRINT.c"
+	"network/STUN/attributes/MAPPED_ADDRESS.c"
+	"network/STUN/attributes/MESSAGE_INTEGRITY.c"
+	"network/STUN/attributes/NONCE.c"
+	"network/STUN/attributes/PASSWORD.c"
+	"network/STUN/attributes/REALM.c"
+	"network/STUN/attributes/REFLECTED_FROM.c"
+	"network/STUN/attributes/RESPONSE_ADDRESS.c"
+	"network/STUN/attributes/SOFTWARE.c"
+	"network/STUN/attributes/SOURCE_ADDRESS.c"
+	"network/STUN/attributes/UNKNOWN_ATTRIBUTES.c"
+	"network/STUN/attributes/USERNAME.c"
+	"network/STUN/attributes/XOR_MAPPED_ADDRESS.c"
+	"network/STUN/STUN.c"
+	"network/STUN/debug.c"
+	<jni.h>
+
+1493322968 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\extends\extends.c
+	"extends.h"
+
+1493322984 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\extends\extends.h
+	<stdlib.h>
+
+1476022236 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\character\character.c
+	"character.h"
+
+1491491560 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\character\character.h
+	<libs/extends/extends.h>
+
+1493805958 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\string\string.c
+	"string.h"
+	<libs/extends/extends.h>
+
+1493806087 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\string\string.h
+	<libs/data structures/character/character.h>
+
+1493806115 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\error\error.c
+	"error.h"
+	<stdio.h>
+
+1493883445 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\error\error.h
+
+1494395877 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\network connection.c
+	"network connection.h"
+	<libs/error/error.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+
+1493796821 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\network connection.h
+	<libs/extends/extends.h>
+	<libs/stream/stream.h>
+
+1493967174 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\alternate_server.c
+	"ALTERNATE_SERVER.h"
+
+1493966713 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\alternate_server.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1494396207 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\stun.h
+	<libs/extends/extends.h>
+	<libs/network/connection/network connection.h>
+
+1493967188 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\change_request.c
+	"CHANGE_REQUEST.h"
+
+1493966478 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\change_request.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967194 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\changed_address.c
+	"CHANGED_ADDRESS.h"
+
+1493966531 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\changed_address.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967197 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\error_code.c
+	"ERROR_CODE.h"
+
+1493966586 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\error_code.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967201 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\fingerprint.c
+	"FINGERPRINT.h"
+
+1493966726 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\fingerprint.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967205 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\mapped_address.c
+	"MAPPED_ADDRESS.h"
+
+1493966425 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\mapped_address.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967208 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\message_integrity.c
+	"MESSAGE_INTEGRITY.h"
+
+1493966571 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\message_integrity.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967212 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\nonce.c
+	"NONCE.h"
+
+1493966656 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\nonce.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967216 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\password.c
+	"PASSWORD.h"
+
+1493966560 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\password.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967220 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\realm.c
+	"REALM.h"
+
+1493966644 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\realm.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967224 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\reflected_from.c
+	"REFLECTED_FROM.h"
+
+1493966625 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\reflected_from.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967227 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\response_address.c
+	"RESPONSE_ADDRESS.h"
+
+1493966455 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\response_address.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967232 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\software.c
+	"SOFTWARE.h"
+
+1493966684 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\software.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967235 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\source_address.c
+	"SOURCE_ADDRESS.h"
+
+1493966495 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\source_address.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967238 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\unknown_attributes.c
+	"UNKNOWN_ATTRIBUTES.h"
+
+1493966606 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\unknown_attributes.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967242 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\username.c
+	"USERNAME.h"
+
+1493966544 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\username.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1493967245 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\xor_mapped_address.c
+	"XOR_MAPPED_ADDRESS.h"
+
+1493966673 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\xor_mapped_address.h
+	<libs/extends/extends.h>
+	"../STUN.h"
+
+1494401965 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\stun.c
+	"STUN.h"
+	<libs/data structures/string/string.h>
+	<libs/logger/logger.h>
+	"debug.h"
+	"attributes/MAPPED_ADDRESS.h"
+	"attributes/RESPONSE_ADDRESS.h"
+	"attributes/CHANGE_REQUEST.h"
+	"attributes/SOURCE_ADDRESS.h"
+	"attributes/CHANGED_ADDRESS.h"
+	"attributes/USERNAME.h"
+	"attributes/PASSWORD.h"
+	"attributes/MESSAGE_INTEGRITY.h"
+	"attributes/ERROR_CODE.h"
+	"attributes/UNKNOWN_ATTRIBUTES.h"
+	"attributes/REFLECTED_FROM.h"
+	"attributes/REALM.h"
+	"attributes/NONCE.h"
+	"attributes/XOR_MAPPED_ADDRESS.h"
+	"attributes/SOFTWARE.h"
+	"attributes/ALTERNATE_SERVER.h"
+	"attributes/FINGERPRINT.h"
+
+1493884178 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\logger\logger.c
+	"logger.h"
+	<stdio.h>
+
+1493883858 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\logger\logger.h
+
+1482011668 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\random access structure\random access structure.c
+	"random access structure.h"
+
+1491492308 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\random access structure\random access structure.h
+	<libs/extends/extends.h>
+
+1491492948 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\array\array.c
+	"array.h"
+	<libs/extends/extends.h>
+
+1491492930 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\data structures\array\array.h
+	<libs/data structures/random access structure/random access structure.h>
+
+1493972580 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\stream\stream.c
+	"stream.h"
+	<libs/data structures/character/character.h>
+
+1493972632 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\stream\stream.h
+	<libs/extends/extends.h>
+	<libs/data structures/array/array.h>
+	<libs/data structures/character/character.h>
+
+1494393674 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\debug.h
+	"debug.h"
+
+1493967743 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\debug.c
+	"debug.h"
+	<libs/logger/logger.h>
+
+1491496166 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\system library\system library.c
+	"system library.h"
+	<libs/extends/extends.h>
+	<windows.h>
+
+1491496156 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\system library\system library.h
+	<libs/extends/extends.h>
+
+1494401855 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network info\network info.c
+	"network info.h"
+	<libs/extends/extends.h>
+	<libs/error/error.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+	<libs/system library/system library.h>
+
+1494401691 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network info\network info.h
+	<libs/data structures/array/array.h>
+
