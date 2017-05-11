@@ -1,5 +1,5 @@
 #include "array.h"
-#include <libs/extends/extends.h>
+#include "../../extends/extends.h"
 
 
 Array* create_array(int reserve, void (*destroy_node)(char *node))

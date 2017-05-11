@@ -1,9 +1,9 @@
 #include "network info.h"
-#include <libs/extends/extends.h>
-#include <libs/error/error.h>
+#include "../../extends/extends.h"
+#include "../../error/error.h"
 #include <WinSock2.h>
 #include <WS2tcpip.h>
-#include <libs/system library/system library.h>
+#include "../../system library/system library.h"
 
 
 #ifdef __WIN32__

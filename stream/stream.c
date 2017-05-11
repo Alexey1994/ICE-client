@@ -1,5 +1,4 @@
 #include "stream.h"
-#include <libs/data structures/character/character.h>
 
 
 void get_stream_bytes(Stream *stream, Byte *bytes, unsigned int size)

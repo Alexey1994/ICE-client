@@ -2,8 +2,7 @@
 #define NETWORK_CONNECTION_H_INCLUDED
 
 
-#include <libs/extends/extends.h>
-#include <libs/stream/stream.h>
+#include "../../extends/extends.h"
 
 
 typedef unsigned int NetworkConnection;

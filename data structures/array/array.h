@@ -2,7 +2,7 @@
 #define ARRAY_H_INCLUDED
 
 
-#include <libs/data structures/random access structure/random access structure.h>
+#include "../random access structure/random access structure.h"
 
 
 typedef struct

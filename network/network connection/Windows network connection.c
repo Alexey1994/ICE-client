@@ -1,6 +1,6 @@
 #include "network connection.h"
 
-#include <libs/error/error.h>
+#include "../../error/error.h"
 #include <stdio.h>
 #include <errno.h>
 #include <WinSock2.h>

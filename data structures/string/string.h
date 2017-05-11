@@ -2,7 +2,7 @@
 #define DYNAMIC_STRING_H_INCLUDED
 
 
-#include <libs/data structures/character/character.h>
+#include "../character/character.h"
 
 
 typedef struct

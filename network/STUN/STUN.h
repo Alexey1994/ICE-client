@@ -5,8 +5,8 @@
 #define STUN_H_INCLUDED
 
 
-#include <libs/extends/extends.h>
-#include <libs/network/connection/network connection.h>
+#include "../../extends/extends.h"
+#include "../network connection/network connection.h"
 
 
 #define DEFAULT_STUN_PORT  3478

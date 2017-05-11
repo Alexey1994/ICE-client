@@ -2,9 +2,9 @@
 #define STREAM_H_INCLUDED
 
 
-#include <libs/extends/extends.h>
-#include <libs/data structures/array/array.h>
-#include <libs/data structures/character/character.h>
+#include "../extends/extends.h"
+#include "../data structures/array/array.h"
+#include "../data structures/character/character.h"
 
 
 typedef struct

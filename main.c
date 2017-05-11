@@ -87,24 +87,9 @@ int main()
     initialize_STUN();
 
     //get_NAT_type_using_STUN_server("127.0.0.1", 3478);
-    get_NAT_type_using_STUN_server("stun.l.google.com", 19302);
-/*
-    char           mapped_host[16];
-    unsigned short mapped_port;
-    char           address[21];
+    //get_NAT_type_using_STUN_server("stun.l.google.com", 19302);
+    get_NAT_type_using_STUN_server("stun.ideasip.com", 3478);
 
-    if(!get_STUN_MAPPED_ADDRESS("127.0.0.1", 3478, mapped_host, &mapped_port))
-        return 0;
-
-    snprintf(address, 21, "%s:%d", mapped_host, mapped_port);
-    printf("mapped addres: %s:%d\n", mapped_host, mapped_port);
-
-
-    char computer_address[16];
-    get_IPv4_host_address(computer_address);
-
-    printf("computer address: %s\n", computer_address);
-*/
     return 0;
 }
 

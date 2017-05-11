@@ -1,6 +1,6 @@
 #include "STUN.h"
-#include <libs/data structures/string/string.h>
-#include <libs/logger/logger.h>
+#include "../../data structures/string/string.h"
+#include "../../logger/logger.h"
 
 #include "debug.h"
 
@@ -261,33 +261,12 @@ error:
 
 void get_NAT_type_using_STUN_server(char *host, unsigned short port)
 {
-    /*
-    char            mapped_host1[16];
-    unsigned short  mapped_port1;
-
-    char            changed_host[16];
-    unsigned short  changed_port;
-
-    char            computer_address[16];
-
-    if(!get_STUN_MAPPED_ADDRESS(host, port, mapped_host1, &mapped_port1))
-        return 0;
-
-    printf("mapped address1: %s:%d\n", mapped_host1, mapped_port1);
-
-    //if(!get_STUN_CHANGED_ADDRESS())
-
-    get_IPv4_host_address(computer_address);
-    printf("computer address: %s\n", computer_address);
-
-    if(!strcmp(mapped_host1, computer_address))
-    {
-        printf("CONE NAT\n");
-    }*/
-
-    char             computer_address[16];
+    char             local_address[16];
     STUN_Attributes *attributes2;
     STUN_Attributes *attributes1 = STUN_request(host, port);
+
+    get_IPv4_host_address(local_address);
+    printf("local address: %s\n", local_address);
 
     if(!attributes1)
     {
@@ -297,9 +276,7 @@ void get_NAT_type_using_STUN_server(char *host, unsigned short port)
 
     printf("mapped address1: %s:%d\n", attributes1->MAPPRED_ADDRESS.host, attributes1->MAPPRED_ADDRESS.port);
 
-    get_IPv4_host_address(computer_address);
-
-    if(!strcmp(attributes1->MAPPRED_ADDRESS.host, computer_address))
+    if(!strcmp(attributes1->MAPPRED_ADDRESS.host, local_address))
     {
         printf("CONE NAT\n");
     }
@@ -311,9 +288,4 @@ void get_NAT_type_using_STUN_server(char *host, unsigned short port)
     }
 
     printf("changed address1: %s:%d\n", attributes1->CHANGED_ADDRESS.host, attributes1->CHANGED_ADDRESS.port);
-
-
-    //attributes2 = get_STUN_attributes(attributes1->CHANGED_ADDRESS.host, attributes1->CHANGED_ADDRESS.port);
-
-
 }

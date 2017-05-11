@@ -2,7 +2,7 @@
 #define RANDOM_ACCESS_STRUCTURE_H_INCLUDED
 
 
-#include <libs/extends/extends.h>
+#include "../../extends/extends.h"
 
 
 typedef struct

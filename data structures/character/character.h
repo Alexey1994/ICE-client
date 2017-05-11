@@ -2,7 +2,7 @@
 #define CHARACTER_H_INCLUDED
 
 
-#include <libs/extends/extends.h>
+#include "../../extends/extends.h"
 
 
 typedef char Character;
