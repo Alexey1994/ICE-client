@@ -82,13 +82,19 @@ Java_com_example_abar0217_stun_MainActivity_stringFromJNI(JNIEnv *env, jobject o
 
 #ifdef __WIN32__
 
-int main()
+int main(int arguments_length, char *arguments[])
 {
     initialize_STUN();
 
     //get_NAT_type_using_STUN_server("127.0.0.1", 3478);
     //get_NAT_type_using_STUN_server("stun.l.google.com", 19302);
-    get_NAT_type_using_STUN_server("stun.ideasip.com", 3478);
+
+    if(arguments_length < 2)
+        get_NAT_type_using_STUN_server("stun.ideasip.com", 3478);
+    else if(arguments_length == 2)
+        get_NAT_type_using_STUN_server(arguments[1], 3478);
+    else
+        get_NAT_type_using_STUN_server(arguments[1], atoi(arguments[2]));
 
     return 0;
 }
