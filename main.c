@@ -5,6 +5,7 @@
 #include "data structures/random access structure/random access structure.c"
 #include "data structures/array/array.c"
 #include "stream/stream.c"
+#include "thread/thread.c"
 #include "error/error.c"
 #include "logger/logger.c"
 #include "network/network connection/network connection.c"
@@ -85,7 +86,8 @@ int main()
 {
     initialize_STUN();
 
-    get_NAT_type_using_STUN_server("127.0.0.1", 3478);
+    //get_NAT_type_using_STUN_server("127.0.0.1", 3478);
+    get_NAT_type_using_STUN_server("stun.l.google.com", 19302);
 /*
     char           mapped_host[16];
     unsigned short mapped_port;

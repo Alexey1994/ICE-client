@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1494396256 source:c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\main.c
+1494498318 source:c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\main.c
 	"extends/extends.c"
 	"system library/system library.c"
 	"data structures/character/character.c"
@@ -7,6 +7,7 @@
 	"data structures/random access structure/random access structure.c"
 	"data structures/array/array.c"
 	"stream/stream.c"
+	"thread/thread.c"
 	"error/error.c"
 	"logger/logger.c"
 	"network/network connection/network connection.c"
@@ -55,19 +56,13 @@
 	"error.h"
 	<stdio.h>
 
-1493883445 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\error\error.h
+1494494402 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\error\error.h
 
-1494395877 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\network connection.c
-	"network connection.h"
-	<libs/error/error.h>
-	<WinSock2.h>
-	<WS2tcpip.h>
-	<sys/socket.h>
-	<netinet/in.h>
-	<netdb.h>
-	<arpa/inet.h>
+1494484075 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\network connection.c
+	"Windows network connection.c"
+	"Android network connection.c"
 
-1493796821 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\network connection.h
+1494494638 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\network connection.h
 	<libs/extends/extends.h>
 	<libs/stream/stream.h>
 
@@ -78,7 +73,7 @@
 	<libs/extends/extends.h>
 	"../STUN.h"
 
-1494396207 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\stun.h
+1494481998 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\stun.h
 	<libs/extends/extends.h>
 	<libs/network/connection/network connection.h>
 
@@ -89,7 +84,7 @@
 	<libs/extends/extends.h>
 	"../STUN.h"
 
-1493967194 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\changed_address.c
+1494482017 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\changed_address.c
 	"CHANGED_ADDRESS.h"
 
 1493966531 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\attributes\changed_address.h
@@ -194,7 +189,7 @@
 	<libs/extends/extends.h>
 	"../STUN.h"
 
-1494401965 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\stun.c
+1494498708 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\stun\stun.c
 	"STUN.h"
 	<libs/data structures/string/string.h>
 	<libs/logger/logger.h>
@@ -270,4 +265,27 @@
 
 1494401691 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network info\network info.h
 	<libs/data structures/array/array.h>
+
+1494496488 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\windows network connection.c
+	"network connection.h"
+	<libs/error/error.h>
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1494484526 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\network\network connection\android network connection.c
+	"network connection.h"
+	<libs/error/error.h>
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+
+1478297438 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\thread\thread.c
+	"thread.h"
+	<pthread.h>
+
+1478296692 c:\users\abar0217\androidstudioprojects\stun\app\src\main\c\thread\thread.h
 

@@ -158,7 +158,7 @@ static char request(NetworkConnection connection, String *message)
     print_STUN_request(message);
     #endif
 
-    open_network_connection(connection, message->begin, 20);
+    write_in_network_connection(connection, message->begin, 20);
 
     return 1;
 
@@ -167,13 +167,32 @@ error:
 }
 
 
+static void response_handler(Byte *data, Byte *end_response)
+{
+    if(!data)
+    {
+        *end_response = TIMEOUT_ERROR;
+        return;
+    }
+
+    *end_response = 1;
+}
+
+
 static Byte response(NetworkConnection connection, STUN_Attributes *attributes)
 {
     STUN_Header *header;
+    Byte         end_response;
 
     String      *message = create_string(200);
 
-    get_network_connection_array(connection, message->begin, 200);
+    //sync_read_from_network_connection(connection, message->begin, 200);
+    async_read_from_network_connection(connection, 500, message->begin, 200, response_handler, &end_response);
+
+    while(!end_response);// waiting
+
+    if(end_response == TIMEOUT_ERROR)
+        goto error;
 
     header = message->begin;
     convert_big_to_little_endian(&header->message_length, 2);
@@ -196,7 +215,7 @@ error:
 
 STUN_Attributes* STUN_request(char *host, int port)
 {
-    NetworkConnection  connection  =  create_UDP_connection(host, port);
+    NetworkConnection  connection  =  create_TCP_connection(host, port);;//create_UDP_connection(host, port);
 
     if(!connection)
         goto error;
@@ -222,68 +241,79 @@ STUN_Attributes* STUN_request(char *host, int port)
     return attributes;
 
 error:
-    print_log("error in STUN_request\n");
     return 0;
 }
 
-
-Byte get_STUN_MAPPED_ADDRESS(char *STUN_host, unsigned short STUN_port, char *mapped_host, unsigned short *mapped_port)
+/*
+STUN_Attributes* get_STUN_attributes(char *STUN_host, unsigned short STUN_port)
 {
     STUN_Attributes *attributes = STUN_request(STUN_host, STUN_port);
 
     if(!attributes)
         goto error;
 
-    snprintf(mapped_host, 16, "%s", attributes->MAPPRED_ADDRESS.host);
-    *mapped_port = attributes->MAPPRED_ADDRESS.port;
-
-    destroy_attributes(attributes);
-
-    return 1;
+    return attributes;
 
 error:
-    print_log("error in get_STUN_MAPPED_ADDRESS\n");
     return 0;
-}
-
-
-NetworkConnection connect_to_STUN_MAPPED_ADDRESS(char *STUN_host, int STUN_port)
-{
-    STUN_Attributes   *attributes = STUN_request(STUN_host, STUN_port);
-
-    if(!attributes)
-        goto error;
-
-    NetworkConnection  connection = create_UDP_connection(attributes->MAPPRED_ADDRESS.host, attributes->MAPPRED_ADDRESS.port);
-
-    destroy_attributes(attributes);
-
-    return connection;
-
-error:
-    print_log("error in connect_to_STUN_MAPPED_ADDRESS\n");
-    return 0;
-}
+}*/
 
 
 void get_NAT_type_using_STUN_server(char *host, unsigned short port)
 {
-    char            mapped_host[16];
-    unsigned short  mapped_port;
-    char            address[21];
+    /*
+    char            mapped_host1[16];
+    unsigned short  mapped_port1;
+
+    char            changed_host[16];
+    unsigned short  changed_port;
+
     char            computer_address[16];
 
-    if(!get_STUN_MAPPED_ADDRESS(host, port, mapped_host, &mapped_port))
+    if(!get_STUN_MAPPED_ADDRESS(host, port, mapped_host1, &mapped_port1))
         return 0;
 
-    snprintf(address, 21, "%s:%d", mapped_host, mapped_port);
-    printf("mapped address: %s:%d\n", mapped_host, mapped_port);
+    printf("mapped address1: %s:%d\n", mapped_host1, mapped_port1);
+
+    //if(!get_STUN_CHANGED_ADDRESS())
 
     get_IPv4_host_address(computer_address);
     printf("computer address: %s\n", computer_address);
 
-    if(!strcmp(mapped_host, computer_address))
+    if(!strcmp(mapped_host1, computer_address))
+    {
+        printf("CONE NAT\n");
+    }*/
+
+    char             computer_address[16];
+    STUN_Attributes *attributes2;
+    STUN_Attributes *attributes1 = STUN_request(host, port);
+
+    if(!attributes1)
+    {
+        printf("NAT + Firewall or connection error\n");
+        return 0;
+    }
+
+    printf("mapped address1: %s:%d\n", attributes1->MAPPRED_ADDRESS.host, attributes1->MAPPRED_ADDRESS.port);
+
+    get_IPv4_host_address(computer_address);
+
+    if(!strcmp(attributes1->MAPPRED_ADDRESS.host, computer_address))
     {
         printf("CONE NAT\n");
     }
+
+    if(!attributes1->CHANGED_ADDRESS.host)
+    {
+        attributes1->CHANGED_ADDRESS.host = host;
+        attributes1->CHANGED_ADDRESS.port = 3479;
+    }
+
+    printf("changed address1: %s:%d\n", attributes1->CHANGED_ADDRESS.host, attributes1->CHANGED_ADDRESS.port);
+
+
+    //attributes2 = get_STUN_attributes(attributes1->CHANGED_ADDRESS.host, attributes1->CHANGED_ADDRESS.port);
+
+
 }
