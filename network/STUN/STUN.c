@@ -215,7 +215,7 @@ error:
 
 STUN_Attributes* STUN_request(char *host, int port)
 {
-    NetworkConnection  connection  =  create_TCP_connection(host, port);;//create_UDP_connection(host, port);
+    NetworkConnection  connection  =  create_UDP_connection(host, port);
 
     if(!connection)
         goto error;
@@ -224,6 +224,9 @@ STUN_Attributes* STUN_request(char *host, int port)
     String            *head              = create_string(20);
     String            *source_attributes = create_string(10);
     //Stream            *attributes_stream = create_output_stream(source_attributes, push_in_string);
+
+    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->CHANGED_ADDRESS.host = 0;
 
     //add_CHANGED_ADDRESS_attribute(attributes_stream, 4, "127.0.0.1", 80);
     add_request_head(head, source_attributes->length);
