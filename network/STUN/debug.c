@@ -272,7 +272,7 @@ void print_STUN_attributes(String *message)
 
 void print_STUN_head(STUN_Header *header)
 {
-    print_log("Type:            ");
+    print_log("\tType:            ");
 
     switch(header->message_type)
     {
@@ -282,13 +282,13 @@ void print_STUN_head(STUN_Header *header)
     }
 
     char logbuf[200];
-    snprintf(logbuf, 200, "Length:          %d\n", header->message_length);
+    snprintf(logbuf, 200, "\tLength:          %d\n", header->message_length);
     print_log(logbuf);
 
-    snprintf(logbuf, 200, "magic:           0x%04x\n", header->magic_cookie);
+    snprintf(logbuf, 200, "\tmagic:           0x%04x\n", header->magic_cookie);
     print_log(logbuf);
 
-    snprintf(logbuf, 200, "transaction ID:  0x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x\n",
+    snprintf(logbuf, 200, "\ttransaction ID:  0x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x\n",
         header->transaction_ID[0],
         header->transaction_ID[1],
         header->transaction_ID[2],

@@ -31,6 +31,10 @@
 #include "network/STUN/STUN.c"
 #include "network/STUN/debug.c"
 
+#include "network/TURN/attributes/DATA.c"
+#include "network/TURN/TURN.c"
+#include "network/TURN/debug.c"
+
 
 #ifdef __ANDROID_API__
 
@@ -89,12 +93,15 @@ int main(int arguments_length, char *arguments[])
     //get_NAT_type_using_STUN_server("127.0.0.1", 3478);
     //get_NAT_type_using_STUN_server("stun.l.google.com", 19302);
 
+    
     if(arguments_length < 2)
-        get_NAT_type_using_STUN_server("stun.ideasip.com", 3478);
+        get_NAT_type_using_STUN_server("192.168.56.1", 3478);
     else if(arguments_length == 2)
         get_NAT_type_using_STUN_server(arguments[1], 3478);
     else
         get_NAT_type_using_STUN_server(arguments[1], atoi(arguments[2]));
+
+    //TURN_TCP_request("192.168.56.1", 3478);
 
     return 0;
 }

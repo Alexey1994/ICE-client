@@ -51,17 +51,9 @@ void initialize_STUN()
     read_attribute_handlers[ALTERNATE_SERVER]   = read_ALTERNATE_SERVER_attribute;
     read_attribute_handlers[FINGERPRINT]        = read_FINGERPRINT_attribute;
 
-    #if ENABLE_STUN_DEBUG
+#if ENABLE_STUN_DEBUG
     initialize_STUN_debug();
-    #endif
-
-    #ifdef __WIN32__
-    if(!wsa_data)
-    {
-        wsa_data = new(WSADATA);
-        WSAStartup(MAKEWORD(2, 2), wsa_data);
-    }
-    #endif
+#endif
 }
 
 
@@ -130,40 +122,9 @@ void add_attribute_head(Stream *attributes, unsigned short type, unsigned short 
 }
 
 
-static Byte verify_head(STUN_Header *header)
+void request(NetworkConnection connection, String *message)
 {
-    switch(header->message_type)
-    {
-        case BINDING_REQUEST:        break;
-        case BINDING_RESPONSE:       break;
-        case BINDING_ERROR_RESPONSE: break;
-
-        default:
-            goto error;
-    }
-
-    return 1;
-
-error:
-    return 0;
-}
-
-
-static char request(NetworkConnection connection, String *message)
-{
-    if(!verify_head(message->begin))
-        goto error;
-
-    #if ENABLE_STUN_DEBUG
-    print_STUN_request(message);
-    #endif
-
     write_in_network_connection(connection, message->begin, 20);
-
-    return 1;
-
-error:
-    return 0;
 }
 
 
@@ -179,14 +140,13 @@ static void response_handler(Byte *data, Byte *end_response)
 }
 
 
-static Byte response(NetworkConnection connection, STUN_Attributes *attributes)
+String* response(NetworkConnection connection)//, STUN_Attributes *attributes)
 {
     STUN_Header *header;
     Byte         end_response;
 
     String      *message = create_string(200);
 
-    //sync_read_from_network_connection(connection, message->begin, 200);
     async_read_from_network_connection(connection, 500, message->begin, 200, response_handler, &end_response);
 
     while(!end_response);// waiting
@@ -198,23 +158,18 @@ static Byte response(NetworkConnection connection, STUN_Attributes *attributes)
     convert_big_to_little_endian(&header->message_length, 2);
     message->length = 20 + header->message_length;
 
-    if(!verify_head(header))
-        goto error;
-
-    read_attributes(attributes, message);
-    #if ENABLE_STUN_DEBUG
-    print_STUN_response(message);
-    #endif
-
-    return 1;
+    return message;
 
 error:
+    destroy_string(message);
     return 0;
 }
 
 
 STUN_Attributes* STUN_request(char *host, int port)
 {
+    String *response_message;
+
     NetworkConnection  connection  =  create_UDP_connection(host, port);
 
     if(!connection)
@@ -223,43 +178,37 @@ STUN_Attributes* STUN_request(char *host, int port)
     STUN_Attributes   *attributes        = new(STUN_Attributes);
     String            *head              = create_string(20);
     String            *source_attributes = create_string(10);
-    //Stream            *attributes_stream = create_output_stream(source_attributes, push_in_string);
 
     attributes->MAPPRED_ADDRESS.host = 0;
     attributes->CHANGED_ADDRESS.host = 0;
 
-    //add_CHANGED_ADDRESS_attribute(attributes_stream, 4, "127.0.0.1", 80);
     add_request_head(head, source_attributes->length);
     concatenate_strings(head, source_attributes);
     destroy_string(source_attributes);
-    //destroy_stream(attributes_stream);
-    //add_CHANGED_ADDRESS_request_header(message);
 
-    if(!request(connection, head))
+    request(connection, head);
+
+#if ENABLE_STUN_DEBUG
+    print_STUN_request(head);
+#endif
+
+    response_message = response(connection);
+
+    if(!response_message)
         goto error;
 
-    if(!response(connection, attributes))
-        goto error;
+    read_attributes(attributes, response_message);
+
+#if ENABLE_STUN_DEBUG
+    print_STUN_response(response_message);
+#endif
+    destroy_string(response_message);
 
     return attributes;
 
 error:
     return 0;
 }
-
-/*
-STUN_Attributes* get_STUN_attributes(char *STUN_host, unsigned short STUN_port)
-{
-    STUN_Attributes *attributes = STUN_request(STUN_host, STUN_port);
-
-    if(!attributes)
-        goto error;
-
-    return attributes;
-
-error:
-    return 0;
-}*/
 
 
 void get_NAT_type_using_STUN_server(char *host, unsigned short port)

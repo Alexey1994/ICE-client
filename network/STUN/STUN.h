@@ -86,11 +86,7 @@ STUN_Attributes;
 
 void              initialize_STUN();
 STUN_Attributes*  STUN_request(char *host, int port);
-STUN_Attributes*  get_STUN_attributes(char *STUN_host, unsigned short STUN_port);
 void              get_NAT_type_using_STUN_server(char *host, unsigned short port);
-
-Byte              get_STUN_MAPPED_ADDRESS(char *STUN_host, unsigned short STUN_port, char *mapped_host, unsigned short *mapped_port);
-NetworkConnection connect_to_STUN_MAPPED_ADDRESS(char *STUN_host, int STUN_port);
 
 
 #endif // STUN_H_INCLUDED
