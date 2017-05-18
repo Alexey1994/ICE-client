@@ -65,11 +65,14 @@ int main(int arguments_length, char *arguments[])
 
 
     if(arguments_length < 2)
-        get_STUN_mapped_address("192.168.56.1", 3478, mapped_host, &mapped_port);
+        if(!get_STUN_mapped_address("192.168.56.1", 3478, mapped_host, &mapped_port))
+            return 0;
     else if(arguments_length == 2)
-        get_STUN_mapped_address(arguments[1], 3478, mapped_host, &mapped_port);
+        if(!get_STUN_mapped_address(arguments[1], 3478, mapped_host, &mapped_port))
+            return 0;
     else
-        get_STUN_mapped_address(arguments[1], atoi(arguments[2]), mapped_host, &mapped_port);
+        if(!get_STUN_mapped_address(arguments[1], atoi(arguments[2]), mapped_host, &mapped_port))
+            return 0;
 
     //get_STUN_mapped_address("192.168.56.1", 3478, mapped_host, &mapped_port);
 
