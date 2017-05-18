@@ -5,7 +5,7 @@
 #include "../../data structures/string/string.h"
 
 
-#define ENABLE_STUN_DEBUG 1
+#define ENABLE_STUN_DEBUG 0
 
 
 void initialize_STUN_debug();
@@ -28,9 +28,8 @@ void print_SOFTWARE_attribute(Byte *attribute, int length);
 void print_ALTERNATE_SERVER_attribute(Byte *attribute, int length);
 void print_FINGERPRINT_attribute(Byte *attribute, int length);
 
-void print_STUN_attribute (STUN_Attribute *attribute);
 void print_STUN_attributes (String *message);
-void print_STUN_head (STUN_Header *header);
+void print_STUN_head (STUN_Head *head);
 void print_STUN_request (String *message);
 void print_STUN_response (String *message);
 

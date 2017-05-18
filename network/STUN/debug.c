@@ -2,16 +2,11 @@
 #include "../../logger/logger.h"
 
 
-static void (*print_attribute_handlers[65536])(Byte *attribute, int attribute_length);
+static void (*print_attribute_handlers[65536])(Byte *attribute, int attribute_length) = {};
 
 
 void initialize_STUN_debug()
 {
-    int i;
-
-    for(i=0; i<65536; ++i)
-        print_attribute_handlers[i] = 0;
-
     print_attribute_handlers[MAPPED_ADDRESS]     = print_MAPPED_ADDRESS_attribute;
     print_attribute_handlers[RESPONSE_ADDRESS]   = print_RESPONSE_ADDRESS_attribute;
     print_attribute_handlers[CHANGE_REQUEST]     = print_CHANGE_REQUEST_attribute;
@@ -273,11 +268,11 @@ void print_STUN_attributes(String *message)
 }
 
 
-void print_STUN_head(STUN_Header *header)
+void print_STUN_head(STUN_Head *head)
 {
     print_log("\tType:            ");
 
-    switch(header->message_type)
+    switch(head->message_type)
     {
         case BINDING_REQUEST:        print_log("REQUEST\n");                break;
         case BINDING_RESPONSE:       print_log("SERVER RESPONSE\n");        break;
@@ -285,25 +280,25 @@ void print_STUN_head(STUN_Header *header)
     }
 
     char logbuf[200];
-    snprintf(logbuf, 200, "\tLength:          %d\n", header->message_length);
+    snprintf(logbuf, 200, "\tLength:          %d\n", head->content_length);
     print_log(logbuf);
 
-    snprintf(logbuf, 200, "\tmagic:           0x%04x\n", header->magic_cookie);
+    snprintf(logbuf, 200, "\tmagic:           0x%04x\n", head->magic_cookie);
     print_log(logbuf);
 
     snprintf(logbuf, 200, "\ttransaction ID:  0x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x%01x\n",
-        header->transaction_ID[0],
-        header->transaction_ID[1],
-        header->transaction_ID[2],
-        header->transaction_ID[3],
-        header->transaction_ID[4],
-        header->transaction_ID[5],
-        header->transaction_ID[6],
-        header->transaction_ID[7],
-        header->transaction_ID[8],
-        header->transaction_ID[9],
-        header->transaction_ID[10],
-        header->transaction_ID[11]);
+        head->transaction_ID[0],
+        head->transaction_ID[1],
+        head->transaction_ID[2],
+        head->transaction_ID[3],
+        head->transaction_ID[4],
+        head->transaction_ID[5],
+        head->transaction_ID[6],
+        head->transaction_ID[7],
+        head->transaction_ID[8],
+        head->transaction_ID[9],
+        head->transaction_ID[10],
+        head->transaction_ID[11]);
 
     print_log(logbuf);
 }

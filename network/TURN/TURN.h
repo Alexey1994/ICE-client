@@ -44,16 +44,6 @@ TURN_Message_Type;
 
 typedef struct
 {
-    unsigned short  message_type;
-    unsigned short  message_length;
-    long int        magic_cookie;
-    Byte            transaction_ID[12];
-}
-TURN_Header;
-
-
-typedef struct
-{
     struct
     {
         Byte           *host;

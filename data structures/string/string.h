@@ -31,6 +31,8 @@ Character* convert_string_to_char_array(String *string);
 void concatenate_string_with_char_array(String *string, Character *char_array);
 void concatenate_strings(String *string1, String *string2);
 
+void write_byte_array_to_string(String *string, Byte *array, int length);
+
 void print_string(String *string);
 
 

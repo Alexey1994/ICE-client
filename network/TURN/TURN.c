@@ -4,6 +4,8 @@
 
 #include "debug.h"
 
+//#include "headers/ALLOCATE.c"
+
 #include "attributes/DATA.c"
 
 
@@ -62,24 +64,26 @@ void read_TURN_attributes(TURN_Attributes *attributes, String *message)
 
 
 static TURN_Attributes* TURN_request(NetworkConnection connection)
-{
+{/*
     String *response_message;
 
     TURN_Attributes   *attributes        = new(TURN_Attributes);
-    String            *head              = create_string(20);
+    //String            *head              = create_string(20);
     String            *source_attributes = create_string(10);
 
     //attributes->MAPPRED_ADDRESS.host = 0;
     //attributes->CHANGED_ADDRESS.host = 0;
 
-    add_request_head(head, source_attributes->length);
-    concatenate_strings(head, source_attributes);
-    destroy_string(source_attributes);
+    //add_request_head(head, source_attributes->length);
+    String *head_data = create_STUN_head(BINDING_REQUEST);
 
-    request(connection, head);
+    //concatenate_strings(head, source_attributes);
+    //destroy_string(source_attributes);
+
+    //request(connection, head_data);
 
 #if ENABLE_TURN_DEBUG
-    print_TURN_request(head);
+    print_TURN_request(head_data);
 #endif
 
     response_message = response(connection);
@@ -98,61 +102,7 @@ static TURN_Attributes* TURN_request(NetworkConnection connection)
     return attributes;
 
 error:
-    return 0;
-}
-
-
-void add_ALLOCATION_request_head(String *message, int content_length)
-{
-    STUN_Header *header      =  message->begin;
-
-    header->message_type   = ALLOCATE_TURN_MESSAGE;
-    header->message_length = content_length;
-    header->magic_cookie   = STUN_COOKIE;
-    generate_transaction_ID(header->transaction_ID);
-
-    message->length = 20;
-}
-
-
-static TURN_Attributes* TURN_ALLOCATION_request(NetworkConnection connection)
-{
-    String *response_message;
-
-    TURN_Attributes   *attributes        = new(TURN_Attributes);
-    String            *head              = create_string(20);
-    String            *source_attributes = create_string(10);
-
-    //attributes->MAPPRED_ADDRESS.host = 0;
-    //attributes->CHANGED_ADDRESS.host = 0;
-
-    add_ALLOCATION_request_head(head, source_attributes->length);
-    concatenate_strings(head, source_attributes);
-    destroy_string(source_attributes);
-
-    request(connection, head);
-
-#if ENABLE_TURN_DEBUG
-    print_TURN_request(head);
-#endif
-
-    response_message = response(connection);
-
-    if(!response_message)
-        goto error;
-
-    read_TURN_attributes(attributes, response_message);
-
-#if ENABLE_TURN_DEBUG
-    print_TURN_response(response_message);
-#endif
-
-    destroy_network_connection(connection);
-
-    return attributes;
-
-error:
-    return 0;
+    return 0;*/
 }
 
 
@@ -177,8 +127,7 @@ TURN_Attributes* TURN_UDP_request(char *host, int port)
     if(!connection)
         goto error;
 
-    //return TURN_request(connection);
-    return TURN_ALLOCATION_request(connection);
+    return TURN_request(connection);
 
 error:
     return 0;

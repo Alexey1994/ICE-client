@@ -62,9 +62,9 @@ void print_TURN_attributes(String *message)
 }
 
 
-void print_TURN_head(TURN_Header *header)
+void print_TURN_head(STUN_Head *head)
 {
-    print_STUN_head(header);
+    print_STUN_head(head);
 }
 
 

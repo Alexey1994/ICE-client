@@ -139,6 +139,13 @@ int compare_strings(String *string1, String *string2)
 }
 
 
+void write_byte_array_to_string(String *string, Byte *array, int length)
+{
+    for(; length; --length, ++array)
+        push_in_string(string, *array);
+}
+
+
 void print_string(String *string)
 {
     printf("%s", string->begin);

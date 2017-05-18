@@ -44,7 +44,7 @@ NetworkConnection create_network_connection(Byte *host, int port, int connection
     }
 
     unsigned non_blocking = 1;
-    //ioctlsocket(socket_connection, FIONBIO, &non_blocking);
+    ioctlsocket(socket_connection, FIONBIO, &non_blocking);
 
     //while(connect(socket_connection, &sock_addr, sizeof(sock_addr)) == EINPROGRESS);
 
@@ -115,9 +115,6 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
 
     int      current_time = 0;
     int      error_code;
-    unsigned non_blocking = 1;
-
-    ioctlsocket(connection, FIONBIO, &non_blocking);
 
     for(;;)
     {

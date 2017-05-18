@@ -56,5 +56,5 @@ void get_IPv4_host_address(char *address)
         return;
     }
 
-    snprintf(address, 16, "%u.%u.%u.%u\n", host[0], host[1], host[2], host[3]);
+    snprintf(address, 16, "%u.%u.%u.%u", host[0], host[1], host[2], host[3]);
 }

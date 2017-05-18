@@ -1,4 +1,3 @@
-#include "../network info/network info.h"
 #include "../../stream/stream.h"
 #include "../../data structures/string/string.h"
 #include "../../logger/logger.h"
@@ -23,17 +22,12 @@
 #include "attributes/ALTERNATE_SERVER.c"
 #include "attributes/FINGERPRINT.c"
 
-
-static void(*read_attribute_handlers[65536])(STUN_Attributes *attributes, Byte *attribute, int attribute_length);
+#include "head.c"
+#include "attribute reader.c"
 
 
 void initialize_STUN()
 {
-    int i;
-
-    for(i=0; i<65536; ++i)
-        read_attribute_handlers[i] = 0;
-
     read_attribute_handlers[MAPPED_ADDRESS]     = read_MAPPED_ADDRESS_attribute;
     read_attribute_handlers[RESPONSE_ADDRESS]   = read_RESPONSE_ADDRESS_attribute;
     read_attribute_handlers[CHANGE_REQUEST]     = read_CHANGE_REQUEST_attribute;
@@ -58,74 +52,13 @@ void initialize_STUN()
 }
 
 
-void destroy_attributes(STUN_Attributes *attributes)
+void STUN_request(NetworkConnection  connection, String *message)
 {
-    //free(attributes->MAPPRED_ADDRESS.host);
-    free(attributes);
-}
+    write_in_network_connection(connection, message->begin, message->length);
 
-
-static void read_attribute(STUN_Attribute *attribute, STUN_Attributes *attributes)
-{
-    void(*attribute_handler)(STUN_Attributes *attributes, Byte *attribute, int attribute_length);
-
-    attribute_handler = read_attribute_handlers[ attribute->type ];
-
-    if(!attribute_handler)
-        return;
-
-    attribute_handler(attributes, (Byte*)attribute + 4, attribute->length);
-}
-
-
-static void read_attributes(STUN_Attributes *attributes, String *message)
-{
-    int             length     = 20;
-    STUN_Attribute *attribute  = message->begin + 20;
-
-    while(length < message->length)
-    {
-        convert_big_to_little_endian(&attribute->type, 2);
-        convert_big_to_little_endian(&attribute->length, 2);
-        read_attribute(attribute, attributes);
-        length += 4 + attribute->length;
-        attribute = (Byte*)attribute + 4 + attribute->length;
-    }
-}
-
-
-static void generate_transaction_ID(Byte *transaction_ID)
-{
-    memset(transaction_ID, 0, 12);
-}
-
-
-static void add_request_head(String *message, int content_length)
-{
-    STUN_Header *header      =  message->begin;
-
-    header->message_type   = BINDING_REQUEST;
-    header->message_length = content_length;
-    header->magic_cookie   = STUN_COOKIE;
-    generate_transaction_ID(header->transaction_ID);
-
-    message->length = 20;
-}
-
-
-void add_attribute_head(Stream *attributes, unsigned short type, unsigned short length)
-{
-    convert_big_to_little_endian(&type, 2);
-    convert_big_to_little_endian(&length, 2);
-
-    write_data_in_output_stream(attributes, &type, 2);
-    write_data_in_output_stream(attributes, &length, 2);
-}
-
-
-void request(NetworkConnection connection, String *message)
-{
-    write_in_network_connection(connection, message->begin, 20);
+#if ENABLE_STUN_DEBUG
+    print_STUN_request(message);
+#endif
 }
 
 
@@ -141,12 +74,12 @@ static void response_handler(Byte *data, Byte *end_response)
 }
 
 
-String* response(NetworkConnection connection)//, STUN_Attributes *attributes)
+String* STUN_response(NetworkConnection connection)
 {
-    STUN_Header *header;
-    Byte         end_response;
+    STUN_Head *head;
+    Byte       end_response;
 
-    String      *message = create_string(200);
+    String *message = create_string(200);
 
     async_read_from_network_connection(connection, 500, message->begin, 200, response_handler, &end_response);
 
@@ -155,9 +88,14 @@ String* response(NetworkConnection connection)//, STUN_Attributes *attributes)
     if(end_response == TIMEOUT_ERROR)
         goto error;
 
-    header = message->begin;
-    convert_big_to_little_endian(&header->message_length, 2);
-    message->length = 20 + header->message_length;
+    head = message->begin;
+    convert_big_to_little_endian(&head->content_length, 2);
+    //convert_big_to_little_endian(&head->message_type, 2);
+    message->length = 20 + head->content_length;
+
+#if ENABLE_STUN_DEBUG
+    print_STUN_response(message);
+#endif
 
     return message;
 
@@ -167,78 +105,62 @@ error:
 }
 
 
-STUN_Attributes* STUN_request(char *host, int port)
+STUN_Attributes* create_STUN_attributes_from_message(String *message)
 {
-    String *response_message;
+    STUN_Attributes *attributes  = new(STUN_Attributes);
 
+    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->CHANGED_ADDRESS.host = 0;
+
+    read_STUN_attributes(attributes, message);
+
+    return attributes;
+}
+
+
+void destroy_STUN_attributes(STUN_Attributes *attributes)
+{
+    free(attributes->MAPPRED_ADDRESS.host);
+    free(attributes);
+}
+
+
+Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port)
+{
     NetworkConnection  connection  =  create_UDP_connection(host, port);
 
     if(!connection)
         goto error;
 
-    STUN_Attributes   *attributes        = new(STUN_Attributes);
-    String            *head              = create_string(20);
-    String            *source_attributes = create_string(10);
+    STUN_Attributes *attributes;
+    String          *response_message;
 
-    attributes->MAPPRED_ADDRESS.host = 0;
-    attributes->CHANGED_ADDRESS.host = 0;
+    String *request_message = create_STUN_head(BINDING_REQUEST);
 
-    add_request_head(head, source_attributes->length);
-    concatenate_strings(head, source_attributes);
-    destroy_string(source_attributes);
+    //add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
+    set_STUN_content_length(request_message->begin, request_message->length - 20);
 
-    request(connection, head);
+    STUN_request(connection, request_message);
+    destroy_string(request_message);
 
-#if ENABLE_STUN_DEBUG
-    print_STUN_request(head);
-#endif
-
-    response_message = response(connection);
+    response_message = STUN_response(connection);
 
     if(!response_message)
+    {
+        destroy_network_connection(connection);
         goto error;
+    }
 
-    read_attributes(attributes, response_message);
+    attributes = create_STUN_attributes_from_message(response_message);
 
-#if ENABLE_STUN_DEBUG
-    print_STUN_response(response_message);
-#endif
-    destroy_string(response_message);
+    strcpy(mapped_host, attributes->MAPPRED_ADDRESS.host);
+    *mapped_port = attributes->MAPPRED_ADDRESS.port;
 
-    return attributes;
+    destroy_network_connection(connection);
+    destroy_STUN_attributes(attributes);
+
+    return 1;
 
 error:
     return 0;
-}
-
-
-void get_NAT_type_using_STUN_server(char *host, unsigned short port)
-{
-    char             local_address[16];
-    STUN_Attributes *attributes2;
-    STUN_Attributes *attributes1 = STUN_request(host, port);
-
-    get_IPv4_host_address(local_address);
-    printf("local address: %s\n", local_address);
-
-    if(!attributes1)
-    {
-        printf("NAT + Firewall or connection error\n");
-        return 0;
-    }
-
-    printf("mapped address1: %s:%d\n", attributes1->MAPPRED_ADDRESS.host, attributes1->MAPPRED_ADDRESS.port);
-
-    if(!strcmp(attributes1->MAPPRED_ADDRESS.host, local_address))
-    {
-        printf("CONE NAT\n");
-    }
-
-    if(!attributes1->CHANGED_ADDRESS.host)
-    {
-        attributes1->CHANGED_ADDRESS.host = host;
-        attributes1->CHANGED_ADDRESS.port = 3479;
-    }
-
-    printf("changed address1: %s:%d\n", attributes1->CHANGED_ADDRESS.host, attributes1->CHANGED_ADDRESS.port);
 }

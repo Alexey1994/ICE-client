@@ -6,6 +6,7 @@
 
 
 #include "../../extends/extends.h"
+#include "../../data structures/string/string.h"
 #include "../network connection/network connection.h"
 
 
@@ -60,11 +61,11 @@ STUN_Message_Type;
 typedef struct
 {
     unsigned short  message_type;
-    unsigned short  message_length;
+    unsigned short  content_length;
     long int        magic_cookie;
     Byte            transaction_ID[12];
 }
-STUN_Header;
+STUN_Head;
 
 
 typedef struct
@@ -85,8 +86,8 @@ STUN_Attributes;
 
 
 void              initialize_STUN();
-STUN_Attributes*  STUN_request(char *host, int port);
-void              get_NAT_type_using_STUN_server(char *host, unsigned short port);
+String*           create_STUN_head(unsigned short type);
+Boolean           get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port);
 
 
 #include "STUN.c"

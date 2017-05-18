@@ -5,7 +5,7 @@
 #include "debug.h"
 
 
-#define ENABLE_TURN_DEBUG 1
+#define ENABLE_TURN_DEBUG 0
 
 
 void initialize_TURN_debug();
@@ -13,7 +13,7 @@ void initialize_TURN_debug();
 void print_DATA_attribute(Byte *attribute, int length);
 
 
-void print_TURN_head(TURN_Header *header);
+void print_TURN_head(STUN_Head *head);
 void print_TURN_response(String *message);
 void print_TURN_request(String *message);
 
