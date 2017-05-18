@@ -2,7 +2,7 @@
 #define STUN_DEBUG_H_INCLUDED
 
 
-#include "debug.h"
+#include "../../data structures/string/string.h"
 
 
 #define ENABLE_STUN_DEBUG 1
@@ -34,5 +34,9 @@ void print_STUN_head (STUN_Header *header);
 void print_STUN_request (String *message);
 void print_STUN_response (String *message);
 
+
+#if ENABLE_STUN_DEBUG
+# include "debug.c"
+#endif
 
 #endif //STUN_DEBUG_H_INCLUDED

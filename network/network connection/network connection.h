@@ -22,4 +22,6 @@ void              sync_read_from_network_connection(NetworkConnection connection
 void              async_read_from_network_connection(NetworkConnection connection, int timeout, Byte *data, int length_data, void handler(Byte *data, Byte *arguments), Byte *handler_arguments);
 
 
+#include "network connection.c"
+
 #endif // NETWORK_CONNECTION_H_INCLUDED

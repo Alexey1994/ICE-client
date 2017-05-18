@@ -18,4 +18,9 @@ void print_TURN_response(String *message);
 void print_TURN_request(String *message);
 
 
+#if ENABLE_TURN_DEBUG
+# include "debug.c"
+#endif
+
+
 #endif //TURN_DEBUG_H_INCLUDED

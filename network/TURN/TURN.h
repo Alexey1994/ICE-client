@@ -4,8 +4,7 @@
 #define TURN_H_INCLUDED
 
 
-#include "../../extends/extends.h"
-#include "../network connection/network connection.h"
+#include "../STUN/STUN.h"
 
 
 typedef enum
@@ -70,5 +69,7 @@ void             initialize_TURN();
 TURN_Attributes* TURN_TCP_request(char *host, int port);
 TURN_Attributes* TURN_UDP_request(char *host, int port);
 
+
+#include "TURN.c"
 
 #endif // TURN_H_INCLUDED

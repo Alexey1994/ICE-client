@@ -157,6 +157,9 @@ void print_ERROR_CODE_attribute(Byte *attribute, int length)
     char logbuf[200];
     snprintf(logbuf, 200, "\tERROR CODE, %d bytes\n", length);
     print_log(logbuf);
+
+    snprintf(logbuf, 200, "\t%s", attribute+4);
+    print_log(logbuf);
 }
 
 

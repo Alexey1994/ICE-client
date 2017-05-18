@@ -5,9 +5,6 @@
 #include <stdlib.h>
 
 
-#define library(path) <libs/path>
-//#include library(extends/extends.h)
-
 #define new(type) malloc(sizeof(type))
 #define new_array(type, length) malloc(sizeof(type)*length)
 
@@ -38,5 +35,7 @@ void destroy_dynamic_data(DynamicData *data);
 
 void convert_big_to_little_endian(Byte *array, int length);
 
+
+#include "extends.c"
 
 #endif // EXTENDS_H_INCLUDED

@@ -58,4 +58,6 @@ void           write_text_in_output_stream(Stream *output_stream, Character *tex
 void           write_int_in_text_output_stream(Stream *output_stream, int number);
 
 
+#include "stream.c"
+
 #endif // STREAM_H_INCLUDED

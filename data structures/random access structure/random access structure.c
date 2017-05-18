@@ -1,6 +1,3 @@
-#include "random access structure.h"
-
-
 RandomAccessStructure* create_random_access_structure(Byte *structure,
                                                       Byte* (*get_element)(RandomAccessStructure *structure, int pos),
                                                       int (*get_length)(RandomAccessStructure *structure))

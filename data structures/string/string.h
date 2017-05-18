@@ -34,4 +34,6 @@ void concatenate_strings(String *string1, String *string2);
 void print_string(String *string);
 
 
+#include "string.c"
+
 #endif // DYNAMIC_STRING_H_INCLUDED

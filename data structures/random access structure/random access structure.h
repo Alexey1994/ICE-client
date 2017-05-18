@@ -21,4 +21,7 @@ RandomAccessStructure* create_random_access_structure(Byte *structure,
 
 void destroy_random_random_access_structure(RandomAccessStructure *structure);
 
+
+#include "random access structure.c"
+
 #endif // RANDOM_ACCESS_STRUCTURE_H_INCLUDED

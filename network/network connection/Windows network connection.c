@@ -1,5 +1,6 @@
 #include "network connection.h"
 
+#include "../../thread/thread.h"
 #include "../../error/error.h"
 #include <stdio.h>
 #include <errno.h>
@@ -73,7 +74,7 @@ NetworkConnection create_UDP_connection(Byte *host, int port)
 
 void destroy_network_connection(NetworkConnection connection)
 {
-    //closesocket(connection);
+    closesocket(connection);
     //WSACleanup();
 }
 

@@ -1,6 +1,3 @@
-#include "stream.h"
-
-
 void get_stream_bytes(Stream *stream, Byte *bytes, unsigned int size)
 {
     for(; size; --size, ++bytes)

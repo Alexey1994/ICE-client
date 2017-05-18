@@ -14,4 +14,6 @@ Boolean is_letter(Character c);
 Boolean is_space(Character c);
 
 
+#include "character.c"
+
 #endif // CHARACTER_H_INCLUDED

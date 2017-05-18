@@ -1,39 +1,4 @@
-#include "extends/extends.c"
-#include "system library/system library.c"
-#include "data structures/character/character.c"
-#include "data structures/string/string.c"
-#include "data structures/random access structure/random access structure.c"
-#include "data structures/array/array.c"
-#include "stream/stream.c"
-#include "thread/thread.c"
-#include "error/error.c"
-#include "logger/logger.c"
-#include "network/network connection/network connection.c"
-#include "network/network info/network info.c"
-
-#include "network/STUN/attributes/ALTERNATE_SERVER.c"
-#include "network/STUN/attributes/CHANGE_REQUEST.c"
-#include "network/STUN/attributes/CHANGED_ADDRESS.c"
-#include "network/STUN/attributes/ERROR_CODE.c"
-#include "network/STUN/attributes/FINGERPRINT.c"
-#include "network/STUN/attributes/MAPPED_ADDRESS.c"
-#include "network/STUN/attributes/MESSAGE_INTEGRITY.c"
-#include "network/STUN/attributes/NONCE.c"
-#include "network/STUN/attributes/PASSWORD.c"
-#include "network/STUN/attributes/REALM.c"
-#include "network/STUN/attributes/REFLECTED_FROM.c"
-#include "network/STUN/attributes/RESPONSE_ADDRESS.c"
-#include "network/STUN/attributes/SOFTWARE.c"
-#include "network/STUN/attributes/SOURCE_ADDRESS.c"
-#include "network/STUN/attributes/UNKNOWN_ATTRIBUTES.c"
-#include "network/STUN/attributes/USERNAME.c"
-#include "network/STUN/attributes/XOR_MAPPED_ADDRESS.c"
-#include "network/STUN/STUN.c"
-#include "network/STUN/debug.c"
-
-#include "network/TURN/attributes/DATA.c"
-#include "network/TURN/TURN.c"
-#include "network/TURN/debug.c"
+#include "network/TURN/TURN.h"
 
 
 #ifdef __ANDROID_API__
@@ -89,11 +54,12 @@ Java_com_example_abar0217_stun_MainActivity_stringFromJNI(JNIEnv *env, jobject o
 int main(int arguments_length, char *arguments[])
 {
     initialize_STUN();
+    initialize_TURN();
 
     //get_NAT_type_using_STUN_server("127.0.0.1", 3478);
     //get_NAT_type_using_STUN_server("stun.l.google.com", 19302);
 
-    
+
     if(arguments_length < 2)
         get_NAT_type_using_STUN_server("192.168.56.1", 3478);
     else if(arguments_length == 2)
@@ -102,6 +68,7 @@ int main(int arguments_length, char *arguments[])
         get_NAT_type_using_STUN_server(arguments[1], atoi(arguments[2]));
 
     //TURN_TCP_request("192.168.56.1", 3478);
+    //TURN_UDP_request("192.168.56.1", 3478);
 
     return 0;
 }

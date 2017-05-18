@@ -8,4 +8,6 @@
 void get_IPv4_host_address(char *address);
 
 
+#include "network info.c"
+
 #endif // NETWORK_INFO_H_INCLUDED

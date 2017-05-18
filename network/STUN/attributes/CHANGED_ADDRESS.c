@@ -1,4 +1,4 @@
-#include "CHANGED_ADDRESS.h"
+#include "../../../stream/stream.h"
 
 
 void read_CHANGED_ADDRESS_attribute(STUN_Attributes *attributes, Byte *attribute, int length)

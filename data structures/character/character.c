@@ -1,6 +1,3 @@
-#include "character.h"
-
-
 Boolean is_number(Character c)
 {
     if(c>='0' && c<='9')

@@ -1,6 +1,3 @@
-#include "extends.h"
-
-
 DynamicData* create_dynamic_data(Byte *data, Byte type)
 {
     DynamicData *dynamic_data = new(DynamicData);

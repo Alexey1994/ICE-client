@@ -57,6 +57,8 @@ void print_TURN_attributes(String *message)
         length += 4 + attribute->length;
         attribute = (Byte*)attribute + 4 + attribute->length;
     }
+
+    print_STUN_attributes(message);
 }
 
 

@@ -89,4 +89,6 @@ STUN_Attributes*  STUN_request(char *host, int port);
 void              get_NAT_type_using_STUN_server(char *host, unsigned short port);
 
 
+#include "STUN.c"
+
 #endif // STUN_H_INCLUDED

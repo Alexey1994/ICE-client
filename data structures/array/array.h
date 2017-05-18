@@ -26,4 +26,7 @@ void crawl_array(Array *array, void(*crawl_func)(char *array_node));
 RandomAccessStructure* create_array_structure(Array *array);
 void destroy_array_structure(RandomAccessStructure *structure);
 
+
+#include "array.c"
+
 #endif // ARRAY_H_INCLUDED
