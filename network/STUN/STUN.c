@@ -62,7 +62,7 @@ void STUN_request(NetworkConnection  connection, String *message)
 }
 
 
-static void response_handler(Byte *data, Byte *end_response)
+static void STUN_response_handler(Byte *data, Byte *end_response)
 {
     if(!data)
     {
@@ -81,7 +81,7 @@ String* STUN_response(NetworkConnection connection)
 
     String *message = create_string(200);
 
-    async_read_from_network_connection(connection, 500, message->begin, 200, response_handler, &end_response);
+    async_read_from_network_connection(connection, 500, message->begin, 200, STUN_response_handler, &end_response);
 
     while(!end_response);// waiting
 
@@ -90,18 +90,24 @@ String* STUN_response(NetworkConnection connection)
 
     head = message->begin;
     convert_big_to_little_endian(&head->content_length, 2);
-    //convert_big_to_little_endian(&head->message_type, 2);
     message->length = 20 + head->content_length;
-
-#if ENABLE_STUN_DEBUG
-    print_STUN_response(message);
-#endif
 
     return message;
 
 error:
     destroy_string(message);
     return 0;
+}
+
+
+STUN_Attributes* create_STUN_attributes()
+{
+    STUN_Attributes *attributes  = new(STUN_Attributes);
+
+    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->CHANGED_ADDRESS.host = 0;
+
+    return attributes;
 }
 
 
@@ -137,21 +143,23 @@ Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_ho
 
     String *request_message = create_STUN_head(BINDING_REQUEST);
 
-    //add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
+    add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
     set_STUN_content_length(request_message->begin, request_message->length - 20);
 
     STUN_request(connection, request_message);
     destroy_string(request_message);
 
     response_message = STUN_response(connection);
+    destroy_network_connection(connection);
 
     if(!response_message)
-    {
-        destroy_network_connection(connection);
         goto error;
-    }
 
     attributes = create_STUN_attributes_from_message(response_message);
+
+#if ENABLE_STUN_DEBUG
+    print_STUN_response(response_message);
+#endif
 
     strcpy(mapped_host, attributes->MAPPRED_ADDRESS.host);
     *mapped_port = attributes->MAPPRED_ADDRESS.port;

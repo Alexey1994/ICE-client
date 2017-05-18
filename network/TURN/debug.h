@@ -5,7 +5,7 @@
 #include "debug.h"
 
 
-#define ENABLE_TURN_DEBUG 0
+#define ENABLE_TURN_DEBUG 1
 
 
 void initialize_TURN_debug();

@@ -55,10 +55,8 @@ typedef struct
 TURN_Attributes;
 
 
-void             initialize_TURN();
-TURN_Attributes* TURN_TCP_request(char *host, int port);
-TURN_Attributes* TURN_UDP_request(char *host, int port);
-
+void initialize_TURN();
+void TURN(char *host, short port);
 
 #include "TURN.c"
 

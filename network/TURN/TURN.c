@@ -4,20 +4,14 @@
 
 #include "debug.h"
 
-//#include "headers/ALLOCATE.c"
-
 #include "attributes/DATA.c"
 
-
-static void(*read_attribute_TURN_handlers[65536])(TURN_Attributes *attributes, Byte *attribute, int attribute_length);
+#include "attribute reader.c"
 
 
 void initialize_TURN()
 {
-    int i;
-
-    for(i=0; i<65536; ++i)
-        read_attribute_TURN_handlers[i] = 0;
+    read_attribute_TURN_handlers[DATA_TURN_ATTRIBUTE] = read_DATA_attribute;
 
 #if ENABLE_TURN_DEBUG
     initialize_TURN_debug();
@@ -25,110 +19,98 @@ void initialize_TURN()
 }
 
 
-void read_TURN_attribute(TURN_Attribute *attribute, TURN_Attributes *attributes)
+static void TURN_request(NetworkConnection connection, String *message)
 {
-    void(*TURN_attribute_handler) (TURN_Attributes *attributes, Byte *attribute, int attribute_length);
-    TURN_attribute_handler = read_attribute_TURN_handlers[ attribute->type ];
+    write_in_network_connection(connection, message->begin, message->length);
 
-    if(!TURN_attribute_handler)
+#if ENABLE_STUN_DEBUG
+    print_TURN_request(message);
+#endif
+}
+
+
+static void TURN_response_handler(Byte *data, Byte *end_response)
+{
+    if(!data)
     {
-        void(*STUN_attribute_handler) (STUN_Attributes *attributes, Byte *attribute, int attribute_length);
-        STUN_attribute_handler = read_attribute_handlers[ attribute->type ];
-
-        if(!STUN_attribute_handler)
-            return;
-
-        STUN_attribute_handler(attributes, (Byte*)attribute + 4, attribute->length);
-
+        *end_response = TIMEOUT_ERROR;
         return;
     }
 
-    TURN_attribute_handler(attributes, (Byte*)attribute + 4, attribute->length);
+    *end_response = 1;
 }
 
 
-void read_TURN_attributes(TURN_Attributes *attributes, String *message)
+String* TURN_response(NetworkConnection connection)
 {
-    int             length     = 20;
-    STUN_Attribute *attribute  = message->begin + 20;
+    STUN_Head *head;
+    Byte       end_response;
 
-    while(length < message->length)
-    {
-        convert_big_to_little_endian(&attribute->type, 2);
-        convert_big_to_little_endian(&attribute->length, 2);
-        read_TURN_attribute(attribute, attributes);
-        length += 4 + attribute->length;
-        attribute = (Byte*)attribute + 4 + attribute->length;
-    }
-}
+    String *message = create_string(200);
 
+    async_read_from_network_connection(connection, 500, message->begin, 200, TURN_response_handler, &end_response);
 
-static TURN_Attributes* TURN_request(NetworkConnection connection)
-{/*
-    String *response_message;
+    while(!end_response);// waiting
 
-    TURN_Attributes   *attributes        = new(TURN_Attributes);
-    //String            *head              = create_string(20);
-    String            *source_attributes = create_string(10);
-
-    //attributes->MAPPRED_ADDRESS.host = 0;
-    //attributes->CHANGED_ADDRESS.host = 0;
-
-    //add_request_head(head, source_attributes->length);
-    String *head_data = create_STUN_head(BINDING_REQUEST);
-
-    //concatenate_strings(head, source_attributes);
-    //destroy_string(source_attributes);
-
-    //request(connection, head_data);
-
-#if ENABLE_TURN_DEBUG
-    print_TURN_request(head_data);
-#endif
-
-    response_message = response(connection);
-
-    if(!response_message)
+    if(end_response == TIMEOUT_ERROR)
         goto error;
 
-    read_TURN_attributes(attributes, response_message);
+    head = message->begin;
+    convert_big_to_little_endian(&head->content_length, 2);
+    message->length = 20 + head->content_length;
 
-#if ENABLE_TURN_DEBUG
-    print_TURN_response(response_message);
-#endif
-
-    destroy_network_connection(connection);
-
-    return attributes;
+    return message;
 
 error:
-    return 0;*/
-}
-
-
-TURN_Attributes* TURN_TCP_request(char *host, int port)
-{
-    NetworkConnection  connection  =  create_TCP_connection(host, port);
-
-    if(!connection)
-        goto error;
-
-    return TURN_request(connection);
-
-error:
+    destroy_string(message);
     return 0;
 }
 
 
-TURN_Attributes* TURN_UDP_request(char *host, int port)
+TURN_Attributes* create_TURN_attributes_from_message(String *message)
+{
+    TURN_Attributes *attributes  = new(TURN_Attributes);
+
+    attributes->STUN_attributes = create_STUN_attributes();
+
+    read_TURN_attributes(attributes, message);
+
+    return attributes;
+}
+
+
+void destroy_TURN_attributes(TURN_Attributes *attributes)
+{
+    free(attributes);
+}
+
+
+void TURN(char *host, short port)
 {
     NetworkConnection  connection  =  create_UDP_connection(host, port);
 
     if(!connection)
         goto error;
 
-    return TURN_request(connection);
+    String *request_message = create_STUN_head(ALLOCATE_TURN_MESSAGE);
+    set_STUN_content_length(request_message->begin, 0);
+
+    TURN_request(connection, request_message);
+
+    String *response_message = TURN_response(connection);
+    destroy_network_connection(connection);
+
+    if(!response_message)
+        goto error;
+
+    create_TURN_attributes_from_message(response_message);
+
+#if ENABLE_TURN_DEBUG
+    print_TURN_response(response_message);
+#endif
+
+    return;
 
 error:
-    return 0;
+    return;
 }
