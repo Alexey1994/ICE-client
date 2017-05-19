@@ -5,6 +5,14 @@
 #include "../../extends/extends.h"
 
 
+typedef enum
+{
+	UDP_CONNECTION,
+	TCP_CONNECTION	
+}
+ConnectionType;
+
+
 typedef unsigned int NetworkConnection;
 
 

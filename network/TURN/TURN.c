@@ -5,6 +5,8 @@
 #include "debug.h"
 
 #include "attributes/DATA.c"
+#include "attributes/REQUESTED_TRANSPORT.c"
+#include "attributes/DONT_FRAGMENT.c"
 
 #include "attribute reader.c"
 
@@ -53,7 +55,10 @@ String* TURN_response(NetworkConnection connection)
     while(!end_response);// waiting
 
     if(end_response == TIMEOUT_ERROR)
+    {
+        print_log("connection error\n");
         goto error;
+    }
 
     head = message->begin;
     convert_big_to_little_endian(&head->content_length, 2);
@@ -93,8 +98,10 @@ void TURN(char *host, short port)
         goto error;
 
     String *request_message = create_STUN_head(ALLOCATE_TURN_MESSAGE);
-    set_STUN_content_length(request_message->begin, 0);
 
+    add_REQUESTED_TRANSPORT_attribute(request_message, UDP_CONNECTION);
+    add_DONT_FRAGMENT_attribute(request_message);
+    end_STUN_message(request_message);
     TURN_request(connection, request_message);
 
     String *response_message = TURN_response(connection);

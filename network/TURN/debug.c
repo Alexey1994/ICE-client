@@ -5,6 +5,32 @@
 static void (*print_TURN_attribute_handlers[65536])(Byte *attribute, int attribute_length);
 
 
+void print_DATA_attribute(Byte *attribute, int length)
+{
+    char logbuf[200];
+    snprintf(logbuf, 200, "\tRESPONSE ADDRESS, %d bytes\n", length);
+    print_log(logbuf);
+}
+
+
+void print_REQUESTED_TRANSPORT_attribute(Byte *attribute, int length)
+{
+    convert_big_to_little_endian(&length, 2);
+
+    char logbuf[200];
+    snprintf(logbuf, 200, "\tREQUESTED TRANSPORT, %d bytes\n", length);
+    print_log(logbuf);
+
+    switch(*attribute)
+    {
+        case 17: print_log("\tUDP connection type\n"); break;
+
+        default:
+            print_log("\tunknown connection type\n");
+    }
+}
+
+
 void initialize_TURN_debug()
 {
     int i;
@@ -12,15 +38,8 @@ void initialize_TURN_debug()
     for(i=0; i<65536; ++i)
         print_TURN_attribute_handlers[i] = 0;
 
-    print_TURN_attribute_handlers[DATA_TURN_ATTRIBUTE] = print_DATA_attribute;
-}
-
-
-void print_DATA_attribute(Byte *attribute, int length)
-{
-    char logbuf[200];
-    snprintf(logbuf, 200, "\tRESPONSE ADDRESS, %d bytes\n", length);
-    print_log(logbuf);
+    print_TURN_attribute_handlers[DATA_TURN_ATTRIBUTE]                = print_DATA_attribute;
+    print_TURN_attribute_handlers[0x1900] = print_REQUESTED_TRANSPORT_attribute;
 }
 
 
@@ -118,6 +137,7 @@ void print_TURN_request(String *message)
 {
     print_log("TURN Request\n\n");
     print_TURN_head(message->begin);
+    print_TURN_attributes(message);
     print_log("\n");
 }
 

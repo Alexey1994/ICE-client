@@ -85,9 +85,10 @@ typedef struct
 STUN_Attributes;
 
 
-void              initialize_STUN();
-String*           create_STUN_head(unsigned short type);
-Boolean           get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port);
+void    initialize_STUN();
+String* create_STUN_head(unsigned short type);
+Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port);
+Boolean authenticate_on_STUN_server(char *host, unsigned short port);
 
 
 #include "STUN.c"

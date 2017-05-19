@@ -10,8 +10,6 @@
 
 void initialize_TURN_debug();
 
-void print_DATA_attribute(Byte *attribute, int length);
-
 
 void print_TURN_head(STUN_Head *head);
 void print_TURN_response(String *message);

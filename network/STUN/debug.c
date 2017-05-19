@@ -235,18 +235,23 @@ void print_FINGERPRINT_attribute(Byte *attribute, int length)
 void print_STUN_attribute(STUN_Attribute *attribute)
 {
     void (*attribute_handler)(Byte *attribute, int attribute_length);
+    unsigned short attribute_length = attribute->length;
+    unsigned short attribute_type = attribute->type;
 
-    attribute_handler = print_STUN_attribute_handlers[ attribute->type ];
+    convert_big_to_little_endian(&attribute_length, 2);
+    convert_big_to_little_endian(&attribute_type, 2);
+
+    attribute_handler = print_STUN_attribute_handlers[ attribute_type ];
 
     if(!attribute_handler)
     {
         char logbuf[200];
-        snprintf(logbuf, 200, "\tunknow attribute 0x%02x, %d bytes\n\n", attribute->type, attribute->length);
+        snprintf(logbuf, 200, "\tunknow attribute 0x%02x, %d bytes\n\n", attribute_type, attribute_length);
         print_log(logbuf);
         return;
     }
 
-    attribute_handler((Byte*)attribute + 4, attribute->length);
+    attribute_handler((Byte*)attribute + 4, attribute_length);
     print_log("\n");
 }
 
@@ -256,20 +261,24 @@ void print_STUN_attributes(String *message)
     int             length     = 20;
     Byte           *attributes = message->begin + 20;
     STUN_Attribute *attribute  = attributes;
+    unsigned short  attribute_length = attribute->length;
+
+    convert_big_to_little_endian(&attribute_length, 2);
 
     print_log("\n\tAttributes:\n\n");
 
     while(length < message->length)
     {
         print_STUN_attribute(attribute);
-        length += 4 + attribute->length;
-        attribute = (Byte*)attribute + 4 + attribute->length;
+        length += 4 + attribute_length;
+        attribute = (Byte*)attribute + 4 + attribute_length;
     }
 }
 
 
 void print_STUN_head(STUN_Head *head)
 {
+    char logbuf[200];
     print_log("\tType:            ");
 
     switch(head->message_type)
@@ -277,9 +286,12 @@ void print_STUN_head(STUN_Head *head)
         case BINDING_REQUEST:        print_log("REQUEST\n");                break;
         case BINDING_RESPONSE:       print_log("SERVER RESPONSE\n");        break;
         case BINDING_ERROR_RESPONSE: print_log("SERVER RESPONSE ERROR\n");  break;
+
+        default:
+            snprintf(logbuf, 200, "\tUnknown head:          %d\n", head->message_type);
+            print_log(logbuf);
     }
 
-    char logbuf[200];
     snprintf(logbuf, 200, "\tLength:          %d\n", head->content_length);
     print_log(logbuf);
 
@@ -308,6 +320,7 @@ void print_STUN_request(String *message)
 {
     print_log("Request\n\n");
     print_STUN_head(message->begin);
+    print_STUN_attributes(message);
     print_log("\n");
 }
 
