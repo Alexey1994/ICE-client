@@ -93,6 +93,10 @@ String* STUN_response(NetworkConnection connection)
     convert_big_to_little_endian(&head->content_length, 2);
     message->length = 20 + head->content_length;
 
+#if ENABLE_STUN_DEBUG
+    print_STUN_response(message);
+#endif
+
     return message;
 
 error:
@@ -130,8 +134,6 @@ Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_ho
     String          *response_message;
 
     String *request_message = create_STUN_head(BINDING_REQUEST);
-
-    add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
     end_STUN_message(request_message);
 
     STUN_request(connection, request_message);
@@ -173,12 +175,16 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
     String          *response_message;
 
     String *request_message = create_STUN_head(BINDING_REQUEST);
-
+/*
     add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
     add_NONCE_attribute(request_message, "2e131a5fb210812c");
     add_REALM_attribute(request_message);
 
-    add_MESSAGE_INTEGRITY_attribute(request_message);
+    add_MESSAGE_INTEGRITY_attribute(request_message);*/
+
+    add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
+    //add_MESSAGE_INTEGRITY_attribute(request_message);
+
     end_STUN_message(request_message);
 
     STUN_request(connection, request_message);
@@ -191,12 +197,6 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
         goto error;
 
     attributes = create_STUN_attributes_from_message(response_message);
-
-#if ENABLE_STUN_DEBUG
-    print_STUN_response(response_message);
-#endif
-
-
 
     destroy_network_connection(connection);
     destroy_STUN_attributes(attributes);
