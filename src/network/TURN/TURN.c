@@ -97,11 +97,13 @@ void TURN(char *host, short port)
     if(!connection)
         goto error;
 
-    String *request_message = create_STUN_head(ALLOCATE_TURN_MESSAGE);
+    String *request_message;
 
-    add_REQUESTED_TRANSPORT_attribute(request_message, UDP_CONNECTION);
-    add_DONT_FRAGMENT_attribute(request_message);
+    begin_STUN_message(&request_message, ALLOCATE_TURN_MESSAGE);
+        add_REQUESTED_TRANSPORT_attribute(request_message, UDP_CONNECTION);
+        add_DONT_FRAGMENT_attribute(request_message);
     end_STUN_message(request_message);
+    
     TURN_request(connection, request_message);
 
     String *response_message = TURN_response(connection);

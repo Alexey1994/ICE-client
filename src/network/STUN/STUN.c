@@ -134,7 +134,9 @@ Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_ho
     STUN_Attributes *attributes;
     String          *response_message;
 
-    String *request_message = create_STUN_head(BINDING_REQUEST);
+    String *request_message;
+
+    begin_STUN_message(&request_message, BINDING_REQUEST);
     end_STUN_message(request_message);
 
     STUN_request(connection, request_message);

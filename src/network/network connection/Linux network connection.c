@@ -8,6 +8,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #include <arpa/inet.h>
+#include <fcntl.h>
 
 
 NetworkConnection create_network_connection(Byte *host, int port, int connection_domain, int connection_type, int connection_protocol)
@@ -35,6 +36,8 @@ NetworkConnection create_network_connection(Byte *host, int port, int connection
         print_error("connection error\n");
         goto error;
     }
+
+    fcntl(socket_connection, F_SETFL, O_NONBLOCK);
 /*
     fcntl( socket_connection, F_SETFL, fcntl( socket_connection, F_GETFL ) | O_NONBLOCK );
 
@@ -74,7 +77,7 @@ NetworkConnection create_UDP_connection(Byte *host, int port)
 
 void destroy_network_connection(NetworkConnection connection)
 {
-    //closesocket(connection);
+    close(connection);
 }
 
 void write_in_network_connection(NetworkConnection connection, Byte *data, unsigned int length_data)
@@ -111,17 +114,14 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
     Byte              *handler_arguments                     = arguments->handler_arguments;
     free(arguments);
 
-    int      current_time = 0;
-    int      error_code;
+    int current_time = 0;
 
     for(;;)
     {
         recv(connection, data, length_data, 0);
-        /*
-        error_code = WSAGetLastError();
 
-        if(error_code != 0)//WSAEWOULDBLOCK)
-            break;*/
+        if(errno != EWOULDBLOCK)
+            break;
 
         if(current_time > timeout)
         {
@@ -129,7 +129,7 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
             return;
         }
 
-        usleep(10000);
+        sleep_thread(10);
         current_time += 10;
     }
 
