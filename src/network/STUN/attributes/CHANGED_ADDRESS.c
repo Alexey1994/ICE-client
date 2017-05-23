@@ -9,6 +9,6 @@ void read_CHANGED_ADDRESS_attribute(STUN_Attributes *attributes, Byte *attribute
 }
 
 
-void add_CHANGED_ADDRESS_attribute(Stream *attributes, char ip_version, char *host, unsigned short port)
+void add_CHANGED_ADDRESS(Stream *attributes, char ip_version, char *host, unsigned short port)
 {
 }

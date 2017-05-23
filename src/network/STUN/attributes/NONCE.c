@@ -4,7 +4,7 @@ void read_NONCE_attribute(STUN_Attributes *attributes, Byte *attribute, int leng
 }
 
 
-void add_NONCE_attribute(String *message, char *cookie_128)
+void add_NONCE(String *message, char *cookie_128)
 {
 	char cookie[16];
 

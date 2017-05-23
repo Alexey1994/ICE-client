@@ -72,24 +72,6 @@ error:
 }
 
 
-TURN_Attributes* create_TURN_attributes_from_message(String *message)
-{
-    TURN_Attributes *attributes  = new(TURN_Attributes);
-
-    attributes->STUN_attributes = create_STUN_attributes();
-
-    read_TURN_attributes(attributes, message);
-
-    return attributes;
-}
-
-
-void destroy_TURN_attributes(TURN_Attributes *attributes)
-{
-    free(attributes);
-}
-
-
 void TURN(char *host, short port)
 {
     NetworkConnection  connection  =  create_UDP_connection(host, port);
@@ -99,11 +81,11 @@ void TURN(char *host, short port)
 
     String *request_message;
 
-    begin_STUN_message(&request_message, ALLOCATE_TURN_MESSAGE);
-        add_REQUESTED_TRANSPORT_attribute(request_message, UDP_CONNECTION);
-        add_DONT_FRAGMENT_attribute(request_message);
-    end_STUN_message(request_message);
-    
+    begin_STUN_request(&request_message, ALLOCATE_TURN_MESSAGE);
+        add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
+        add_DONT_FRAGMENT(request_message);
+    end_STUN_request(connection, request_message);
+
     TURN_request(connection, request_message);
 
     String *response_message = TURN_response(connection);

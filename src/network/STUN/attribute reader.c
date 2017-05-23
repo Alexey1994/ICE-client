@@ -41,3 +41,40 @@ Boolean read_STUN_attributes(STUN_Attributes *attributes, String *message)
 error:
     return 0;
 }
+
+
+STUN_Attributes* create_STUN_attributes_from_message(String *message)
+{
+    STUN_Attributes *attributes  = new(STUN_Attributes);
+
+    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->CHANGED_ADDRESS.host = 0;
+
+    read_STUN_attributes(attributes, message);
+
+    return attributes;
+}
+
+
+STUN_Attributes* create_STUN_attributes()
+{
+    STUN_Attributes *attributes  = new(STUN_Attributes);
+
+    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->CHANGED_ADDRESS.host = 0;
+
+    return attributes;
+}
+
+
+void destroy_STUN_attributes(STUN_Attributes *attributes)
+{
+    free(attributes->MAPPRED_ADDRESS.host);
+    free(attributes);
+}
+
+
+STUN_Attributes* get_STUN_attributes()
+{
+
+}

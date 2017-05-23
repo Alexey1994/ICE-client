@@ -4,7 +4,7 @@ void read_REALM_attribute(STUN_Attributes *attributes, Byte *attribute, int leng
 }
 
 
-void add_REALM_attribute(String *message)
+void add_REALM(String *message)
 {
 	char buf[16];
 	add_STUN_atribute_head(message, REALM, 16);

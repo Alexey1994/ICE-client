@@ -22,9 +22,10 @@ int main(int arguments_length, char *arguments[])
     printf("mapped address: %s:%d\n", mapped_host, mapped_port);
 */
     //TURN_TCP_request("192.168.56.1", 3478);
-    TURN("192.168.99.1", 3478);
 
-    //authenticate_on_STUN_server("192.168.56.1", 3478);
+    //TURN("192.168.56.101", 3478);
+
+    authenticate_on_STUN_server("192.168.56.101", 3478);
 
     //authenticate_on_STUN_server("turn1.northeurope.cloudapp.azure.com", 3478);
 /*

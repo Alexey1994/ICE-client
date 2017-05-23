@@ -4,7 +4,7 @@ void read_MESSAGE_INTEGRITY_attribute(STUN_Attributes *attributes, Byte *attribu
 }
 
 
-void add_MESSAGE_INTEGRITY_attribute(String *message)
+void add_MESSAGE_INTEGRITY(String *message)
 {
 	char SHA1_hash[20];
 

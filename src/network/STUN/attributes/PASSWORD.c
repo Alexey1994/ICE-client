@@ -4,7 +4,7 @@ void read_PASSWORD_attribute(STUN_Attributes *attributes, Byte *attribute, int l
 }
 
 
-void add_PASSWORD_attribute_to_STUN_message(String *message, char *password)
+void add_PASSWORD(String *message, char *password)
 {
 
 }

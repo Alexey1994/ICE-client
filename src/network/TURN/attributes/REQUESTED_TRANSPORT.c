@@ -5,7 +5,7 @@
 //     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 
-void add_REQUESTED_TRANSPORT_attribute(String *message, Byte transport_type)
+void add_REQUESTED_TRANSPORT(String *message, Byte transport_type)
 {
 	add_STUN_atribute_head(message, REQUESTED_TRANSPORT_TURN_ATTRIBUTE, 4);
 

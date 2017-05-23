@@ -51,3 +51,21 @@ Boolean read_TURN_attributes(TURN_Attributes *attributes, String *message)
 error:
     return 0;
 }
+
+
+TURN_Attributes* create_TURN_attributes_from_message(String *message)
+{
+    TURN_Attributes *attributes  = new(TURN_Attributes);
+
+    attributes->STUN_attributes = create_STUN_attributes();
+
+    read_TURN_attributes(attributes, message);
+
+    return attributes;
+}
+
+
+void destroy_TURN_attributes(TURN_Attributes *attributes)
+{
+    free(attributes);
+}
