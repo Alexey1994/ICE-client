@@ -236,7 +236,7 @@ void print_STUN_attribute(STUN_Attribute *attribute)
 {
     void (*attribute_handler)(Byte *attribute, int attribute_length);
     unsigned short attribute_length = attribute->length;
-    unsigned short attribute_type = attribute->type;
+    unsigned short attribute_type   = attribute->type;
 
     convert_big_to_little_endian(&attribute_length, 2);
     convert_big_to_little_endian(&attribute_type, 2);
@@ -258,27 +258,33 @@ void print_STUN_attribute(STUN_Attribute *attribute)
 
 void print_STUN_attributes(String *message)
 {
-    int             length     = 20;
-    Byte           *attributes = message->begin + 20;
-    STUN_Attribute *attribute  = attributes;
-    unsigned short  attribute_length = attribute->length;
+    STUN_Attribute *attribute;
+    unsigned short  attribute_length;
 
-    convert_big_to_little_endian(&attribute_length, 2);
+    int length = 20;
 
     print_log("\n\tAttributes:\n\n");
 
     while(length < message->length)
     {
+        attribute = message->begin + length;
         print_STUN_attribute(attribute);
+
+        attribute_length = attribute->length;
+        convert_big_to_little_endian(&attribute_length, 2);
+        
         length += 4 + attribute_length;
-        attribute = (Byte*)attribute + 4 + attribute_length;
     }
 }
 
 
 void print_STUN_head(STUN_Head *head)
 {
-    char logbuf[200];
+    char           logbuf[200];
+    unsigned short content_length = head->content_length;
+
+    convert_big_to_little_endian(&content_length, 2);
+
     print_log("\tType:            ");
 
     switch(head->message_type)
@@ -292,7 +298,7 @@ void print_STUN_head(STUN_Head *head)
             print_log(logbuf);
     }
 
-    snprintf(logbuf, 200, "\tLength:          %d\n", head->content_length);
+    snprintf(logbuf, 200, "\tLength:          %d\n", content_length);
     print_log(logbuf);
 
     snprintf(logbuf, 200, "\tmagic:           0x%04x\n", head->magic_cookie);

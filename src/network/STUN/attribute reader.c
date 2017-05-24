@@ -5,12 +5,18 @@ Boolean read_STUN_attribute(STUN_Attribute *attribute, STUN_Attributes *attribut
 {
     void(*attribute_handler)(STUN_Attributes *attributes, Byte *attribute, int attribute_length);
 
-    attribute_handler = read_attribute_handlers[ attribute->type ];
+    unsigned short  attribute_length = attribute->length;
+    unsigned short  attribute_type   = attribute->type;
+
+    convert_big_to_little_endian(&attribute_type, 2);
+    convert_big_to_little_endian(&attribute_length, 2);
+
+    attribute_handler = read_attribute_handlers[ attribute_type ];
 
     if(!attribute_handler)
         goto error;
 
-    attribute_handler(attributes, (Byte*)attribute + 4, attribute->length);
+    attribute_handler(attributes, (Byte*)attribute + 4, attribute_length);
 
     return 1;
 
@@ -21,19 +27,22 @@ error:
 
 Boolean read_STUN_attributes(STUN_Attributes *attributes, String *message)
 {
-    int             length     = 20;
-    STUN_Attribute *attribute  = message->begin + 20;
+    STUN_Attribute *attribute;
+    unsigned short  attribute_length;
+
+    int length = 20;
 
     while(length < message->length)
     {
-        convert_big_to_little_endian(&attribute->type, 2);
-        convert_big_to_little_endian(&attribute->length, 2);
+        attribute = message->begin + length;
 
         if(!read_STUN_attribute(attribute, attributes))
             goto error;
 
-        length += 4 + attribute->length;
-        attribute = (Byte*)attribute + 4 + attribute->length;
+        attribute_length = attribute->length;
+        convert_big_to_little_endian(&attribute_length, 2);
+        
+        length += 4 + attribute_length;
     }
 
     return 1;

@@ -99,7 +99,6 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
         //add_USERNAME(request_message, "asdf");
         //add_NONCE(request_message, "2e131a5fb210812c");
         //add_REALM(request_message);
-        //add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
         //add_MESSAGE_INTEGRITY(request_message);
     end_STUN_request(connection, request_message);
 
