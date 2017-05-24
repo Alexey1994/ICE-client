@@ -13,11 +13,11 @@ static void STUN_response_handler(Byte *data, Byte *end_response)
 String* STUN_response(NetworkConnection connection)
 {
     STUN_Head *head;
-    Byte       end_response;
 
-    String *message = create_string(200);
+    String *message      = create_string(MAX_STUN_RESPONSE_LENGTH);
+    Byte    end_response = 0;
 
-    async_read_from_network_connection(connection, 500, message->begin, 200, STUN_response_handler, &end_response);
+    async_read_from_network_connection(connection, 500, message->begin, MAX_STUN_RESPONSE_LENGTH, STUN_response_handler, &end_response);
 
     while(!end_response);// waiting
 
@@ -25,8 +25,9 @@ String* STUN_response(NetworkConnection connection)
         goto error;
 
     head = message->begin;
-    convert_big_to_little_endian(&head->content_length, 2);
-    message->length = 20 + head->content_length;
+    message->length = head->content_length;
+    convert_big_to_little_endian(&message->length, 2);
+    message->length += 20;
 
 #if ENABLE_STUN_DEBUG
     print_STUN_response(message);
@@ -36,5 +37,22 @@ String* STUN_response(NetworkConnection connection)
 
 error:
     destroy_string(message);
+    return 0;
+}
+
+
+STUN_Attributes* get_response_STUN_attributes(NetworkConnection connection)
+{
+    String *response_message = STUN_response(connection);
+
+    if(!response_message)
+        goto error;
+
+    STUN_Attributes *attributes = create_STUN_attributes_from_message(response_message);
+    destroy_string(response_message);
+
+    return attributes;
+
+error:
     return 0;
 }

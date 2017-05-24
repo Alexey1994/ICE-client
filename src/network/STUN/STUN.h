@@ -10,6 +10,9 @@
 #include "../network connection/network connection.h"
 
 
+#define MAX_STUN_RESPONSE_LENGTH 200
+
+
 #define DEFAULT_STUN_PORT  3478
 #define	STUN_COOKIE        0x2112a442
 
@@ -74,7 +77,7 @@ typedef struct
     {
         Byte           *host;
         unsigned short  port;
-    }MAPPRED_ADDRESS;
+    }MAPPED_ADDRESS;
 
     struct
     {

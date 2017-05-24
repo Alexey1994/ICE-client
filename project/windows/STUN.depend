@@ -49,7 +49,7 @@
 	"Android network connection.c"
 	"Linux network connection.c"
 
-1495510522 c:\dev4\ice-client\src\network\network connection\windows network connection.c
+1495607890 c:\dev4\ice-client\src\network\network connection\windows network connection.c
 	"network connection.h"
 	"../../thread/thread.h"
 	"../../error/error.h"
@@ -111,7 +111,7 @@
 	"../STUN/STUN.h"
 	"TURN.c"
 
-1495510522 c:\dev4\ice-client\src\network\stun\stun.h
+1495607021 c:\dev4\ice-client\src\network\stun\stun.h
 	"../../extends/extends.h"
 	"../../data structures/string/string.h"
 	"../network connection/network connection.h"
@@ -130,10 +130,9 @@
 1495510522 c:\dev4\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
-1495530317 c:\dev4\ice-client\src\network\stun\stun.c
+1495607525 c:\dev4\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
-	"../../logger/logger.h"
 	"debug.h"
 	"../network connection/network connection.h"
 	"attributes/MAPPED_ADDRESS.c"
@@ -176,11 +175,11 @@
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1495510522 c:\dev4\ice-client\src\network\stun\debug.c
+1495607529 c:\dev4\ice-client\src\network\stun\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1495510522 c:\dev4\ice-client\src\network\stun\attributes\mapped_address.c
+1495607036 c:\dev4\ice-client\src\network\stun\attributes\mapped_address.c
 
 1495510522 c:\dev4\ice-client\src\network\stun\attributes\response_address.c
 
@@ -217,19 +216,20 @@
 
 1495510522 c:\dev4\ice-client\src\network\stun\head.c
 
-1495530250 c:\dev4\ice-client\src\network\stun\attribute reader.c
+1495607051 c:\dev4\ice-client\src\network\stun\attribute reader.c
 
 1495530259 c:\dev4\ice-client\src\network\stun\message.c
 
-1495530285 c:\dev4\ice-client\src\network\turn\turn.c
+1495607551 c:\dev4\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
-	"../../logger/logger.h"
 	"debug.h"
 	"attributes/DATA.c"
 	"attributes/REQUESTED_TRANSPORT.c"
 	"attributes/DONT_FRAGMENT.c"
 	"attribute reader.c"
+	"request.c"
+	"response.c"
 
 1495510522 c:\dev4\ice-client\src\network\turn\debug.h
 	"debug.h"
@@ -245,16 +245,20 @@
 
 1495529710 c:\dev4\ice-client\src\network\turn\attributes\dont_fragment.c
 
-1495529851 c:\dev4\ice-client\src\network\turn\attribute reader.c
+1495605162 c:\dev4\ice-client\src\network\turn\attribute reader.c
 
 1495510522 c:\dev4\ice-client\src\android main.c
 	<jni.h>
 
-1495528528 c:\dev4\ice-client\src\windows main.c
+1495606918 c:\dev4\ice-client\src\windows main.c
 
 1495510522 c:\dev4\ice-client\src\linux main.c
 
-1495530266 c:\dev4\ice-client\src\network\stun\request.c
+1495605299 c:\dev4\ice-client\src\network\stun\request.c
 
-1495529393 c:\dev4\ice-client\src\network\stun\response.c
+1495608169 c:\dev4\ice-client\src\network\stun\response.c
+
+1495604768 c:\dev4\ice-client\src\network\turn\request.c
+
+1495605163 c:\dev4\ice-client\src\network\turn\response.c
 

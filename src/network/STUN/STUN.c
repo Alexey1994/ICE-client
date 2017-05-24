@@ -1,6 +1,5 @@
 #include "../../stream/stream.h"
 #include "../../data structures/string/string.h"
-#include "../../logger/logger.h"
 
 #include "debug.h"
 #include "../network connection/network connection.h"
@@ -63,29 +62,20 @@ Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_ho
         goto error;
 
     STUN_Attributes *attributes;
-    String          *response_message;
-
-    String *request_message;
+    String          *request_message;
 
     begin_STUN_request(&request_message, BINDING_REQUEST);
     end_STUN_request(connection, request_message);
 
-    response_message = STUN_response(connection);
+    attributes = get_response_STUN_attributes(connection);
     destroy_network_connection(connection);
 
-    if(!response_message)
+    if(!attributes)
         goto error;
 
-    attributes = create_STUN_attributes_from_message(response_message);
+    strcpy(mapped_host, attributes->MAPPED_ADDRESS.host);
+    *mapped_port = attributes->MAPPED_ADDRESS.port;
 
-#if ENABLE_STUN_DEBUG
-    print_STUN_response(response_message);
-#endif
-
-    strcpy(mapped_host, attributes->MAPPRED_ADDRESS.host);
-    *mapped_port = attributes->MAPPRED_ADDRESS.port;
-
-    destroy_network_connection(connection);
     destroy_STUN_attributes(attributes);
 
     return 1;
@@ -103,27 +93,22 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
         goto error;
 
     STUN_Attributes *attributes;
-    String          *response_message;
-
-    String *request_message;
+    String          *request_message;
 
     begin_STUN_request(&request_message, BINDING_REQUEST);
-        add_USERNAME(request_message, "asdf");
-        add_NONCE(request_message, "2e131a5fb210812c");
-        add_REALM(request_message);
+        //add_USERNAME(request_message, "asdf");
+        //add_NONCE(request_message, "2e131a5fb210812c");
+        //add_REALM(request_message);
         //add_USERNAME_attribute_to_STUN_message(request_message, "asdf");
-        add_MESSAGE_INTEGRITY(request_message);
+        //add_MESSAGE_INTEGRITY(request_message);
     end_STUN_request(connection, request_message);
 
-    response_message = STUN_response(connection);
+    attributes = get_response_STUN_attributes(connection);
     destroy_network_connection(connection);
 
-    if(!response_message)
+    if(!attributes)
         goto error;
 
-    attributes = create_STUN_attributes_from_message(response_message);
-
-    destroy_network_connection(connection);
     destroy_STUN_attributes(attributes);
 
     return 1;

@@ -11,7 +11,6 @@ void STUN_request(NetworkConnection  connection, String *message)
 void begin_STUN_request(String **message, unsigned short type)
 {
 	*message = create_STUN_head(type);
-    //set_STUN_content_length(message->begin, message->length - 20);
 }
 
 

@@ -28,10 +28,10 @@ Boolean read_STUN_attributes(STUN_Attributes *attributes, String *message)
     {
         convert_big_to_little_endian(&attribute->type, 2);
         convert_big_to_little_endian(&attribute->length, 2);
-        
+
         if(!read_STUN_attribute(attribute, attributes))
             goto error;
-        
+
         length += 4 + attribute->length;
         attribute = (Byte*)attribute + 4 + attribute->length;
     }
@@ -47,7 +47,7 @@ STUN_Attributes* create_STUN_attributes_from_message(String *message)
 {
     STUN_Attributes *attributes  = new(STUN_Attributes);
 
-    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->MAPPED_ADDRESS.host = 0;
     attributes->CHANGED_ADDRESS.host = 0;
 
     read_STUN_attributes(attributes, message);
@@ -60,7 +60,7 @@ STUN_Attributes* create_STUN_attributes()
 {
     STUN_Attributes *attributes  = new(STUN_Attributes);
 
-    attributes->MAPPRED_ADDRESS.host = 0;
+    attributes->MAPPED_ADDRESS.host = 0;
     attributes->CHANGED_ADDRESS.host = 0;
 
     return attributes;
@@ -69,7 +69,7 @@ STUN_Attributes* create_STUN_attributes()
 
 void destroy_STUN_attributes(STUN_Attributes *attributes)
 {
-    free(attributes->MAPPRED_ADDRESS.host);
+    free(attributes->MAPPED_ADDRESS.host);
     free(attributes);
 }
 

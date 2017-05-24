@@ -12,7 +12,7 @@
 
 void read_MAPPED_ADDRESS_attribute(STUN_Attributes *attributes, Byte *attribute, int length)
 {
-    attributes->MAPPRED_ADDRESS.host = malloc(16);
-    snprintf(attributes->MAPPRED_ADDRESS.host, 16, "%d.%d.%d.%d", attribute[4], attribute[5], attribute[6], attribute[7]);
-    attributes->MAPPRED_ADDRESS.port = (attribute[2]<<8) + attribute[3];
+    attributes->MAPPED_ADDRESS.host = malloc(16);
+    snprintf(attributes->MAPPED_ADDRESS.host, 16, "%d.%d.%d.%d", attribute[4], attribute[5], attribute[6], attribute[7]);
+    attributes->MAPPED_ADDRESS.port = (attribute[2]<<8) + attribute[3];
 }
