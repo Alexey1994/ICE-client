@@ -7,6 +7,9 @@
 #include "../STUN/STUN.h"
 
 
+#define MAX_TURN_RESPONSE_LENGTH 200
+
+
 typedef enum
 {
     CHANNEL_NUMBER_TURN_ATTRIBUTE      = 0x000C,

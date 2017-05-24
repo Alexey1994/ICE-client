@@ -96,7 +96,7 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
     String          *request_message;
 
     begin_STUN_request(&request_message, BINDING_REQUEST);
-        add_USERNAME(request_message, "lex");
+        //add_USERNAME(request_message, "lex");
         //add_NONCE(request_message, "2e131a5fb210812c");
         //add_REALM(request_message);
         //add_MESSAGE_INTEGRITY(request_message);

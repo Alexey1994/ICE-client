@@ -370,7 +370,7 @@
 1495510522 c:\git\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1495510522 c:\git\ice-client\src\network\turn\turn.h
+1495616228 c:\git\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
@@ -393,7 +393,7 @@
 1495510522 c:\git\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
-1495612868 c:\git\ice-client\src\network\stun\stun.c
+1495613328 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -477,7 +477,7 @@
 
 1495510522 c:\git\ice-client\src\network\stun\attributes\fingerprint.c
 
-1495612992 c:\git\ice-client\src\network\stun\head.c
+1495614393 c:\git\ice-client\src\network\stun\head.c
 
 1495610034 c:\git\ice-client\src\network\stun\attribute reader.c
 
@@ -485,7 +485,7 @@
 
 1495610340 c:\git\ice-client\src\network\stun\response.c
 
-1495607551 c:\git\ice-client\src\network\turn\turn.c
+1495616546 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -500,7 +500,7 @@
 	"debug.h"
 	"debug.c"
 
-1495510522 c:\git\ice-client\src\network\turn\debug.c
+1495615703 c:\git\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -508,18 +508,18 @@
 
 1495529717 c:\git\ice-client\src\network\turn\attributes\requested_transport.c
 
-1495529710 c:\git\ice-client\src\network\turn\attributes\dont_fragment.c
+1495615568 c:\git\ice-client\src\network\turn\attributes\dont_fragment.c
 
-1495605162 c:\git\ice-client\src\network\turn\attribute reader.c
+1495616418 c:\git\ice-client\src\network\turn\attribute reader.c
 
-1495604768 c:\git\ice-client\src\network\turn\request.c
+1495614674 c:\git\ice-client\src\network\turn\request.c
 
-1495605163 c:\git\ice-client\src\network\turn\response.c
+1495613549 c:\git\ice-client\src\network\turn\response.c
 
 1495510522 c:\git\ice-client\src\android main.c
 	<jni.h>
 
-1495611520 c:\git\ice-client\src\windows main.c
+1495616497 c:\git\ice-client\src\windows main.c
 
 1495510522 c:\git\ice-client\src\linux main.c
 

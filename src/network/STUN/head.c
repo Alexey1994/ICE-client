@@ -17,7 +17,6 @@ String* create_STUN_head(unsigned short type)
     STUN_Head *head      = head_data->begin;
 
     head->message_type   = type;
-    //head->message_length = 0;
     head->magic_cookie   = STUN_COOKIE;
     generate_transaction_ID(head->transaction_ID);
 

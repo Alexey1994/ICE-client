@@ -2,7 +2,7 @@ static void(*read_attribute_TURN_handlers[65536])(TURN_Attributes *attributes, B
 
 
 Boolean read_TURN_attribute(TURN_Attribute *attribute, TURN_Attributes *attributes)
-{
+{/*
     void(*TURN_attribute_handler) (TURN_Attributes *attributes, Byte *attribute, int attribute_length);
     TURN_attribute_handler = read_attribute_TURN_handlers[ attribute->type ];
 
@@ -25,12 +25,12 @@ Ok:
     return 1;
 
 error:
-    return 0;
+    return 0;*/
 }
 
 
 Boolean read_TURN_attributes(TURN_Attributes *attributes, String *message)
-{
+{/*
     int             length     = 20;
     STUN_Attribute *attribute  = message->begin + 20;
 
@@ -49,7 +49,7 @@ Boolean read_TURN_attributes(TURN_Attributes *attributes, String *message)
     return 1;
 
 error:
-    return 0;
+    return 0;*/
 }
 
 

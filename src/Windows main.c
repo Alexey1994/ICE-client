@@ -23,10 +23,10 @@ int main(int arguments_length, char *arguments[])
 */
     //TURN_TCP_request("192.168.56.1", 3478);
 
-    //TURN("192.168.56.101", 3478);
+    TURN("127.0.0.1", 3478);
 
     //authenticate_on_STUN_server("192.168.56.101", 3478);
-    authenticate_on_STUN_server("192.168.56.101", 3478);
+    //authenticate_on_STUN_server("192.168.56.101", 3478);
     //get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
     //get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port);
 

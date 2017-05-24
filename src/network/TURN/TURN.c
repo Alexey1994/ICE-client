@@ -32,10 +32,10 @@ void TURN(char *host, short port)
     TURN_Attributes *attributes;
     String          *request_message;
 
-    begin_STUN_request(&request_message, ALLOCATE_TURN_MESSAGE);
+    begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
         add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
         add_DONT_FRAGMENT(request_message);
-    end_STUN_request(connection, request_message);
+    end_TURN_request(connection, request_message);
 
     attributes = get_response_TURN_attributes(connection);
     destroy_network_connection(connection);

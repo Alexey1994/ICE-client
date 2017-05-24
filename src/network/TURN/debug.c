@@ -15,8 +15,6 @@ void print_DATA_attribute(Byte *attribute, int length)
 
 void print_REQUESTED_TRANSPORT_attribute(Byte *attribute, int length)
 {
-    convert_big_to_little_endian(&length, 2);
-
     char logbuf[200];
     snprintf(logbuf, 200, "\tREQUESTED TRANSPORT, %d bytes\n", length);
     print_log(logbuf);
@@ -31,6 +29,14 @@ void print_REQUESTED_TRANSPORT_attribute(Byte *attribute, int length)
 }
 
 
+void print_DONT_FRAGMENT_attribute(Byte *attribute, int length)
+{
+    char logbuf[200];
+    snprintf(logbuf, 200, "\tDONT FRAGMENT, %d bytes\n", length);
+    print_log(logbuf);
+}
+
+
 void initialize_TURN_debug()
 {
     int i;
@@ -39,56 +45,69 @@ void initialize_TURN_debug()
         print_TURN_attribute_handlers[i] = 0;
 
     print_TURN_attribute_handlers[DATA_TURN_ATTRIBUTE]                = print_DATA_attribute;
-    print_TURN_attribute_handlers[0x1900] = print_REQUESTED_TRANSPORT_attribute;
+    print_TURN_attribute_handlers[REQUESTED_TRANSPORT_TURN_ATTRIBUTE] = print_REQUESTED_TRANSPORT_attribute;
+    print_TURN_attribute_handlers[DONT_FRAGMENT_TURN_ATTRIBUTE]       = print_DONT_FRAGMENT_attribute;
 }
 
 
 void print_TURN_attribute(TURN_Attribute *attribute)
 {
     void (*attribute_handler)(Byte *attribute, int attribute_length);
+    unsigned short attribute_length = attribute->length;
+    unsigned short attribute_type   = attribute->type;
 
-    attribute_handler = print_TURN_attribute_handlers[ attribute->type ];
+    convert_big_to_little_endian(&attribute_length, 2);
+    convert_big_to_little_endian(&attribute_type, 2);
+
+    attribute_handler = print_TURN_attribute_handlers[ attribute_type ];
 
     if(!attribute_handler)
     {
-        attribute_handler = print_STUN_attribute_handlers[ attribute->type ];
+        attribute_handler = print_STUN_attribute_handlers[ attribute_type ];
 
         if(!attribute_handler)
         {
             char logbuf[200];
-            snprintf(logbuf, 200, "\tunknow attribute 0x%02x, %d bytes\n\n", attribute->type, attribute->length);
+            snprintf(logbuf, 200, "\tunknow attribute 0x%02x, %d bytes\n\n", attribute_type, attribute_length);
             print_log(logbuf);
             return;
         }
     }
 
-    attribute_handler((Byte*)attribute + 4, attribute->length);
+    attribute_handler((Byte*)attribute + 4, attribute_length);
     print_log("\n");
 }
 
 
 void print_TURN_attributes(String *message)
 {
-    int             length     = 20;
-    Byte           *attributes = message->begin + 20;
-    TURN_Attribute *attribute  = attributes;
+    STUN_Attribute *attribute;
+    unsigned short  attribute_length;
+
+    int length = 20;
 
     print_log("\n\tAttributes:\n\n");
 
     while(length < message->length)
     {
+        attribute = message->begin + length;
         print_TURN_attribute(attribute);
-        length += 4 + attribute->length;
-        attribute = (Byte*)attribute + 4 + attribute->length;
-    }
 
-    //print_STUN_attributes(message);
+        attribute_length = attribute->length;
+        convert_big_to_little_endian(&attribute_length, 2);
+        
+        length += 4 + attribute_length;
+    }
 }
 
 
 void print_TURN_head(STUN_Head *head)
 {
     char logbuf[200];
+    unsigned short content_length = head->content_length;
+
+    convert_big_to_little_endian(&content_length, 2);
+
     print_log("\tType:            ");
 
     switch(head->message_type)
@@ -109,7 +128,7 @@ void print_TURN_head(STUN_Head *head)
             print_log(logbuf);
     }
 
-    snprintf(logbuf, 200, "\tLength:          %d\n", head->content_length);
+    snprintf(logbuf, 200, "\tLength:          %d\n", content_length);
     print_log(logbuf);
 
     snprintf(logbuf, 200, "\tmagic:           0x%04x\n", head->magic_cookie);
