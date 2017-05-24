@@ -6,6 +6,7 @@ void generate_transaction_ID(Byte *transaction_ID)
 
 void set_STUN_content_length(STUN_Head *head, int content_length)
 {
+    convert_big_to_little_endian(&content_length, 2);
     head->content_length = content_length;
 }
 

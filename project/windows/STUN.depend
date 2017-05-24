@@ -393,7 +393,7 @@
 1495510522 c:\git\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
-1495610135 c:\git\ice-client\src\network\stun\stun.c
+1495612868 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -477,7 +477,7 @@
 
 1495510522 c:\git\ice-client\src\network\stun\attributes\fingerprint.c
 
-1495510522 c:\git\ice-client\src\network\stun\head.c
+1495612992 c:\git\ice-client\src\network\stun\head.c
 
 1495610034 c:\git\ice-client\src\network\stun\attribute reader.c
 
@@ -519,7 +519,7 @@
 1495510522 c:\git\ice-client\src\android main.c
 	<jni.h>
 
-1495610381 c:\git\ice-client\src\windows main.c
+1495611520 c:\git\ice-client\src\windows main.c
 
 1495510522 c:\git\ice-client\src\linux main.c
 
