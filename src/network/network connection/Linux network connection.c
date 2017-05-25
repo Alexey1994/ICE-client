@@ -37,20 +37,6 @@ NetworkConnection create_network_connection(Byte *host, int port, int connection
         goto error;
     }
 
-    fcntl(socket_connection, F_SETFL, O_NONBLOCK);
-/*
-    fcntl( socket_connection, F_SETFL, fcntl( socket_connection, F_GETFL ) | O_NONBLOCK );
-
-
-    fd_set         fd;
-    struct timeval tv;
-
-    tv.tv_sec  = 1;
-    tv.tv_usec = 0;
-
-    if( select( socket_connection + 1, 0, &fd, 0, &tv ) == SOCKET_ERROR )
-        goto error;
-*/
     if (connect(socket_connection, &sock_addr, sizeof(sock_addr)))
         goto error;
 
@@ -115,14 +101,14 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
     free(arguments);
 
     int current_time = 0;
-
+    fcntl(connection, F_SETFL, O_NONBLOCK);
     for(;;)
     {
         recv(connection, data, length_data, 0);
 
-        if(errno != EWOULDBLOCK)
+        if(errno != EWOULDBLOCK && errno != EAGAIN)
             break;
-
+        
         if(current_time > timeout)
         {
             handler(0, handler_arguments);
@@ -148,30 +134,6 @@ void async_read_from_network_connection(NetworkConnection connection, int timeou
     arguments->handler           = handler;
     arguments->handler_arguments = handler_arguments;
 
+    //fcntl(connection, F_SETFL, O_NONBLOCK);
     run_thread(update_network_connection_read_thread, arguments);
 }
-
-/*
-void open_network_connection(NetworkConnection connection, Byte *path, unsigned int length_data)
-{
-    int  count_data;
-    Byte byte;
-
-    send(connection, path, length_data, 0);
-}
-
-
-Byte get_TCP_byte(NetworkConnection connection)
-{
-    Byte byte;
-
-    recv(connection, &byte, 1, 0);
-
-    return byte;
-}
-
-
-void get_network_connection_array(NetworkConnection connection, Byte *array, int length)
-{
-    recv(connection, array, length, 0);
-}*/

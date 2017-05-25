@@ -262,12 +262,10 @@
 
 1495605163 c:\dev4\ice-client\src\network\turn\response.c
 
-1495695151 source:c:\git\ice-client\src\main.c
+1495706855 source:c:\git\ice-client\src\main.c
+	"main/main.h"
 	"network/network info/network info.h"
 	"network/TURN/TURN.h"
-	"Android main.c"
-	"Windows main.c"
-	"Linux main.c"
 
 1495510522 c:\git\ice-client\src\network\network info\network info.h
 	"../../data structures/array/array.h"
@@ -303,16 +301,15 @@
 	"../../error/error.h"
 	"../../system library/system library.h"
 
-1495510522 c:\git\ice-client\src\network\network connection\network connection.h
+1495708135 c:\git\ice-client\src\network\network connection\network connection.h
 	"../../extends/extends.h"
 	"network connection.c"
 
-1495510522 c:\git\ice-client\src\network\network connection\network connection.c
+1495695429 c:\git\ice-client\src\network\network connection\network connection.c
 	"Windows network connection.c"
-	"Android network connection.c"
 	"Linux network connection.c"
 
-1495607890 c:\git\ice-client\src\network\network connection\windows network connection.c
+1495708826 c:\git\ice-client\src\network\network connection\windows network connection.c
 	"network connection.h"
 	"../../thread/thread.h"
 	"../../error/error.h"
@@ -331,7 +328,7 @@
 1495510522 c:\git\ice-client\src\thread\windows thread.c
 	<pthread.h>
 
-1495510522 c:\git\ice-client\src\thread\linux thread.c
+1495708384 c:\git\ice-client\src\thread\linux thread.c
 	<pthread.h>
 
 1495510522 c:\git\ice-client\src\error\error.h
@@ -349,7 +346,7 @@
 	<netdb.h>
 	<arpa/inet.h>
 
-1495510522 c:\git\ice-client\src\network\network connection\linux network connection.c
+1495708070 c:\git\ice-client\src\network\network connection\linux network connection.c
 	"network connection.h"
 	"../../error/error.h"
 	"../../thread/thread.h"
@@ -393,11 +390,15 @@
 1495510522 c:\git\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
-1495613328 c:\git\ice-client\src\network\stun\stun.c
+1495707187 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
 	"../network connection/network connection.h"
+	"head.c"
+	"attribute reader.c"
+	"request.c"
+	"response.c"
 	"attributes/MAPPED_ADDRESS.c"
 	"attributes/RESPONSE_ADDRESS.c"
 	"attributes/CHANGE_REQUEST.c"
@@ -415,10 +416,6 @@
 	"attributes/SOFTWARE.c"
 	"attributes/ALTERNATE_SERVER.c"
 	"attributes/FINGERPRINT.c"
-	"head.c"
-	"attribute reader.c"
-	"request.c"
-	"response.c"
 
 1495510522 c:\git\ice-client\src\stream\stream.h
 	"../extends/extends.h"
@@ -479,22 +476,22 @@
 
 1495614393 c:\git\ice-client\src\network\stun\head.c
 
-1495610034 c:\git\ice-client\src\network\stun\attribute reader.c
+1495707340 c:\git\ice-client\src\network\stun\attribute reader.c
 
 1495605299 c:\git\ice-client\src\network\stun\request.c
 
-1495610340 c:\git\ice-client\src\network\stun\response.c
+1495708710 c:\git\ice-client\src\network\stun\response.c
 
-1495616546 c:\git\ice-client\src\network\turn\turn.c
+1495695549 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
-	"attributes/DATA.c"
-	"attributes/REQUESTED_TRANSPORT.c"
-	"attributes/DONT_FRAGMENT.c"
 	"attribute reader.c"
 	"request.c"
 	"response.c"
+	"attributes/DATA.c"
+	"attributes/REQUESTED_TRANSPORT.c"
+	"attributes/DONT_FRAGMENT.c"
 
 1495510522 c:\git\ice-client\src\network\turn\debug.h
 	"debug.h"
@@ -514,7 +511,7 @@
 
 1495614674 c:\git\ice-client\src\network\turn\request.c
 
-1495613549 c:\git\ice-client\src\network\turn\response.c
+1495708169 c:\git\ice-client\src\network\turn\response.c
 
 1495694863 c:\git\ice-client\src\android main.c
 	<jni.h>
@@ -522,4 +519,12 @@
 1495694878 c:\git\ice-client\src\windows main.c
 
 1495510522 c:\git\ice-client\src\linux main.c
+
+1495697621 c:\git\ice-client\src\main\main.h
+	"Android main.c"
+
+1495706744 c:\git\ice-client\src\main\android main.c
+	<jni.h>
+	"../data structures/string/string.h"
+	"../logger/logger.h"
 

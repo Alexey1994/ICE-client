@@ -78,12 +78,6 @@ STUN_Attributes* create_STUN_attributes()
 
 void destroy_STUN_attributes(STUN_Attributes *attributes)
 {
-    free(attributes->MAPPED_ADDRESS.host);
+    //free(attributes->MAPPED_ADDRESS.host); //Android segfault
     free(attributes);
-}
-
-
-STUN_Attributes* get_STUN_attributes()
-{
-
 }

@@ -7,7 +7,8 @@
 
 typedef enum
 {
-	TIMEOUT_ERROR
+	TIMEOUT_ERROR = 1,
+    NO_ERRORS     = 100
 }NetworkConnectionErrors;
 
 

@@ -6,7 +6,7 @@ static void STUN_response_handler(Byte *data, Byte *end_response)
         return;
     }
 
-    *end_response = 1;
+    *end_response = NO_ERRORS;
 }
 
 
@@ -17,11 +17,11 @@ String* STUN_response(NetworkConnection connection)
     String *message      = create_string(MAX_STUN_RESPONSE_LENGTH);
     Byte    end_response = 0;
 
-    async_read_from_network_connection(connection, 500, message->begin, MAX_STUN_RESPONSE_LENGTH, STUN_response_handler, &end_response);
+    async_read_from_network_connection(connection, 1500, message->begin, MAX_STUN_RESPONSE_LENGTH, STUN_response_handler, &end_response);
 
     while(!end_response);// waiting
 
-    if(end_response == TIMEOUT_ERROR)
+    if(end_response != NO_ERRORS)
         goto error;
 
     head = message->begin;

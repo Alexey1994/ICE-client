@@ -130,7 +130,7 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
             return;
         }
 
-        Sleep(10);
+        sleep_thread(10);
         current_time += 10;
     }
 

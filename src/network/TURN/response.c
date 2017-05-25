@@ -6,7 +6,7 @@ void TURN_response_handler(Byte *data, Byte *end_response)
         return;
     }
 
-    *end_response = 1;
+    *end_response = NO_ERRORS;
 }
 
 
@@ -21,7 +21,7 @@ String* TURN_response(NetworkConnection connection)
 
     while(!end_response);// waiting
 
-    if(end_response == TIMEOUT_ERROR)
+    if(end_response != NO_ERRORS)
         goto error;
 
     head = message->begin;
