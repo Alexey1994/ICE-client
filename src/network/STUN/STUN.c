@@ -4,6 +4,11 @@
 #include "debug.h"
 #include "../network connection/network connection.h"
 
+#include "head.c"
+#include "attribute reader.c"
+#include "request.c"
+#include "response.c"
+
 #include "attributes/MAPPED_ADDRESS.c"
 #include "attributes/RESPONSE_ADDRESS.c"
 #include "attributes/CHANGE_REQUEST.c"
@@ -21,11 +26,6 @@
 #include "attributes/SOFTWARE.c"
 #include "attributes/ALTERNATE_SERVER.c"
 #include "attributes/FINGERPRINT.c"
-
-#include "head.c"
-#include "attribute reader.c"
-#include "request.c"
-#include "response.c"
 
 
 void initialize_STUN()

@@ -3,13 +3,13 @@
 
 #include "debug.h"
 
-#include "attributes/DATA.c"
-#include "attributes/REQUESTED_TRANSPORT.c"
-#include "attributes/DONT_FRAGMENT.c"
-
 #include "attribute reader.c"
 #include "request.c"
 #include "response.c"
+
+#include "attributes/DATA.c"
+#include "attributes/REQUESTED_TRANSPORT.c"
+#include "attributes/DONT_FRAGMENT.c"
 
 
 void initialize_TURN()

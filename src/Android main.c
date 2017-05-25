@@ -16,6 +16,18 @@ static void print_Android_message(char *message)
 JNIEXPORT jstring JNICALL
 Java_com_example_abar0217_stun_MainActivity_stringFromJNI(JNIEnv *env, jobject object, jstring log)
 {
+    char *arguments[] = {"ICE"};
+
+    set_log_function( print_Android_message );
+
+    main(1, arguments);
+
+    if(Android_log_stream)
+        return (*env)->NewStringUTF(env, Android_log_stream->begin);
+
+    return (*env)->NewStringUTF(env, "");
+
+    /*
     initialize_STUN();
     set_log_function( print_Android_message );
 
@@ -38,5 +50,5 @@ Java_com_example_abar0217_stun_MainActivity_stringFromJNI(JNIEnv *env, jobject o
 
     snprintf(address, 21, "%s:%d", mapped_host, mapped_port);
 
-    return (*env)->NewStringUTF(env, address);
+    return (*env)->NewStringUTF(env, address);*/
 }
