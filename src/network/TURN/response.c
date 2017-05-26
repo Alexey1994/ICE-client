@@ -29,7 +29,7 @@ String* TURN_response(NetworkConnection connection)
     convert_big_to_little_endian(&message->length, 2);
     message->length += 20;
 
-#if ENABLE_TURN_DEBUG
+#ifdef ENABLE_DEBUG
     print_TURN_response(message);
 #endif
 

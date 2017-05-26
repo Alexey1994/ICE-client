@@ -262,7 +262,7 @@
 
 1495605163 c:\dev4\ice-client\src\network\turn\response.c
 
-1495782058 source:c:\git\ice-client\src\main.c
+1495784343 source:c:\git\ice-client\src\main.c
 	"main/main.h"
 	"network/network info/network info.h"
 	"network/TURN/TURN.h"
@@ -390,7 +390,7 @@
 1495510522 c:\git\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
-1495781015 c:\git\ice-client\src\network\stun\stun.c
+1495784726 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -425,7 +425,7 @@
 
 1495510522 c:\git\ice-client\src\stream\stream.c
 
-1495781842 c:\git\ice-client\src\network\stun\debug.h
+1495783956 c:\git\ice-client\src\network\stun\debug.h
 	"../../data structures/string/string.h"
 	"debug.c"
 
@@ -450,11 +450,11 @@
 1495529656 c:\git\ice-client\src\network\stun\attributes\changed_address.c
 	"../../../stream/stream.h"
 
-1495529698 c:\git\ice-client\src\network\stun\attributes\username.c
+1495784635 c:\git\ice-client\src\network\stun\attributes\username.c
 
 1495529678 c:\git\ice-client\src\network\stun\attributes\password.c
 
-1495529667 c:\git\ice-client\src\network\stun\attributes\message_integrity.c
+1495784778 c:\git\ice-client\src\network\stun\attributes\message_integrity.c
 
 1495510522 c:\git\ice-client\src\network\stun\attributes\error_code.c
 
@@ -462,7 +462,7 @@
 
 1495510522 c:\git\ice-client\src\network\stun\attributes\reflected_from.c
 
-1495529683 c:\git\ice-client\src\network\stun\attributes\realm.c
+1495784712 c:\git\ice-client\src\network\stun\attributes\realm.c
 
 1495529673 c:\git\ice-client\src\network\stun\attributes\nonce.c
 
@@ -476,13 +476,13 @@
 
 1495614393 c:\git\ice-client\src\network\stun\head.c
 
-1495781774 c:\git\ice-client\src\network\stun\attribute reader.c
+1495782407 c:\git\ice-client\src\network\stun\attribute reader.c
 
-1495605299 c:\git\ice-client\src\network\stun\request.c
+1495783901 c:\git\ice-client\src\network\stun\request.c
 
-1495778738 c:\git\ice-client\src\network\stun\response.c
+1495783910 c:\git\ice-client\src\network\stun\response.c
 
-1495695549 c:\git\ice-client\src\network\turn\turn.c
+1495783741 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -493,7 +493,7 @@
 	"attributes/REQUESTED_TRANSPORT.c"
 	"attributes/DONT_FRAGMENT.c"
 
-1495781871 c:\git\ice-client\src\network\turn\debug.h
+1495784051 c:\git\ice-client\src\network\turn\debug.h
 	"debug.h"
 	"debug.c"
 
@@ -509,9 +509,9 @@
 
 1495616418 c:\git\ice-client\src\network\turn\attribute reader.c
 
-1495614674 c:\git\ice-client\src\network\turn\request.c
+1495783927 c:\git\ice-client\src\network\turn\request.c
 
-1495708169 c:\git\ice-client\src\network\turn\response.c
+1495783730 c:\git\ice-client\src\network\turn\response.c
 
 1495694863 c:\git\ice-client\src\android main.c
 	<jni.h>
@@ -520,11 +520,11 @@
 
 1495510522 c:\git\ice-client\src\linux main.c
 
-1495697621 c:\git\ice-client\src\main\main.h
+1495783243 c:\git\ice-client\src\main\main.h
+	"../logger/logger.h"
 	"Android main.c"
 
-1495706744 c:\git\ice-client\src\main\android main.c
+1495783234 c:\git\ice-client\src\main\android main.c
 	<jni.h>
 	"../data structures/string/string.h"
-	"../logger/logger.h"
 

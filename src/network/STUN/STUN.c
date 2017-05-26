@@ -48,7 +48,7 @@ void initialize_STUN()
     read_attribute_handlers[ALTERNATE_SERVER]   = read_ALTERNATE_SERVER_attribute;
     read_attribute_handlers[FINGERPRINT]        = read_FINGERPRINT_attribute;
 
-#if ENABLE_STUN_DEBUG
+#ifdef ENABLE_DEBUG
     initialize_STUN_debug();
 #endif
 }
@@ -96,10 +96,10 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
     String          *request_message;
 
     begin_STUN_request(&request_message, BINDING_REQUEST);
-        //add_USERNAME(request_message, "lex");
-        //add_NONCE(request_message, "2e131a5fb210812c");
-        //add_REALM(request_message);
-        //add_MESSAGE_INTEGRITY(request_message);
+        add_USERNAME(request_message, "lex");
+        add_NONCE(request_message, "2e131a5fb210812c");
+        add_REALM(request_message);
+        add_MESSAGE_INTEGRITY(request_message);
     end_STUN_request(connection, request_message);
 
     attributes = get_response_STUN_attributes(connection);

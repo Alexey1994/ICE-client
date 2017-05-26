@@ -5,9 +5,6 @@
 #include "debug.h"
 
 
-#define ENABLE_TURN_DEBUG 0
-
-
 void initialize_TURN_debug();
 
 
@@ -16,7 +13,7 @@ void print_TURN_response(String *message);
 void print_TURN_request(String *message);
 
 
-#if ENABLE_TURN_DEBUG
+#ifdef ENABLE_DEBUG
 # include "debug.c"
 #endif
 

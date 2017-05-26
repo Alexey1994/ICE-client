@@ -16,7 +16,7 @@ void initialize_TURN()
 {
     read_attribute_TURN_handlers[DATA_TURN_ATTRIBUTE] = read_DATA_attribute;
 
-#if ENABLE_TURN_DEBUG
+#ifdef ENABLE_DEBUG
     initialize_TURN_debug();
 #endif
 }
@@ -42,7 +42,7 @@ void TURN(char *host, short port)
 
     if(!attributes)
         goto error;
-    
+
     destroy_TURN_attributes(attributes);
 
     return;

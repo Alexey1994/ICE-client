@@ -29,7 +29,7 @@ String* STUN_response(NetworkConnection connection)
     convert_big_to_little_endian(&message->length, 2);
     message->length += 20;
 
-#if ENABLE_STUN_DEBUG
+#ifdef ENABLE_DEBUG
     print_STUN_response(message);
 #endif
 

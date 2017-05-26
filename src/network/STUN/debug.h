@@ -5,9 +5,6 @@
 #include "../../data structures/string/string.h"
 
 
-#define ENABLE_STUN_DEBUG 0
-
-
 void initialize_STUN_debug();
 
 void print_MAPPED_ADDRESS_attribute(Byte *attribute, int length);
@@ -34,7 +31,7 @@ void print_STUN_request (String *message);
 void print_STUN_response (String *message);
 
 
-#if ENABLE_STUN_DEBUG
+#ifdef ENABLE_DEBUG
 # include "debug.c"
 #endif
 

@@ -1,6 +1,5 @@
 #include <jni.h>
 #include "../data structures/string/string.h"
-#include "../logger/logger.h"
 
 
 static String *Android_log_stream = 0;

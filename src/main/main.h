@@ -2,6 +2,9 @@
 #define MAIN_H_INCLUDED
 
 
+#include "../logger/logger.h"
+
+
 int main(int arguments_length, char **arguments);
 
 
