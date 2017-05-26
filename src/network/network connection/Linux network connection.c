@@ -91,12 +91,12 @@ NetworkConnection_Read_Arguments;
 
 
 void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arguments) {
-    NetworkConnection connection                 = arguments->connection;
-    int timeout                                  = arguments->timeout;
-    Byte *data                                   = arguments->data;
-    int length_data                              = arguments->length_data;
-    void (*handler)(Byte *data, Byte *arguments) = arguments->handler;
-    Byte *handler_arguments                      = arguments->handler_arguments;
+    NetworkConnection  connection                            = arguments->connection;
+    int                timeout                               = arguments->timeout;
+    Byte              *data                                  = arguments->data;
+    int                length_data                           = arguments->length_data;
+    void             (*handler)(Byte *data, Byte *arguments) = arguments->handler;
+    Byte              *handler_arguments                     = arguments->handler_arguments;
     free(arguments);
 
     int current_time = 0;
@@ -142,7 +142,7 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
         handler(0, handler_arguments);
         return;
     }
-    
+
     ///
 
     handler(data, handler_arguments);
