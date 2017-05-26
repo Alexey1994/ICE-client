@@ -99,51 +99,32 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
     Byte              *handler_arguments                     = arguments->handler_arguments;
     free(arguments);
 
-    int current_time = 0;
     fcntl(connection, F_SETFL, O_NONBLOCK);
-    /*
-    for(;;)
-    {
-        recv(connection, data, length_data, 0);
 
-        if(errno != EWOULDBLOCK && errno != EAGAIN)
-            break;
+    int            error_code;
+    fd_set         readset;
+    struct timeval tv;
 
-        if(current_time > timeout)
-        {
-            handler(0, handler_arguments);
-            return;
-        }
+    memset(&tv, 0, sizeof(tv));
 
-        sleep_thread(10);
-        current_time += 10;
-    }*/
+    tv.tv_sec  = 0;
+    tv.tv_usec = timeout * 1000;
 
-    ///
+    FD_ZERO(&readset);
+    FD_SET(connection, &readset);
 
-    int    error_code;
-    fd_set readset;
-
-    do
-    {
-        FD_ZERO(&readset);
-        FD_SET(connection, &readset);
-        error_code = select(connection + 1, &readset, 0, 0, 0);
-    }
-    while(error_code == -1 && errno == EINTR);
+    error_code = select(connection+1, &readset, 0, 0, &tv);
 
     if(error_code > 0)
     {
         if (FD_ISSET(connection, &readset))
             error_code = recv(connection, data, length_data, 0);
     }
-    else if(error_code < 0)
+    else
     {
         handler(0, handler_arguments);
         return;
     }
-
-    ///
 
     handler(data, handler_arguments);
 }
@@ -160,6 +141,5 @@ void async_read_from_network_connection(NetworkConnection connection, int timeou
     arguments->handler           = handler;
     arguments->handler_arguments = handler_arguments;
 
-    //fcntl(connection, F_SETFL, O_NONBLOCK);
     run_thread(update_network_connection_read_thread, arguments);
 }

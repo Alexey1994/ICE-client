@@ -11,6 +11,9 @@ Boolean read_STUN_attribute(STUN_Attribute *attribute, STUN_Attributes *attribut
     convert_big_to_little_endian(&attribute_type, 2);
     convert_big_to_little_endian(&attribute_length, 2);
 
+    if(attribute_length > MAX_STUN_RESPONSE_LENGTH)
+        goto error;
+
     attribute_handler = read_attribute_handlers[ attribute_type ];
 
     if(!attribute_handler)
@@ -32,7 +35,7 @@ Boolean read_STUN_attributes(STUN_Attributes *attributes, String *message)
 
     int length = 20;
 
-    while(length < message->length)
+    while(length < message->length && length < MAX_STUN_RESPONSE_LENGTH)
     {
         attribute = message->begin + length;
 
@@ -45,23 +48,13 @@ Boolean read_STUN_attributes(STUN_Attributes *attributes, String *message)
         length += 4 + attribute_length;
     }
 
+    if(length > MAX_STUN_RESPONSE_LENGTH)
+        goto error;
+
     return 1;
 
 error:
     return 0;
-}
-
-
-STUN_Attributes* create_STUN_attributes_from_message(String *message)
-{
-    STUN_Attributes *attributes  = new(STUN_Attributes);
-
-    attributes->MAPPED_ADDRESS.host = 0;
-    attributes->CHANGED_ADDRESS.host = 0;
-
-    read_STUN_attributes(attributes, message);
-
-    return attributes;
 }
 
 
@@ -78,6 +71,24 @@ STUN_Attributes* create_STUN_attributes()
 
 void destroy_STUN_attributes(STUN_Attributes *attributes)
 {
-    //free(attributes->MAPPED_ADDRESS.host); //Android segfault
+    if(attributes->MAPPED_ADDRESS.host)
+        free(attributes->MAPPED_ADDRESS.host);
+
     free(attributes);
+}
+
+
+
+STUN_Attributes* create_STUN_attributes_from_message(String *message)
+{
+    STUN_Attributes *attributes  = create_STUN_attributes();
+
+    if(!read_STUN_attributes(attributes, message))
+        goto error;
+
+    return attributes;
+
+error:
+    destroy_STUN_attributes(attributes);
+    return 0;
 }

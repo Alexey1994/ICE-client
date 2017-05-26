@@ -262,7 +262,7 @@
 
 1495605163 c:\dev4\ice-client\src\network\turn\response.c
 
-1495709420 source:c:\git\ice-client\src\main.c
+1495782058 source:c:\git\ice-client\src\main.c
 	"main/main.h"
 	"network/network info/network info.h"
 	"network/TURN/TURN.h"
@@ -346,7 +346,7 @@
 	<netdb.h>
 	<arpa/inet.h>
 
-1495710457 c:\git\ice-client\src\network\network connection\linux network connection.c
+1495781217 c:\git\ice-client\src\network\network connection\linux network connection.c
 	"network connection.h"
 	"../../error/error.h"
 	"../../thread/thread.h"
@@ -390,7 +390,7 @@
 1495510522 c:\git\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
-1495707187 c:\git\ice-client\src\network\stun\stun.c
+1495781015 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -425,7 +425,7 @@
 
 1495510522 c:\git\ice-client\src\stream\stream.c
 
-1495510522 c:\git\ice-client\src\network\stun\debug.h
+1495781842 c:\git\ice-client\src\network\stun\debug.h
 	"../../data structures/string/string.h"
 	"debug.c"
 
@@ -476,11 +476,11 @@
 
 1495614393 c:\git\ice-client\src\network\stun\head.c
 
-1495707340 c:\git\ice-client\src\network\stun\attribute reader.c
+1495781774 c:\git\ice-client\src\network\stun\attribute reader.c
 
 1495605299 c:\git\ice-client\src\network\stun\request.c
 
-1495709780 c:\git\ice-client\src\network\stun\response.c
+1495778738 c:\git\ice-client\src\network\stun\response.c
 
 1495695549 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
@@ -493,7 +493,7 @@
 	"attributes/REQUESTED_TRANSPORT.c"
 	"attributes/DONT_FRAGMENT.c"
 
-1495510522 c:\git\ice-client\src\network\turn\debug.h
+1495781871 c:\git\ice-client\src\network\turn\debug.h
 	"debug.h"
 	"debug.c"
 

@@ -35,7 +35,7 @@
 		<Linker>
 			<Add library="pthread" />
 		</Linker>
-		<Unit filename="../main.c">
+		<Unit filename="../../src/main.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Extensions>

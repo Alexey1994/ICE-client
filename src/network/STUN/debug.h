@@ -5,7 +5,7 @@
 #include "../../data structures/string/string.h"
 
 
-#define ENABLE_STUN_DEBUG 1
+#define ENABLE_STUN_DEBUG 0
 
 
 void initialize_STUN_debug();
