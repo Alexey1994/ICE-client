@@ -90,25 +90,25 @@ typedef struct
 NetworkConnection_Read_Arguments;
 
 
-void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arguments)
-{
-    NetworkConnection  connection                            = arguments->connection;
-    int                timeout                               = arguments->timeout;
-    Byte              *data                                  = arguments->data;
-    int                length_data                           = arguments->length_data;
-    void             (*handler)(Byte *data, Byte *arguments) = arguments->handler;
-    Byte              *handler_arguments                     = arguments->handler_arguments;
+void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arguments) {
+    NetworkConnection connection                 = arguments->connection;
+    int timeout                                  = arguments->timeout;
+    Byte *data                                   = arguments->data;
+    int length_data                              = arguments->length_data;
+    void (*handler)(Byte *data, Byte *arguments) = arguments->handler;
+    Byte *handler_arguments                      = arguments->handler_arguments;
     free(arguments);
 
     int current_time = 0;
     fcntl(connection, F_SETFL, O_NONBLOCK);
+    /*
     for(;;)
     {
         recv(connection, data, length_data, 0);
 
         if(errno != EWOULDBLOCK && errno != EAGAIN)
             break;
-        
+
         if(current_time > timeout)
         {
             handler(0, handler_arguments);
@@ -117,7 +117,33 @@ void update_network_connection_read_thread(NetworkConnection_Read_Arguments *arg
 
         sleep_thread(10);
         current_time += 10;
+    }*/
+
+    ///
+
+    int    error_code;
+    fd_set readset;
+
+    do
+    {
+        FD_ZERO(&readset);
+        FD_SET(connection, &readset);
+        error_code = select(connection + 1, &readset, 0, 0, 0);
     }
+    while(error_code == -1 && errno == EINTR);
+
+    if(error_code > 0)
+    {
+        if (FD_ISSET(connection, &readset))
+            error_code = recv(connection, data, length_data, 0);
+    }
+    else if(error_code < 0)
+    {
+        handler(0, handler_arguments);
+        return;
+    }
+    
+    ///
 
     handler(data, handler_arguments);
 }
