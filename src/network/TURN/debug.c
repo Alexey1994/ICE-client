@@ -13,6 +13,46 @@ void print_DATA_attribute(Byte *attribute, int length)
 }
 
 
+void print_XOR_RELAYED_ADDRESS_attribute(Byte *attribute, int length)
+{
+    char logbuf[200];
+    snprintf(logbuf, 200, "\tXOR RELAYED ADDRESS, %d bytes\n", length);
+    print_log(logbuf);
+
+    unsigned int   ip;
+    unsigned short port;
+
+    switch(attribute[1])
+    {
+        case 1: print_log("\tIPv4\n"); break;
+        case 2: print_log("\tIPv6\n"); break;
+    }
+
+    port = (attribute[2]<<8) + attribute[3];
+    ip   = (attribute[4]<<24) + (attribute[5]<<16) + (attribute[6]<<8) + (attribute[7]);
+
+    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n", attribute[4], attribute[5], attribute[6], attribute[7], port);
+    print_log(logbuf);
+
+    print_log("\n");
+}
+
+
+void print_LIFETIME_attribute(unsigned int *attribute, int length)
+{
+    char logbuf[200];
+    snprintf(logbuf, 200, "\tLIFETIME, %d bytes\n", length);
+    print_log(logbuf);
+
+    unsigned long int lifetime = *attribute;
+
+    convert_big_to_little_endian(&lifetime, 4);
+
+    snprintf(logbuf, 200, "\t%d seconds\n", lifetime);
+    print_log(logbuf);
+}
+
+
 void print_REQUESTED_TRANSPORT_attribute(Byte *attribute, int length)
 {
     char logbuf[200];
@@ -47,6 +87,8 @@ void initialize_TURN_debug()
     print_TURN_attribute_handlers[DATA_TURN_ATTRIBUTE]                = print_DATA_attribute;
     print_TURN_attribute_handlers[REQUESTED_TRANSPORT_TURN_ATTRIBUTE] = print_REQUESTED_TRANSPORT_attribute;
     print_TURN_attribute_handlers[DONT_FRAGMENT_TURN_ATTRIBUTE]       = print_DONT_FRAGMENT_attribute;
+    print_TURN_attribute_handlers[XOR_RELAYED_ADDRESS_TURN_ATTRIBUTE] = print_XOR_RELAYED_ADDRESS_attribute;
+    print_TURN_attribute_handlers[LIFETIME_TURN_ATTRIBUTE]            = print_LIFETIME_attribute;
 }
 
 

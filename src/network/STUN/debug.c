@@ -195,6 +195,23 @@ void print_XOR_MAPPED_ADDRESS_attribute(Byte *attribute, int length)
     char logbuf[200];
     snprintf(logbuf, 200, "\tXOR MAPPED ADDRESS, %d bytes\n", length);
     print_log(logbuf);
+
+    unsigned int   ip;
+    unsigned short port;
+
+    switch(attribute[1])
+    {
+        case 1: print_log("\tIPv4\n"); break;
+        case 2: print_log("\tIPv6\n"); break;
+    }
+
+    port = (attribute[2]<<8) + attribute[3];
+    ip   = (attribute[4]<<24) + (attribute[5]<<16) + (attribute[6]<<8) + (attribute[7]);
+
+    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n", attribute[4], attribute[5], attribute[6], attribute[7], port);
+    print_log(logbuf);
+
+    print_log("\n");
 }
 
 
