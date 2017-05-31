@@ -130,7 +130,7 @@ void print_TURN_attributes(String *message)
 
     print_log("\n\tAttributes:\n\n");
 
-    while(length < message->length)
+    while(length < message->length && length < MAX_TURN_RESPONSE_LENGTH)
     {
         attribute = message->begin + length;
         print_TURN_attribute(attribute);

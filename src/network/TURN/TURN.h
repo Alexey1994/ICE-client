@@ -59,7 +59,10 @@ TURN_Attributes;
 
 
 void initialize_TURN();
+
 void TURN(char *host, short port);
+void send_TURN(char *host, short port);
+void bind_TURN_channel(char *host, short port);
 
 #include "TURN.c"
 

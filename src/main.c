@@ -38,7 +38,8 @@ int main(int arguments_length, char *arguments[])
 
     //TURN_TCP_request("192.168.56.1", 3478);
 
-    TURN("192.168.56.1", 3478);
+    //TURN("192.168.56.1", 3478);
+    bind_TURN_channel("192.168.56.1", 3478);
     //TURN("192.168.56.101", 3478);
 
     //return authenticate_on_STUN_server("192.168.56.101", 3478);
