@@ -3,6 +3,7 @@
 #include "main/main.h"
 #include "network/network info/network info.h"
 #include "network/TURN/TURN.h"
+#include "network/network server/network server.h"
 
 int main(int arguments_length, char *arguments[])
 {
@@ -49,6 +50,19 @@ int main(int arguments_length, char *arguments[])
     //authenticate_on_STUN_server("192.168.56.1", 3478);
 
     get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
+
+    printf("mapped to %s:%d\n", mapped_host, mapped_port);
+
+    NetworkConnection connection  = create_UDP_connection(mapped_host, mapped_port);
+
+    printf("Connection: %d\n", connection);
+    char buffer[21];
+
+    write_in_network_connection(connection, "Hi", 2);
+
+    sync_read_from_network_connection(connection, buffer, 20);
+    printf(buffer);
+
     //get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port);
 
     //authenticate_on_STUN_server("turn1.northeurope.cloudapp.azure.com", 3478);
