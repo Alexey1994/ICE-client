@@ -8,6 +8,7 @@
 #include "response.c"
 
 #include "attributes/DATA.c"
+#include "attributes/LIFETIME.c"
 #include "attributes/REQUESTED_TRANSPORT.c"
 #include "attributes/DONT_FRAGMENT.c"
 #include "attributes/XOR_PEER_ADDRESS.c"
@@ -34,7 +35,9 @@ void TURN(char *host, short port)
     String          *request_message;
 
     begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
-        add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
+        //add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
+        //add_LIFETIME(request_message, 12345);
+        add_USERNAME(request_message, "lex");
         //add_DONT_FRAGMENT(request_message);
     end_TURN_request(connection, request_message);
 

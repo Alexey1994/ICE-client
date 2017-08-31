@@ -6,10 +6,18 @@ void read_USERNAME_attribute(STUN_Attributes *attributes, Byte *attribute, int l
 
 void add_USERNAME(String *message, char *username)
 {
-	char buf[20] = {};
-	add_STUN_atribute_head(message, USERNAME, 20);
+	int username_length;
+	int message_length;
 
-	snprintf(buf, 20, "%s", username);
+	username_length = strlen(username);
+	message_length = ((username_length + 3) / 4) * 4;
 
-	write_byte_array_to_string(message, buf, 20);
+	add_STUN_atribute_head(message, USERNAME, message_length);
+	write_byte_array_to_string(message, username, username_length);
+
+	while(message_length - username_length)
+	{
+		push_in_string(message, '\0');
+		--message_length;
+	}
 }
