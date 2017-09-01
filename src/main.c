@@ -5,6 +5,13 @@
 #include "network/TURN/TURN.h"
 #include "network/network server/network server.h"
 
+
+int listener(Network_Source source)
+{
+    printf("listen client %d\n", source);
+}
+
+
 int main(int arguments_length, char *arguments[])
 {
     char           buf[200];
@@ -53,15 +60,15 @@ int main(int arguments_length, char *arguments[])
 
     printf("mapped to %s:%d\n", mapped_host, mapped_port);
 
-    NetworkConnection connection  = create_UDP_connection(mapped_host, mapped_port);
+    Server *server = create_UDP_server("127.0.0.1", 8081, listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
 
-    printf("Connection: %d\n", connection);
-    char buffer[21];
+    sleep_thread(500);
+    NetworkConnection connection = create_UDP_connection("127.0.0.1", 8080);//create_UDP_connection(mapped_host, mapped_port);
 
-    write_in_network_connection(connection, "Hi", 2);
+    printf("sending data to server\n");
+    write_in_network_connection(connection, "Hi", 3);
 
-    sync_read_from_network_connection(connection, buffer, 20);
-    printf(buffer);
+    for(;;){}
 
     //get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port);
 

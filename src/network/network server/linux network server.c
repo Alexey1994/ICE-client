@@ -36,39 +36,59 @@ static Server* create_server(
     Byte           *request_arguments
 )
 {
-    struct hostent     *host_data;
-    struct sockaddr_in  sock_addr;
-
-    Server                  *server    = new(Server);
-    Server_Update_arguments *arguments = new(Server_Update_arguments);
-
-    arguments->server            = server;
-    arguments->run_on_request    = run_on_request;
-    arguments->request_arguments = request_arguments;
+    struct hostent          *host_data;
+    struct sockaddr_in       sock_addr;
+    Server                  *server;
+    Server_Update_arguments *arguments;
 
     host_data = gethostbyname(host);
 
     if(!host_data)
+    {
+        print_error("host name error\n");
         goto error;
+    }
+
+    memset(&sock_addr, 0, sizeof(struct sockaddr_in));
 
     sock_addr.sin_port        = htons(port);
     sock_addr.sin_family      = AF_INET;
     sock_addr.sin_addr.s_addr = *((unsigned long*)host_data->h_addr);
 
+    server = new(Server);
+
     server->source = socket(AF_INET, connection_type, connection_protocol);
 
-    if (server->source < 0)
+    if(server->source == -1)
+    {
+        print_error("socket error\n");
         goto error;
+    }
 
-    if(bind(server->source, &sock_addr, sizeof(struct sockaddr_in)) < 0)
+    if(bind(server->source, &sock_addr, sizeof(struct sockaddr_in)) == -1)
+    {
+        print_error("bind error\n");
         goto error;
+    }
 
-    listen(server->source, SOMAXCONN);
+    if(listen(server->source, SOMAXCONN))
+    {
+        print_error("listen error\n");
+        goto error;
+    }
+
+    arguments = new(Server_Update_arguments);
+
+    arguments->server            = server;
+    arguments->run_on_request    = run_on_request;
+    arguments->request_arguments = request_arguments;
+
     run_thread(update_server, arguments);
 
     return server;
 
 error:
+    printf("server error\n");
     return 0;
 }
 
