@@ -5,10 +5,12 @@
 #include "network/TURN/TURN.h"
 #include "network/network server/network server.h"
 
+#include "network/connection/UDP/UDP.h"
 
-int listener(Network_Source source)
+
+int listener(Byte *data)
 {
-    printf("listen client %d\n", source);
+    printf("listen client %s\n", data);
 }
 
 
@@ -60,15 +62,22 @@ int main(int arguments_length, char *arguments[])
 
     printf("mapped to %s:%d\n", mapped_host, mapped_port);
 
-    Server *server = create_UDP_server("127.0.0.1", 8081, listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
+    Server *server = create_UDP_server("127.0.0.1", 3478, listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
 
-    sleep_thread(500);
-    NetworkConnection connection = create_UDP_connection("127.0.0.1", 8080);//create_UDP_connection(mapped_host, mapped_port);
+    //sleep_thread(500);
+    /*Network_Connection *connection = create_UDP_connection("127.0.0.1", 3478);//create_UDP_connection(mapped_host, mapped_port);
 
     printf("sending data to server\n");
-    write_in_network_connection(connection, "Hi", 3);
+    //write_in_network_connection(connection, "Hi", 3);
 
-    for(;;){}
+    write_in_UDP(connection, "Hi", 3);*/
+
+    UDP_Connection *connection = create_UDP_connection("127.0.0.1", 3478);
+
+    for(;;)
+    {
+        write_in_UDP(connection, "Hi", 3);
+    }
 
     //get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port);
 

@@ -1,7 +1,7 @@
 #ifdef __WIN32__
-# include "windows network server.c"
+# include "Windows network server.c"
 #endif
 
 #ifdef __linux__
-# include "linux network server.c"
+# include "Linux network server.c"
 #endif

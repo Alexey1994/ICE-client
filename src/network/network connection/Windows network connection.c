@@ -11,10 +11,9 @@
 static WSADATA *wsa_data = 0;
 
 
-NetworkConnection create_network_connection(Byte *host, int port, int connection_domain, int connection_type, int connection_protocol)
+NetworkConnection create_TCP_connection(Byte *host, int port)
 {
     struct sockaddr_in  sock_addr;
-    struct hostent     *host_data;
     NetworkConnection   socket_connection;
 
     if(!wsa_data)
@@ -23,19 +22,11 @@ NetworkConnection create_network_connection(Byte *host, int port, int connection
         WSAStartup(MAKEWORD(2, 2), wsa_data);
     }
 
-    host_data = gethostbyname(host);
-
-    if(!host_data)
-    {
-        print_error("host name not correct\n");
-        goto error;
-    }
-
     sock_addr.sin_port        = htons(port);
     sock_addr.sin_family      = AF_INET;
-    sock_addr.sin_addr.s_addr = *((unsigned long*)host_data->h_addr);
+    sock_addr.sin_addr.s_addr = inet_addr(host);
 
-    socket_connection = socket(connection_domain, connection_type, connection_protocol);
+    socket_connection = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     if (socket_connection == -1)
     {
@@ -47,9 +38,7 @@ NetworkConnection create_network_connection(Byte *host, int port, int connection
     ioctlsocket(socket_connection, FIONBIO, &non_blocking);
 
     //while(connect(socket_connection, &sock_addr, sizeof(sock_addr)) == EINPROGRESS);
-
-    //while(!connect(socket_connection, &sock_addr, sizeof(sock_addr)))
-    connect(socket_connection, &sock_addr, sizeof(sock_addr));
+    while(!connect(socket_connection, &sock_addr, sizeof(sock_addr)));
 
     return socket_connection;
 
@@ -60,15 +49,48 @@ error:
 }
 
 
-NetworkConnection create_TCP_connection(Byte *host, int port)
+Network_Connection* create_UDP_connection(Byte *host, int port)
 {
-    return create_network_connection(host, port, AF_INET, SOCK_STREAM, IPPROTO_TCP);
-}
+    struct sockaddr_in *sock_addr;
+    Network_Connection *connection;
 
+    if(!wsa_data)
+    {
+        wsa_data=new(WSADATA);
+        WSAStartup(MAKEWORD(2, 2), wsa_data);
+    }
 
-NetworkConnection create_UDP_connection(Byte *host, int port)
-{
-    return create_network_connection(host, port, AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    sock_addr = new(struct sockaddr_in);
+
+    sock_addr->sin_family      = AF_INET;
+    sock_addr->sin_addr.s_addr = inet_addr(host);
+    sock_addr->sin_port        = htons(port);
+
+    connection = new(Network_Connection);
+
+    connection->address = sock_addr;
+    connection->connection = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+
+    if (connection->connection == -1)
+    {
+        print_error("connection error\n");
+        goto error;
+    }
+
+    //unsigned non_blocking = 1;
+    //ioctlsocket(connection->connection, FIONBIO, &non_blocking);
+
+    //while(connect(socket_connection, &sock_addr, sizeof(sock_addr)) == EINPROGRESS);
+
+    //while(!connect(socket_connection, &sock_addr, sizeof(sock_addr)))
+    //connect(socket_connection, &sock_addr, sizeof(sock_addr));
+
+    return connection;
+
+error:
+    print_error("connection not found\n");
+
+    return 0;
 }
 
 
@@ -77,6 +99,17 @@ void destroy_network_connection(NetworkConnection connection)
     closesocket(connection);
     //WSACleanup();
 }
+/*
+void write_in_UDP(Network_Connection *connection, Byte *data, unsigned int length_data)
+{
+    int status;
+
+    status = sendto(connection->connection, data, length_data, 0, connection->address, sizeof(struct sockaddr_in));
+
+    if(status == -1)
+        print_error("error in write to network source\n");
+    //sendto(connection->connection, data, length_data, 0, 0, 0);
+}*/
 
 
 void write_in_network_connection(NetworkConnection connection, Byte *data, unsigned int length_data)

@@ -8,6 +8,7 @@ typedef int Network_Source;
 typedef struct
 {
     Network_Source      source;
+    Byte               *address;
     //struct sockaddr_in  sock_addr;
 }
 Server;
