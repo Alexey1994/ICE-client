@@ -1,6 +1,6 @@
-void TURN_request(NetworkConnection connection, String *message)
+void TURN_request(UDP_Connection *connection, String *message)
 {
-    write_in_network_connection(connection, message->begin, message->length);
+    write_in_UDP(connection, message->begin, message->length);
 
 #ifdef ENABLE_DEBUG
     print_TURN_request(message);

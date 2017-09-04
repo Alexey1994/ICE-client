@@ -1,3 +1,4 @@
+/*
 #include "network connection.h"
 
 #include "../../error/error.h"
@@ -142,4 +143,4 @@ void async_read_from_network_connection(NetworkConnection connection, int timeou
     arguments->handler_arguments = handler_arguments;
 
     run_thread(update_network_connection_read_thread, arguments);
-}
+}*/

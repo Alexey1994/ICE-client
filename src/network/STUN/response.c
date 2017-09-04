@@ -10,19 +10,21 @@ static void STUN_response_handler(Byte *data, Byte *end_response)
 }
 
 
-String* STUN_response(NetworkConnection connection)
+String* STUN_response(UDP_Connection *connection)
 {
     STUN_Head *head;
 
     String *message      = create_string(MAX_STUN_RESPONSE_LENGTH);
     Byte    end_response = 0;
 
-    async_read_from_network_connection(connection, 500, message->begin, MAX_STUN_RESPONSE_LENGTH, STUN_response_handler, &end_response);
+    //async_read_from_network_connection(connection, 500, message->begin, MAX_STUN_RESPONSE_LENGTH, STUN_response_handler, &end_response);
 
-    while(!end_response);// waiting
+    //while(!end_response);// waiting
 
-    if(end_response != NO_ERRORS)
-        goto error;
+    //if(end_response != NO_ERRORS)
+    //    goto error;
+
+    read_from_UDP(connection, message->begin, MAX_STUN_RESPONSE_LENGTH);
 
     head = message->begin;
     message->length = head->content_length;
@@ -41,7 +43,7 @@ error:
 }
 
 
-STUN_Attributes* get_response_STUN_attributes(NetworkConnection connection)
+STUN_Attributes* get_response_STUN_attributes(UDP_Connection *connection)
 {
     String *response_message = STUN_response(connection);
 

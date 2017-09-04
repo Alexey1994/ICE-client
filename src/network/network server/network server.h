@@ -2,6 +2,10 @@
 #define NETWORK_SERVER_H_INCLUDED
 
 
+#include "../../error/error.h"
+#include "../../thread/thread.h"
+
+
 typedef int Network_Source;
 
 

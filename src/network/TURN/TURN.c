@@ -26,7 +26,7 @@ void initialize_TURN()
 
 void TURN(char *host, short port)
 {
-    NetworkConnection  connection  =  create_UDP_connection(host, port);
+    UDP_Connection *connection  =  create_UDP(host, port);
 
     if(!connection)
         goto error;
@@ -42,7 +42,7 @@ void TURN(char *host, short port)
     end_TURN_request(connection, request_message);
 
     attributes = get_response_TURN_attributes(connection);
-    destroy_network_connection(connection);
+    destroy_UDP(connection);
 
     if(!attributes)
         goto error;
@@ -58,7 +58,7 @@ error:
 
 void send_TURN(char *host, short port)
 {
-    NetworkConnection  connection  =  create_UDP_connection(host, port);
+    UDP_Connection *connection = create_UDP(host, port);
 
     if(!connection)
         goto error;
@@ -72,7 +72,7 @@ void send_TURN(char *host, short port)
     end_TURN_request(connection, request_message);
 
     attributes = get_response_TURN_attributes(connection);
-    destroy_network_connection(connection);
+    destroy_UDP(connection);
 
     if(!attributes)
         goto error;
@@ -88,7 +88,7 @@ error:
 
 void bind_TURN_channel(char *host, short port)
 {
-    NetworkConnection  connection  =  create_UDP_connection(host, port);
+    UDP_Connection *connection = create_UDP(host, port);
 
     if(!connection)
         goto error;
@@ -103,7 +103,7 @@ void bind_TURN_channel(char *host, short port)
     end_TURN_request(connection, request_message);
 
     attributes = get_response_TURN_attributes(connection);
-    destroy_network_connection(connection);
+    destroy_UDP(connection);
 
     if(!attributes)
         goto error;

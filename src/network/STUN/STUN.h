@@ -7,10 +7,10 @@
 
 #include "../../extends/extends.h"
 #include "../../data structures/string/string.h"
-#include "../network connection/network connection.h"
+#include "../connection/UDP/UDP.h"
 
 
-#define MAX_STUN_RESPONSE_LENGTH 200
+#define MAX_STUN_RESPONSE_LENGTH 512
 
 
 #define DEFAULT_STUN_PORT  3478

@@ -17,9 +17,11 @@ String* TURN_response(NetworkConnection connection)
     String *message      = create_string(MAX_TURN_RESPONSE_LENGTH);
     Byte    end_response = 0;
 
-    async_read_from_network_connection(connection, 500, message->begin, MAX_TURN_RESPONSE_LENGTH, TURN_response_handler, &end_response);
+    //async_read_from_network_connection(connection, 500, message->begin, MAX_TURN_RESPONSE_LENGTH, TURN_response_handler, &end_response);
 
-    while(!end_response);// waiting
+    //while(!end_response);// waiting
+
+    read_from_UDP(connection, message->begin, MAX_TURN_RESPONSE_LENGTH);
 
     if(end_response != NO_ERRORS)
         goto error;

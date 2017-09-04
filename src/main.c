@@ -8,9 +8,17 @@
 #include "network/connection/UDP/UDP.h"
 
 
-int listener(Byte *data)
+int sender_listener(Byte *data)
 {
-    printf("listen client %s\n", data);
+    printf("listen client\n");
+    //printf("listen client %s\n", data);
+}
+
+
+int receiver_listener(Byte *data)
+{
+    printf("listen client\n");
+    //printf("listen client %s\n", data);
 }
 
 
@@ -59,24 +67,22 @@ int main(int arguments_length, char *arguments[])
     //authenticate_on_STUN_server("192.168.56.1", 3478);
 
     get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
-
     printf("mapped to %s:%d\n", mapped_host, mapped_port);
 
-    Server *server = create_UDP_server("127.0.0.1", 3478, listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
+    //Server *sender   = create_UDP_server("10.0.150.7", 8080, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
+    //Server *receiver = create_UDP_server("0.0.0.0", 9, receiver_listener, 0);
 
-    //sleep_thread(500);
-    /*Network_Connection *connection = create_UDP_connection("127.0.0.1", 3478);//create_UDP_connection(mapped_host, mapped_port);
+    UDP_Connection *server = create_UDP("127.0.0.1", 9);
 
-    printf("sending data to server\n");
-    //write_in_network_connection(connection, "Hi", 3);
-
-    write_in_UDP(connection, "Hi", 3);*/
-
-    UDP_Connection *connection = create_UDP_connection("127.0.0.1", 3478);
+    UDP_Connection *connection = create_UDP(mapped_host, mapped_port);
 
     for(;;)
     {
         write_in_UDP(connection, "Hi", 3);
+
+        Byte tt[200];
+        read_from_UDP(server, tt, 2);
+        printf("%s", tt);
     }
 
     //get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port);

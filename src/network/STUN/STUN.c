@@ -56,7 +56,7 @@ void initialize_STUN()
 
 Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port)
 {
-    NetworkConnection  connection  =  create_UDP_connection(host, port);
+    UDP_Connection *connection  =  create_UDP(host, port);
 
     if(!connection)
         goto error;
@@ -68,7 +68,7 @@ Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_ho
     end_STUN_request(connection, request_message);
 
     attributes = get_response_STUN_attributes(connection);
-    destroy_network_connection(connection);
+    destroy_UDP(connection);
 
     if(!attributes)
         goto error;
@@ -87,7 +87,7 @@ error:
 
 Boolean authenticate_on_STUN_server(char *host, unsigned short port)
 {
-    NetworkConnection  connection  =  create_UDP_connection(host, port);
+    UDP_Connection *connection  =  create_UDP(host, port);
 
     if(!connection)
         goto error;
@@ -103,7 +103,7 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
     end_STUN_request(connection, request_message);
 
     attributes = get_response_STUN_attributes(connection);
-    destroy_network_connection(connection);
+    destroy_UDP(connection);
 
     if(!attributes)
         goto error;
