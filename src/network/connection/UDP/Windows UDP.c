@@ -1,3 +1,12 @@
+#include <stdio.h>
+#include <errno.h>
+#include <WinSock2.h>
+#include <WS2tcpip.h>
+
+
+static WSADATA *wsa_data = 0;
+
+
 UDP_Connection* create_UDP (Byte *host, int port)
 {
     struct sockaddr_in *sock_addr;
@@ -26,8 +35,8 @@ UDP_Connection* create_UDP (Byte *host, int port)
         goto error;
     }
 
-    unsigned non_blocking = 1;
-    ioctlsocket(connection->socket, FIONBIO, &non_blocking);
+    //unsigned non_blocking = 1;
+    //ioctlsocket(connection->socket, FIONBIO, &non_blocking);
 
     //while(connect(socket_connection, &sock_addr, sizeof(sock_addr)) == EINPROGRESS);
 
@@ -52,11 +61,14 @@ void destroy_UDP (UDP_Connection *connection)
 void write_in_UDP (UDP_Connection *connection, Byte *data, int length_data)
 {
     if(sendto(connection->socket, data, length_data, 0, connection->address, sizeof(struct sockaddr_in)) == -1)
-        print_error("error in write to network source\n");
+        ;//print_error("error in write to network source\n");
 }
 
 
 void read_from_UDP (UDP_Connection *connection, Byte *data, int length_data)
 {
+    struct sockaddr_in client_address;
+    int                client_address_size;
 
+    int bytes_readed = recvfrom(connection->socket, data, length_data, 0, &client_address, &client_address_size);
 }

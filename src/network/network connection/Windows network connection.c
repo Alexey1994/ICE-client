@@ -9,7 +9,7 @@
 
 
 static WSADATA *wsa_data = 0;
-
+/*
 
 NetworkConnection create_TCP_connection(Byte *host, int port)
 {
@@ -99,17 +99,7 @@ void destroy_network_connection(NetworkConnection connection)
     closesocket(connection);
     //WSACleanup();
 }
-/*
-void write_in_UDP(Network_Connection *connection, Byte *data, unsigned int length_data)
-{
-    int status;
 
-    status = sendto(connection->connection, data, length_data, 0, connection->address, sizeof(struct sockaddr_in));
-
-    if(status == -1)
-        print_error("error in write to network source\n");
-    //sendto(connection->connection, data, length_data, 0, 0, 0);
-}*/
 
 
 void write_in_network_connection(NetworkConnection connection, Byte *data, unsigned int length_data)
@@ -194,3 +184,4 @@ Byte get_TCP_byte(NetworkConnection connection)
 
     return byte;
 }
+*/

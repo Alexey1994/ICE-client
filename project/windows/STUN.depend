@@ -279,3 +279,300 @@
 
 1504328603 c:\git\ice-client\src\network\connection\udp\linux udp.c
 
+1504677537 source:c:\dev\ice-client\src\main.c
+	"main/main.h"
+	"network/network info/network info.h"
+	"network/TURN/TURN.h"
+	"network/network server/network server.h"
+	"network/connection/UDP/UDP.h"
+
+1504676136 c:\dev\ice-client\src\main\main.h
+	"../logger/logger.h"
+	"Android main.c"
+
+1504676136 c:\dev\ice-client\src\logger\logger.h
+	"logger.c"
+
+1504676136 c:\dev\ice-client\src\logger\logger.c
+	<stdio.h>
+
+1504676136 c:\dev\ice-client\src\main\android main.c
+	<jni.h>
+	"../data structures/string/string.h"
+
+1504676136 c:\dev\ice-client\src\data structures\string\string.h
+	"../character/character.h"
+	"string.c"
+
+1504676136 c:\dev\ice-client\src\data structures\character\character.h
+	"../../extends/extends.h"
+	"character.c"
+
+1504676136 c:\dev\ice-client\src\extends\extends.h
+	<stdlib.h>
+	"extends.c"
+
+1504676136 c:\dev\ice-client\src\extends\extends.c
+
+1504676136 c:\dev\ice-client\src\data structures\character\character.c
+
+1504676136 c:\dev\ice-client\src\data structures\string\string.c
+	"../../extends/extends.h"
+
+1504676136 c:\dev\ice-client\src\network\network info\network info.h
+	"../../data structures/array/array.h"
+	"network info.c"
+
+1504676136 c:\dev\ice-client\src\data structures\array\array.h
+	"../random access structure/random access structure.h"
+	"array.c"
+
+1504676136 c:\dev\ice-client\src\data structures\random access structure\random access structure.h
+	"../../extends/extends.h"
+	"random access structure.c"
+
+1504676136 c:\dev\ice-client\src\data structures\random access structure\random access structure.c
+
+1504676136 c:\dev\ice-client\src\data structures\array\array.c
+	"../../extends/extends.h"
+
+1504676136 c:\dev\ice-client\src\network\network info\network info.c
+	"Windows network info.c"
+
+1504676136 c:\dev\ice-client\src\network\network info\windows network info.c
+	<WinSock2.h>
+	<WS2tcpip.h>
+	"../network connection/network connection.h"
+	"../../extends/extends.h"
+	"../../error/error.h"
+	"../../system library/system library.h"
+
+1504676136 c:\dev\ice-client\src\network\network connection\network connection.h
+	"../../extends/extends.h"
+	"network connection.c"
+
+1504676136 c:\dev\ice-client\src\network\network connection\network connection.c
+	"Windows network connection.c"
+	"Linux network connection.c"
+
+1504677513 c:\dev\ice-client\src\network\network connection\windows network connection.c
+	"network connection.h"
+	"../../thread/thread.h"
+	"../../error/error.h"
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1504676136 c:\dev\ice-client\src\thread\thread.h
+	"thread.c"
+
+1504676136 c:\dev\ice-client\src\thread\thread.c
+	"Windows thread.c"
+	"Linux thread.c"
+
+1504676136 c:\dev\ice-client\src\thread\windows thread.c
+	<pthread.h>
+
+1504676136 c:\dev\ice-client\src\thread\linux thread.c
+	<pthread.h>
+
+1504676136 c:\dev\ice-client\src\error\error.h
+	"error.c"
+
+1504676136 c:\dev\ice-client\src\error\error.c
+	<stdio.h>
+
+1504676136 c:\dev\ice-client\src\network\network connection\linux network connection.c
+	"network connection.h"
+	"../../error/error.h"
+	"../../thread/thread.h"
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1504676136 c:\dev\ice-client\src\system library\system library.h
+	"../extends/extends.h"
+	"system library.c"
+
+1504676136 c:\dev\ice-client\src\system library\system library.c
+	"Windows system library.c"
+
+1504676136 c:\dev\ice-client\src\system library\windows system library.c
+	<windows.h>
+
+1504676136 c:\dev\ice-client\src\network\turn\turn.h
+	"../STUN/STUN.h"
+	"TURN.c"
+
+1504676136 c:\dev\ice-client\src\network\stun\stun.h
+	"../../extends/extends.h"
+	"../../data structures/string/string.h"
+	"../connection/UDP/UDP.h"
+	"STUN.c"
+
+1504676136 c:\dev\ice-client\src\network\connection\udp\udp.h
+	"UDP.c"
+
+1504676136 c:\dev\ice-client\src\network\connection\udp\udp.c
+	"Windows UDP.c"
+	"Linux UDP.c"
+
+1504677899 c:\dev\ice-client\src\network\connection\udp\windows udp.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1504677715 c:\dev\ice-client\src\network\connection\udp\linux udp.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1504677914 c:\dev\ice-client\src\network\stun\stun.c
+	"../../stream/stream.h"
+	"../../data structures/string/string.h"
+	"debug.h"
+	"head.c"
+	"attribute reader.c"
+	"request.c"
+	"response.c"
+	"attributes/MAPPED_ADDRESS.c"
+	"attributes/RESPONSE_ADDRESS.c"
+	"attributes/CHANGE_REQUEST.c"
+	"attributes/SOURCE_ADDRESS.c"
+	"attributes/CHANGED_ADDRESS.c"
+	"attributes/USERNAME.c"
+	"attributes/PASSWORD.c"
+	"attributes/MESSAGE_INTEGRITY.c"
+	"attributes/ERROR_CODE.c"
+	"attributes/UNKNOWN_ATTRIBUTES.c"
+	"attributes/REFLECTED_FROM.c"
+	"attributes/REALM.c"
+	"attributes/NONCE.c"
+	"attributes/XOR_MAPPED_ADDRESS.c"
+	"attributes/SOFTWARE.c"
+	"attributes/ALTERNATE_SERVER.c"
+	"attributes/FINGERPRINT.c"
+
+1504676136 c:\dev\ice-client\src\stream\stream.h
+	"../extends/extends.h"
+	"../data structures/array/array.h"
+	"../data structures/character/character.h"
+	"stream.c"
+
+1504676136 c:\dev\ice-client\src\stream\stream.c
+
+1504676136 c:\dev\ice-client\src\network\stun\debug.h
+	"../../data structures/string/string.h"
+	"debug.c"
+
+1504676136 c:\dev\ice-client\src\network\stun\debug.c
+	"debug.h"
+	"../../logger/logger.h"
+
+1504676136 c:\dev\ice-client\src\network\stun\head.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attribute reader.c
+
+1504676136 c:\dev\ice-client\src\network\stun\request.c
+
+1504676136 c:\dev\ice-client\src\network\stun\response.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\mapped_address.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\response_address.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\change_request.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\source_address.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\changed_address.c
+	"../../../stream/stream.h"
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\username.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\password.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\error_code.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\unknown_attributes.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\reflected_from.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\realm.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\nonce.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\xor_mapped_address.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\software.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\alternate_server.c
+
+1504676136 c:\dev\ice-client\src\network\stun\attributes\fingerprint.c
+
+1504676136 c:\dev\ice-client\src\network\turn\turn.c
+	"TURN.h"
+	"../../data structures/string/string.h"
+	"debug.h"
+	"attribute reader.c"
+	"request.c"
+	"response.c"
+	"attributes/DATA.c"
+	"attributes/LIFETIME.c"
+	"attributes/REQUESTED_TRANSPORT.c"
+	"attributes/DONT_FRAGMENT.c"
+	"attributes/XOR_PEER_ADDRESS.c"
+
+1504676136 c:\dev\ice-client\src\network\turn\debug.h
+	"debug.h"
+	"debug.c"
+
+1504676136 c:\dev\ice-client\src\network\turn\debug.c
+	"debug.h"
+	"../../logger/logger.h"
+
+1504676136 c:\dev\ice-client\src\network\turn\attribute reader.c
+
+1504676136 c:\dev\ice-client\src\network\turn\request.c
+
+1504676136 c:\dev\ice-client\src\network\turn\response.c
+
+1504676136 c:\dev\ice-client\src\network\turn\attributes\data.c
+
+1504676136 c:\dev\ice-client\src\network\turn\attributes\lifetime.c
+
+1504676136 c:\dev\ice-client\src\network\turn\attributes\requested_transport.c
+
+1504676136 c:\dev\ice-client\src\network\turn\attributes\dont_fragment.c
+
+1504676136 c:\dev\ice-client\src\network\turn\attributes\xor_peer_address.c
+
+1504676136 c:\dev\ice-client\src\network\network server\network server.h
+	"../../error/error.h"
+	"../../thread/thread.h"
+	"network server.c"
+
+1504676136 c:\dev\ice-client\src\network\network server\network server.c
+	"Windows network server.c"
+	"Linux network server.c"
+
+1504676136 c:\dev\ice-client\src\network\network server\windows network server.c
+
+1504676136 c:\dev\ice-client\src\network\network server\linux network server.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
