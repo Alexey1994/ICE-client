@@ -4,8 +4,7 @@
 //#include "network/network info/network info.h"
 #include "network/STUN/STUN.h"
 //#include "network/TURN/TURN.h"
-//#include "network/network server/network server.h"
-
+#include "network/network server/network server.h"
 //#include "network/connection/UDP/UDP.h"
 
 
@@ -67,24 +66,27 @@ int main(int arguments_length, char *arguments[])
     //authenticate_on_STUN_server("192.168.56.101", 3478);
     //authenticate_on_STUN_server("192.168.56.1", 3478);
 
-    get_STUN_mapped_address("turn1.northeurope.cloudapp.azure.com", 3478, mapped_host, &mapped_port);
-    printf("mapped to %s:%d\n", mapped_host, mapped_port);
+    get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
+    //printf("mapped to %s:%d\n", mapped_host, mapped_port);
 
-    //Server *sender   = create_UDP_server("10.0.150.7", 8080, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
+    Server *sender = create_UDP_server("127.0.0.1", 80, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
     //Server *receiver = create_UDP_server("0.0.0.0", 9, receiver_listener, 0);
-/*
-    UDP_Connection *server = create_UDP("127.0.0.1", 9);
+
+    //UDP_Connection *server = create_UDP("127.0.0.1", 9);
 
     UDP_Connection *connection = create_UDP(mapped_host, mapped_port);
 
     for(;;)
     {
         write_in_UDP(connection, "Hi", 3);
+        sleep_thread(1000);
 
-        Byte tt[200];
-        read_from_UDP(server, tt, 2);
-        printf("%s", tt);
-    }*/
+        //Byte tt[200];
+        //read_from_UDP(server, tt, 2);
+        //printf("%s", tt);
+    }
+
+    //closesocket();
 
     //get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port);
 

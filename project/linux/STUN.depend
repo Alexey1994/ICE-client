@@ -297,3 +297,205 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
+1505216977 source:/home/lex/dev/ICE-client/src/main.c
+	"main/main.h"
+	"network/STUN/STUN.h"
+	"network/network server/network server.h"
+
+1505213705 /home/lex/dev/ICE-client/src/main/main.h
+	"../logger/logger.h"
+	"Android main.c"
+
+1505213705 /home/lex/dev/ICE-client/src/logger/logger.h
+	"logger.c"
+
+1505213705 /home/lex/dev/ICE-client/src/logger/logger.c
+	<stdio.h>
+
+1505213705 /home/lex/dev/ICE-client/src/main/Android main.c
+	<jni.h>
+	"../data structures/string/string.h"
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/string/string.h
+	"../character/character.h"
+	"string.c"
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/character/character.h
+	"../../extends/extends.h"
+	"character.c"
+
+1505213705 /home/lex/dev/ICE-client/src/extends/extends.h
+	<stdlib.h>
+	"extends.c"
+
+1505213705 /home/lex/dev/ICE-client/src/extends/extends.c
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/character/character.c
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/string/string.c
+	"../../extends/extends.h"
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/STUN.h
+	"../../extends/extends.h"
+	"../../data structures/string/string.h"
+	"../connection/UDP/UDP.h"
+	"STUN.c"
+
+1505213705 /home/lex/dev/ICE-client/src/network/connection/UDP/UDP.h
+	"../../../error/error.h"
+	"UDP.c"
+
+1505213705 /home/lex/dev/ICE-client/src/error/error.h
+	"error.c"
+
+1505213705 /home/lex/dev/ICE-client/src/error/error.c
+	<stdio.h>
+
+1505213705 /home/lex/dev/ICE-client/src/network/connection/UDP/UDP.c
+	"Windows UDP.c"
+	"Linux UDP.c"
+
+1505213705 /home/lex/dev/ICE-client/src/network/connection/UDP/Windows UDP.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1505215404 /home/lex/dev/ICE-client/src/network/connection/UDP/Linux UDP.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/STUN.c
+	"../../stream/stream.h"
+	"../../data structures/string/string.h"
+	"debug.h"
+	"head.c"
+	"attribute reader.c"
+	"request.c"
+	"response.c"
+	"attributes/MAPPED_ADDRESS.c"
+	"attributes/RESPONSE_ADDRESS.c"
+	"attributes/CHANGE_REQUEST.c"
+	"attributes/SOURCE_ADDRESS.c"
+	"attributes/CHANGED_ADDRESS.c"
+	"attributes/USERNAME.c"
+	"attributes/PASSWORD.c"
+	"attributes/MESSAGE_INTEGRITY.c"
+	"attributes/ERROR_CODE.c"
+	"attributes/UNKNOWN_ATTRIBUTES.c"
+	"attributes/REFLECTED_FROM.c"
+	"attributes/REALM.c"
+	"attributes/NONCE.c"
+	"attributes/XOR_MAPPED_ADDRESS.c"
+	"attributes/SOFTWARE.c"
+	"attributes/ALTERNATE_SERVER.c"
+	"attributes/FINGERPRINT.c"
+
+1505213705 /home/lex/dev/ICE-client/src/stream/stream.h
+	"../extends/extends.h"
+	"../data structures/array/array.h"
+	"../data structures/character/character.h"
+	"stream.c"
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/array/array.h
+	"../random access structure/random access structure.h"
+	"array.c"
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/random access structure/random access structure.h
+	"../../extends/extends.h"
+	"random access structure.c"
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/random access structure/random access structure.c
+
+1505213705 /home/lex/dev/ICE-client/src/data structures/array/array.c
+	"../../extends/extends.h"
+
+1505213705 /home/lex/dev/ICE-client/src/stream/stream.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/debug.h
+	"../../data structures/string/string.h"
+	"debug.c"
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/debug.c
+	"debug.h"
+	"../../logger/logger.h"
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/head.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attribute reader.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/request.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/response.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/MAPPED_ADDRESS.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/RESPONSE_ADDRESS.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/CHANGE_REQUEST.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/SOURCE_ADDRESS.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/CHANGED_ADDRESS.c
+	"../../../stream/stream.h"
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/USERNAME.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/PASSWORD.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/MESSAGE_INTEGRITY.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/ERROR_CODE.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/UNKNOWN_ATTRIBUTES.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/REFLECTED_FROM.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/REALM.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/NONCE.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/XOR_MAPPED_ADDRESS.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/SOFTWARE.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/ALTERNATE_SERVER.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/STUN/attributes/FINGERPRINT.c
+
+1505213705 /home/lex/dev/ICE-client/src/network/network server/network server.h
+	"../../error/error.h"
+	"../../thread/thread.h"
+	"network server.c"
+
+1505213705 /home/lex/dev/ICE-client/src/thread/thread.h
+	"thread.c"
+
+1505213705 /home/lex/dev/ICE-client/src/thread/thread.c
+	"Windows thread.c"
+	"Linux thread.c"
+
+1505213705 /home/lex/dev/ICE-client/src/thread/Windows thread.c
+	<pthread.h>
+
+1505213705 /home/lex/dev/ICE-client/src/thread/Linux thread.c
+	<pthread.h>
+
+1505213705 /home/lex/dev/ICE-client/src/network/network server/network server.c
+	"Windows network server.c"
+	"Linux network server.c"
+
+1505213705 /home/lex/dev/ICE-client/src/network/network server/Windows network server.c
+
+1505217114 /home/lex/dev/ICE-client/src/network/network server/Linux network server.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+

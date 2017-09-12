@@ -49,6 +49,8 @@ static void update_UDP_server(Server_Update_arguments *arguments)
         if(!buffer_size)
             printf("skip packet\n");
 
+        printf("packet readed\n");
+
         run_on_request(buffer, request_arguments);
     }
 }
@@ -76,7 +78,7 @@ Server* create_UDP_server(
 
     server->source = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
-    if(server->source == -1)
+    if(server->source < 0)
     {
         print_error("socket error\n");
         goto error;
@@ -84,7 +86,7 @@ Server* create_UDP_server(
 
     if(bind(server->source, server_address, sizeof(struct sockaddr_in)))
     {
-        print_error("bind error\n");
+        printf("bind error %d\n", errno);
         goto error;
     }
 
