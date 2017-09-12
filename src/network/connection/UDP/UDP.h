@@ -2,6 +2,13 @@
 #define UDP_NETWORK_CONNECTION
 
 
+#include "../../../error/error.h"
+
+
+#define NO_ERRORS     0
+#define TIMEOUT_ERROR 1
+
+
 typedef struct
 {
 	int   socket;

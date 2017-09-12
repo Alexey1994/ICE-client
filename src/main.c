@@ -30,7 +30,7 @@ int main(int arguments_length, char *arguments[])
     unsigned short mapped_port;
 
     initialize_STUN();
-    initialize_TURN();
+    //initialize_TURN();
 
 /*
     if(arguments_length < 2)
