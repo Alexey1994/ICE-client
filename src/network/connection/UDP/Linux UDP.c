@@ -54,17 +54,11 @@ void destroy_UDP (UDP_Connection *connection)
 
 void write_in_UDP (UDP_Connection *connection, Byte *data, int length_data)
 {
-    printf("write %d bytes\n", length_data);
-
-    if(sendto(connection->socket, data, length_data, 0, connection->address, sizeof(struct sockaddr_in)) == -1)
-        ;//print_error("error in write to network source\n");
+    sendto(connection->socket, data, length_data, 0, connection->address, sizeof(struct sockaddr_in));
 }
 
 
 void read_from_UDP (UDP_Connection *connection, Byte *data, int length_data)
 {
-    struct sockaddr_in client_address;
-    int                client_address_size;
-    printf("read %d bytes\n", length_data);
-    int bytes_readed = recvfrom(connection->socket, data, length_data, 0, &client_address, &client_address_size);
+    recvfrom(connection->socket, data, length_data, 0, 0, 0);
 }

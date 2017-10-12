@@ -69,7 +69,7 @@ int main(int arguments_length, char *arguments[])
     get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
     //printf("mapped to %s:%d\n", mapped_host, mapped_port);
 
-    Server *sender = create_UDP_server("127.0.0.1", 80, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
+    Server *sender = create_UDP_server("10.0.2.15", 3478, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
     //Server *receiver = create_UDP_server("0.0.0.0", 9, receiver_listener, 0);
 
     //UDP_Connection *server = create_UDP("127.0.0.1", 9);
