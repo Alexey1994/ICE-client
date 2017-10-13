@@ -66,5 +66,5 @@ void write_in_UDP (UDP_Connection *connection, Byte *data, int length_data)
 
 void read_from_UDP (UDP_Connection *connection, Byte *data, int length_data)
 {
-    recvfrom(connection->socket, data, length_data, 0, &client_address, &client_address_size);
+    recvfrom(connection->socket, data, length_data, 0, 0, 0);
 }

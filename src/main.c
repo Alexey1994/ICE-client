@@ -7,6 +7,8 @@
 #include "network/network server/network server.h"
 //#include "network/connection/UDP/UDP.h"
 
+#include "network/connection/TCP/TCP.h"
+
 
 int sender_listener(Byte *data)
 {
@@ -69,12 +71,30 @@ int main(int arguments_length, char *arguments[])
     get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
     //printf("mapped to %s:%d\n", mapped_host, mapped_port);
 
-    Server *sender = create_UDP_server("10.0.2.15", 3478, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
+    TCP_Connection *signal_server = create_TCP("localhost", 8080);
+
+    char *data =
+        "GET /reg1?address=123 HTTP/1.1\r\n"
+        "Host: localhost:8080\r\n"
+        "User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0\r\n"
+        "Accept: text/html\r\n"
+        "Connection: close\r\n\r\n";
+
+    write_in_TCP(signal_server, data, strlen(data)+1);
+
+    char request[512];
+
+    read_from_TCP(signal_server, request, 512);
+
+    printf(request);
+
+
+    Server *sender = create_UDP_server("127.0.0.1", 80, sender_listener, 0);//create_UDP_server(mapped_host, mapped_port, listener, 0);
     //Server *receiver = create_UDP_server("0.0.0.0", 9, receiver_listener, 0);
 
-    //UDP_Connection *server = create_UDP("127.0.0.1", 9);
-
-    UDP_Connection *connection = create_UDP(mapped_host, mapped_port);
+    //UDP_Connection *server = create_UDP("192.168.56.1", 53241);
+    //UDP_Connection *connection = create_UDP(mapped_host, mapped_port);
+    UDP_Connection *connection = create_UDP("192.168.56.1", 60769);
 
     for(;;)
     {
