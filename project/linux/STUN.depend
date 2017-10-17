@@ -297,10 +297,11 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1507798401 source:/home/lex/dev/ICE-client/src/main.c
+1508233710 source:/home/lex/dev/ICE-client/src/main.c
 	"main/main.h"
 	"network/STUN/STUN.h"
 	"network/network server/network server.h"
+	"network/connection/TCP/TCP.h"
 
 1505213705 /home/lex/dev/ICE-client/src/main/main.h
 	"../logger/logger.h"
@@ -355,7 +356,7 @@
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1507804073 /home/lex/dev/ICE-client/src/network/connection/UDP/Windows UDP.c
+1507884585 /home/lex/dev/ICE-client/src/network/connection/UDP/Windows UDP.c
 	<stdio.h>
 	<errno.h>
 	<WinSock2.h>
@@ -492,6 +493,28 @@
 1505213705 /home/lex/dev/ICE-client/src/network/network server/Windows network server.c
 
 1505217114 /home/lex/dev/ICE-client/src/network/network server/Linux network server.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1508230152 /home/lex/dev/ICE-client/src/network/connection/TCP/TCP.h
+	"../../../error/error.h"
+	"TCP.c"
+
+1507884686 /home/lex/dev/ICE-client/src/network/connection/TCP/TCP.c
+	"Windows TCP.c"
+	"Linux TCP.c"
+
+1507884932 /home/lex/dev/ICE-client/src/network/connection/TCP/Windows TCP.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1508231851 /home/lex/dev/ICE-client/src/network/connection/TCP/Linux TCP.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>

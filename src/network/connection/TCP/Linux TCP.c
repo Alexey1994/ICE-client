@@ -26,6 +26,13 @@ TCP_Connection* create_TCP (Byte *host, int port)
 
     if (connection->socket == -1)
     {
+        print_error("socket error\n");
+        goto error;
+    }
+
+    if(connect(connection->socket, sock_addr, sizeof(struct sockaddr_in)))
+    {
+        printf("errno %d\n", errno);
         print_error("TCP connection error\n");
         goto error;
     }
