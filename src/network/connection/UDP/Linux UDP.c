@@ -21,7 +21,7 @@ UDP_Connection* create_UDP (Byte *host, int port)
     connection = new(UDP_Connection);
 
     connection->address = sock_addr;
-    connection->socket  = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    connection->socket  = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
     if (connection->socket == -1)
     {

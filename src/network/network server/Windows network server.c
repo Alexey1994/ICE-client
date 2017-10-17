@@ -70,7 +70,7 @@ Server* create_UDP_server(
     server_address->sin_addr.s_addr = inet_addr(host);
     server_address->sin_port        = htons(port);
 
-    server->source = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    server->source = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
 
     if(server->source == -1)
     {
@@ -80,6 +80,7 @@ Server* create_UDP_server(
 
     if(bind(server->source, server_address, sizeof(struct sockaddr_in)))
     {
+        printf("%d\n", WSAGetLastError());
         print_error("bind error\n");
         goto error;
     }
@@ -148,7 +149,7 @@ Server* create_TCP_server(
 
     server = new(Server);
 
-    server->source = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    server->source = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     if(server->source == -1)
     {

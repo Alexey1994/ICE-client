@@ -22,7 +22,7 @@ TCP_Connection* create_TCP (Byte *host, int port)
     connection = new(TCP_Connection);
 
     connection->address = sock_addr;
-    connection->socket  = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    connection->socket  = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     if (connection->socket == -1)
     {

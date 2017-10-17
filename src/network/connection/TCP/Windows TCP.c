@@ -27,10 +27,17 @@ TCP_Connection* create_TCP (Byte *host, int port)
     connection = new(TCP_Connection);
 
     connection->address = sock_addr;
-    connection->socket  = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    connection->socket  = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 
     if (connection->socket == -1)
     {
+        print_error("TCP connection error\n");
+        goto error;
+    }
+
+    if(connect(connection->socket, sock_addr, sizeof(struct sockaddr_in)))
+    {
+        printf("errno %d\n", errno);
         print_error("TCP connection error\n");
         goto error;
     }

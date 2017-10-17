@@ -279,9 +279,11 @@
 
 1504328603 c:\git\ice-client\src\network\connection\udp\linux udp.c
 
-1505211744 source:c:\dev\ice-client\src\main.c
+1508242701 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
 	"network/STUN/STUN.h"
+	"network/network server/network server.h"
+	"network/connection/TCP/TCP.h"
 
 1505211095 c:\dev\ice-client\src\main\main.h
 	"../logger/logger.h"
@@ -361,17 +363,17 @@
 	<WinSock2.h>
 	<WS2tcpip.h>
 
-1504676136 c:\dev\ice-client\src\thread\thread.h
+1505211095 c:\dev\ice-client\src\thread\thread.h
 	"thread.c"
 
-1504676136 c:\dev\ice-client\src\thread\thread.c
+1505211095 c:\dev\ice-client\src\thread\thread.c
 	"Windows thread.c"
 	"Linux thread.c"
 
-1504676136 c:\dev\ice-client\src\thread\windows thread.c
+1505211095 c:\dev\ice-client\src\thread\windows thread.c
 	<pthread.h>
 
-1504676136 c:\dev\ice-client\src\thread\linux thread.c
+1505211095 c:\dev\ice-client\src\thread\linux thread.c
 	<pthread.h>
 
 1505211095 c:\dev\ice-client\src\error\error.h
@@ -419,13 +421,13 @@
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1505211095 c:\dev\ice-client\src\network\connection\udp\windows udp.c
+1508239666 c:\dev\ice-client\src\network\connection\udp\windows udp.c
 	<stdio.h>
 	<errno.h>
 	<WinSock2.h>
 	<WS2tcpip.h>
 
-1505211095 c:\dev\ice-client\src\network\connection\udp\linux udp.c
+1508239658 c:\dev\ice-client\src\network\connection\udp\linux udp.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>
@@ -555,18 +557,40 @@
 
 1504676136 c:\dev\ice-client\src\network\turn\attributes\xor_peer_address.c
 
-1504676136 c:\dev\ice-client\src\network\network server\network server.h
+1505211095 c:\dev\ice-client\src\network\network server\network server.h
 	"../../error/error.h"
 	"../../thread/thread.h"
 	"network server.c"
 
-1504676136 c:\dev\ice-client\src\network\network server\network server.c
+1505211095 c:\dev\ice-client\src\network\network server\network server.c
 	"Windows network server.c"
 	"Linux network server.c"
 
-1504676136 c:\dev\ice-client\src\network\network server\windows network server.c
+1508240136 c:\dev\ice-client\src\network\network server\windows network server.c
 
-1504676136 c:\dev\ice-client\src\network\network server\linux network server.c
+1507795346 c:\dev\ice-client\src\network\network server\linux network server.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1508234478 c:\dev\ice-client\src\network\connection\tcp\tcp.h
+	"../../../error/error.h"
+	"TCP.c"
+
+1508234478 c:\dev\ice-client\src\network\connection\tcp\tcp.c
+	"Windows TCP.c"
+	"Linux TCP.c"
+
+1508239674 c:\dev\ice-client\src\network\connection\tcp\windows tcp.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1508239671 c:\dev\ice-client\src\network\connection\tcp\linux tcp.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>

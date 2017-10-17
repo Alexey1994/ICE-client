@@ -9,17 +9,19 @@
 
 #include "network/connection/TCP/TCP.h"
 
+#define CLIENT_ID 1
+
+#define STUN_HOST "turn1.northeurope.cloudapp.azure.com"
+#define STUN_PORT 3478
+
+#define SIGNAL_SERVER_HOST "127.0.0.1"
+#define SIGNAL_SERVER_PORT 8080
+
 
 int sender_listener(Byte *data)
 {
-    printf("listen client\n");
-    //printf("listen client %s\n", data);
-}
-
-
-int receiver_listener(Byte *data)
-{
-    printf("listen client\n");
+    printf("message: %s\n", data);
+    //printf("listen client\n");
     //printf("listen client %s\n", data);
 }
 
@@ -30,7 +32,7 @@ void read_HTTP_data(char *HTTP_data, char *buffer)
     {
         if(*HTTP_data == '\r' && HTTP_data[1] == '\n' && HTTP_data[2] == '\r' && HTTP_data[3] == '\n')
         {
-            HTTP_data += 3;
+            HTTP_data += 4;
             break;
         }
     }
@@ -41,17 +43,22 @@ void read_HTTP_data(char *HTTP_data, char *buffer)
 
 void send_mapped_address(char *host, int port)
 {
-    TCP_Connection *signal_server = create_TCP("127.0.0.1", 8080);
+    TCP_Connection *signal_server = create_TCP(SIGNAL_SERVER_HOST, SIGNAL_SERVER_PORT);
     char            buffer[512];
 
     snprintf(buffer, 512,
-        "GET /reg1?host=%s&port=%d HTTP/1.1\r\n"
-        "Host: localhost:8080\r\n"
+        "GET /reg%d?host=%s&port=%d HTTP/1.1\r\n"
+        "Host: %s:%d\r\n"
         "User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0\r\n"
         "Accept: text/html\r\n"
         "Connection: close\r\n\r\n",
+        CLIENT_ID,
+
         host,
-        port
+        port,
+
+        SIGNAL_SERVER_HOST,
+        SIGNAL_SERVER_PORT
     );
 
     write_in_TCP(signal_server, buffer, strlen(buffer));
@@ -62,16 +69,19 @@ void send_mapped_address(char *host, int port)
 
 void get_client_host(char *host)
 {
-    TCP_Connection *signal_server = create_TCP("127.0.0.1", 8080);
+    TCP_Connection *signal_server = create_TCP(SIGNAL_SERVER_HOST, SIGNAL_SERVER_PORT);
     char            buffer[512];
     int             i;
 
     snprintf(buffer, 512,
-        "GET /host1 HTTP/1.1\r\n"
-        "Host: localhost:8080\r\n"
+        "GET /host%d HTTP/1.1\r\n"
+        "Host: %s:%d\r\n"
         "User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0\r\n"
         "Accept: text/html\r\n"
-        "Connection: close\r\n\r\n"
+        "Connection: close\r\n\r\n",
+        CLIENT_ID,
+        SIGNAL_SERVER_HOST,
+        SIGNAL_SERVER_PORT
     );
 
     write_in_TCP(signal_server, buffer, strlen(buffer));
@@ -84,16 +94,19 @@ void get_client_host(char *host)
 
 int get_client_port()
 {
-    TCP_Connection *signal_server = create_TCP("127.0.0.1", 8080);
+    TCP_Connection *signal_server = create_TCP(SIGNAL_SERVER_HOST, SIGNAL_SERVER_PORT);
     char            buffer[512];
     int             i;
 
     snprintf(buffer, 512,
-        "GET /port1 HTTP/1.1\r\n"
-        "Host: localhost:8080\r\n"
+        "GET /port%d HTTP/1.1\r\n"
+        "Host: %s:%d\r\n"
         "User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:55.0) Gecko/20100101 Firefox/55.0\r\n"
         "Accept: text/html\r\n"
-        "Connection: close\r\n\r\n"
+        "Connection: close\r\n\r\n",
+        CLIENT_ID,
+        SIGNAL_SERVER_HOST,
+        SIGNAL_SERVER_PORT
     );
 
     write_in_TCP(signal_server, buffer, strlen(buffer));
@@ -108,9 +121,11 @@ int get_client_port()
 
 int main(int arguments_length, char *arguments[])
 {
-    char           buf[200];
+    char           buffer[512];
     char           mapped_host[16];
     unsigned short mapped_port;
+    char           client_host[512];
+    int            client_port;
 
     initialize_STUN();
     //initialize_TURN();
@@ -133,28 +148,24 @@ int main(int arguments_length, char *arguments[])
     }*/
 
 
-    get_STUN_mapped_address("127.0.0.1", 3478, mapped_host, &mapped_port);
-
-
+    get_STUN_mapped_address(STUN_HOST, STUN_PORT, mapped_host, &mapped_port);
     send_mapped_address(mapped_host, mapped_port);
+    Server *sender = create_UDP_server(mapped_host, mapped_port, sender_listener, 0);
+    printf("listen messages on address: %s:%d\n", mapped_host, mapped_port);
 
-    char client_host[512];
-    int client_port;
-
+    sleep_thread(5000);
     get_client_host(client_host);
     client_port = get_client_port();
-
-
-    Server *sender = create_UDP_server("127.0.0.1", 80, sender_listener, 0);
 
     UDP_Connection *connection = create_UDP(client_host, client_port);
     printf("connect to client address: %s:%d\n", client_host, client_port);
 
     for(;;)
     {
-        write_in_UDP(connection, "Hi", 3);
-        sleep_thread(1000);
+        snprintf(buffer, 512, "Hello from client %d", CLIENT_ID);
 
+        write_in_UDP(connection, buffer, strlen(buffer));
+        sleep_thread(1000);
     }
 
     return 0;
