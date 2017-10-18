@@ -279,9 +279,10 @@
 
 1504328603 c:\git\ice-client\src\network\connection\udp\linux udp.c
 
-1508242701 source:c:\dev\ice-client\src\main.c
+1508317330 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
 	"network/STUN/STUN.h"
+	"network/TURN/TURN.h"
 	"network/network server/network server.h"
 	"network/connection/TCP/TCP.h"
 
@@ -403,7 +404,7 @@
 1504676136 c:\dev\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1504676136 c:\dev\ice-client\src\network\turn\turn.h
+1508316562 c:\dev\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
@@ -435,7 +436,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1505211095 c:\dev\ice-client\src\network\stun\stun.c
+1508313721 c:\dev\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -481,9 +482,9 @@
 
 1505211095 c:\dev\ice-client\src\network\stun\attribute reader.c
 
-1505211643 c:\dev\ice-client\src\network\stun\request.c
+1508313688 c:\dev\ice-client\src\network\stun\request.c
 
-1505211095 c:\dev\ice-client\src\network\stun\response.c
+1508313696 c:\dev\ice-client\src\network\stun\response.c
 
 1505211095 c:\dev\ice-client\src\network\stun\attributes\mapped_address.c
 
@@ -520,7 +521,7 @@
 
 1505211095 c:\dev\ice-client\src\network\stun\attributes\fingerprint.c
 
-1504676136 c:\dev\ice-client\src\network\turn\turn.c
+1508316915 c:\dev\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -533,29 +534,29 @@
 	"attributes/DONT_FRAGMENT.c"
 	"attributes/XOR_PEER_ADDRESS.c"
 
-1504676136 c:\dev\ice-client\src\network\turn\debug.h
+1505211095 c:\dev\ice-client\src\network\turn\debug.h
 	"debug.h"
 	"debug.c"
 
-1504676136 c:\dev\ice-client\src\network\turn\debug.c
+1505211095 c:\dev\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1504676136 c:\dev\ice-client\src\network\turn\attribute reader.c
+1505211095 c:\dev\ice-client\src\network\turn\attribute reader.c
 
-1504676136 c:\dev\ice-client\src\network\turn\request.c
+1508313786 c:\dev\ice-client\src\network\turn\request.c
 
-1504676136 c:\dev\ice-client\src\network\turn\response.c
+1508313817 c:\dev\ice-client\src\network\turn\response.c
 
-1504676136 c:\dev\ice-client\src\network\turn\attributes\data.c
+1505211095 c:\dev\ice-client\src\network\turn\attributes\data.c
 
-1504676136 c:\dev\ice-client\src\network\turn\attributes\lifetime.c
+1505211095 c:\dev\ice-client\src\network\turn\attributes\lifetime.c
 
-1504676136 c:\dev\ice-client\src\network\turn\attributes\requested_transport.c
+1508315423 c:\dev\ice-client\src\network\turn\attributes\requested_transport.c
 
-1504676136 c:\dev\ice-client\src\network\turn\attributes\dont_fragment.c
+1505211095 c:\dev\ice-client\src\network\turn\attributes\dont_fragment.c
 
-1504676136 c:\dev\ice-client\src\network\turn\attributes\xor_peer_address.c
+1505211095 c:\dev\ice-client\src\network\turn\attributes\xor_peer_address.c
 
 1505211095 c:\dev\ice-client\src\network\network server\network server.h
 	"../../error/error.h"
@@ -576,7 +577,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1508234478 c:\dev\ice-client\src\network\connection\tcp\tcp.h
+1508315337 c:\dev\ice-client\src\network\connection\tcp\tcp.h
 	"../../../error/error.h"
 	"TCP.c"
 

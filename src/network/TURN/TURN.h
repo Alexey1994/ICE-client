@@ -7,7 +7,15 @@
 #include "../STUN/STUN.h"
 
 
-#define MAX_TURN_RESPONSE_LENGTH 200
+#define MAX_TURN_RESPONSE_LENGTH 512
+
+
+typedef enum
+{
+    TCP_CONNECTION,
+    UDP_CONNECTION
+}
+Connection_Type;
 
 
 typedef enum
@@ -60,8 +68,7 @@ TURN_Attributes;
 
 void initialize_TURN();
 
-void TURN(char *host, short port);
-void send_TURN(char *host, short port);
+void allocate_TURN(char *host, short port);
 void bind_TURN_channel(char *host, short port);
 
 #include "TURN.c"

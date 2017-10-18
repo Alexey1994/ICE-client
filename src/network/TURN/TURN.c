@@ -24,39 +24,7 @@ void initialize_TURN()
 }
 
 
-void TURN(char *host, short port)
-{
-    UDP_Connection *connection  =  create_UDP(host, port);
-
-    if(!connection)
-        goto error;
-
-    TURN_Attributes *attributes;
-    String          *request_message;
-
-    begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
-        //add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
-        //add_LIFETIME(request_message, 12345);
-        add_USERNAME(request_message, "lex");
-        //add_DONT_FRAGMENT(request_message);
-    end_TURN_request(connection, request_message);
-
-    attributes = get_response_TURN_attributes(connection);
-    destroy_UDP(connection);
-
-    if(!attributes)
-        goto error;
-
-    destroy_TURN_attributes(attributes);
-
-    return;
-
-error:
-    return;
-}
-
-
-void send_TURN(char *host, short port)
+void allocate_TURN(char *host, short port)
 {
     UDP_Connection *connection = create_UDP(host, port);
 
@@ -66,8 +34,9 @@ void send_TURN(char *host, short port)
     TURN_Attributes *attributes;
     String          *request_message;
 
-    begin_TURN_request(&request_message, SEND_TURN_MESSAGE);
+    begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
         add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
+        //add_LIFETIME(request_message, 2);
         //add_DONT_FRAGMENT(request_message);
     end_TURN_request(connection, request_message);
 

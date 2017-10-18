@@ -10,7 +10,7 @@ void TURN_response_handler(Byte *data, Byte *end_response)
 }
 
 
-String* TURN_response(NetworkConnection connection)
+String* TURN_response(UDP_Connection *connection)
 {
     STUN_Head *head;
 
@@ -43,7 +43,7 @@ error:
 }
 
 
-TURN_Attributes* get_response_TURN_attributes(NetworkConnection connection)
+TURN_Attributes* get_response_TURN_attributes(UDP_Connection *connection)
 {
     String *response_message = TURN_response(connection);
 

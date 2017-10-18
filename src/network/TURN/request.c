@@ -14,7 +14,7 @@ void begin_TURN_request(String **message, unsigned short type)
 }
 
 
-void end_TURN_request(NetworkConnection connection, String *message)
+void end_TURN_request(UDP_Connection *connection, String *message)
 {
     set_STUN_content_length(message->begin, message->length - 20);
     TURN_request(connection, message);

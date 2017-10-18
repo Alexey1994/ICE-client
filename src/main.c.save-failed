@@ -3,18 +3,16 @@
 #include "main/main.h"
 //#include "network/network info/network info.h"
 #include "network/STUN/STUN.h"
-#include "network/TURN/TURN.h"
+//#include "network/TURN/TURN.h"
 #include "network/network server/network server.h"
 //#include "network/connection/UDP/UDP.h"
+
 #include "network/connection/TCP/TCP.h"
 
 #define CLIENT_ID 2
 
 #define STUN_HOST "192.168.56.102"
 #define STUN_PORT 3478
-
-#define TURN_HOST "192.168.56.102"
-#define TURN_PORT 3478
 
 #define SIGNAL_SERVER_HOST "127.0.0.1"
 #define SIGNAL_SERVER_PORT 8080
@@ -121,13 +119,34 @@ int get_client_port()
 }
 
 
-void test_STUN_connection()
+int main(int arguments_length, char *arguments[])
 {
     char           buffer[512];
     char           mapped_host[16];
     unsigned short mapped_port;
     char           client_host[512];
     int            client_port;
+
+    initialize_STUN();
+    //initialize_TURN();
+
+/*
+    if(arguments_length < 2)
+    {
+        if (!get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port))
+            return 0;
+    }
+    else if(arguments_length == 2)
+    {
+        if (!get_STUN_mapped_address(arguments[1], 3478, mapped_host, &mapped_port))
+            return 0;
+    }
+    else
+    {
+        if (!get_STUN_mapped_address(arguments[1], atoi(arguments[2]), mapped_host, &mapped_port))
+            return 0;
+    }*/
+
 
     get_STUN_mapped_address(STUN_HOST, STUN_PORT, mapped_host, &mapped_port);
     send_mapped_address(mapped_host, mapped_port);
@@ -148,41 +167,6 @@ void test_STUN_connection()
         write_in_UDP(connection, buffer, strlen(buffer));
         sleep_thread(1000);
     }
-}
-
-
-void test_TURN_connection()
-{
-    allocate_TURN(TURN_HOST, TURN_PORT);
-}
-
-
-int main(int arguments_length, char *arguments[])
-{
-    initialize_STUN();
-    initialize_TURN();
-
-    test_TURN_connection();
-
-    /*
-    char           mapped_host[16];
-    unsigned short mapped_port;
-
-    if(arguments_length < 2)
-    {
-        if (!get_STUN_mapped_address("192.168.56.101", 3478, mapped_host, &mapped_port))
-            return 0;
-    }
-    else if(arguments_length == 2)
-    {
-        if (!get_STUN_mapped_address(arguments[1], 3478, mapped_host, &mapped_port))
-            return 0;
-    }
-    else
-    {
-        if (!get_STUN_mapped_address(arguments[1], atoi(arguments[2]), mapped_host, &mapped_port))
-            return 0;
-    }*/
 
     return 0;
 }

@@ -2,7 +2,6 @@
 #include "../../data structures/string/string.h"
 
 #include "debug.h"
-//#include "../network connection/network connection.h"
 
 #include "head.c"
 #include "attribute reader.c"
@@ -57,7 +56,7 @@ void initialize_STUN()
 Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port)
 {
     UDP_Connection *connection  =  create_UDP(host, port);
-printf("get stun mapped address\n");
+
     if(!connection)
         goto error;
 
