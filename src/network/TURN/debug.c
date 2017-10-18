@@ -146,13 +146,15 @@ void print_TURN_attributes(String *message)
 void print_TURN_head(STUN_Head *head)
 {
     char logbuf[200];
+    unsigned short message_type   = head->message_type;
     unsigned short content_length = head->content_length;
 
+    convert_big_to_little_endian(&message_type, 2);
     convert_big_to_little_endian(&content_length, 2);
 
     print_log("\tType:            ");
 
-    switch(head->message_type)
+    switch(message_type)
     {
         case BINDING_REQUEST:                print_log("REQUEST\n");                break;
         case BINDING_RESPONSE:               print_log("SERVER RESPONSE\n");        break;
@@ -166,7 +168,7 @@ void print_TURN_head(STUN_Head *head)
         case CHANNEL_BIND_TURN_MESSAGE:      print_log("CHANNEL BIND\n");           break;
 
         default:
-            snprintf(logbuf, 200, "unknown type %d\n", head->message_type);
+            snprintf(logbuf, 200, "unknown type 0x%x\n", message_type);
             print_log(logbuf);
     }
 

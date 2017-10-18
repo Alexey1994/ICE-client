@@ -10,14 +10,15 @@ void add_USERNAME(String *message, char *username)
 	int message_length;
 
 	username_length = strlen(username);
-	message_length = ((username_length + 3) / 4) * 4;
+	message_length = (username_length / 4 + 1) * 4;
 
-	add_STUN_atribute_head(message, USERNAME, message_length);
+	add_STUN_atribute_head(message, USERNAME, username_length);
 	write_byte_array_to_string(message, username, username_length);
 
+	//padding
 	while(message_length - username_length)
 	{
-		push_in_string(message, '\0');
+		push_in_string(message, 0x20);
 		--message_length;
 	}
 }

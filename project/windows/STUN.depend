@@ -279,7 +279,7 @@
 
 1504328603 c:\git\ice-client\src\network\connection\udp\linux udp.c
 
-1508317330 source:c:\dev\ice-client\src\main.c
+1508325196 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
 	"network/STUN/STUN.h"
 	"network/TURN/TURN.h"
@@ -404,11 +404,11 @@
 1504676136 c:\dev\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1508316562 c:\dev\ice-client\src\network\turn\turn.h
+1508322029 c:\dev\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
-1505211095 c:\dev\ice-client\src\network\stun\stun.h
+1508322745 c:\dev\ice-client\src\network\stun\stun.h
 	"../../extends/extends.h"
 	"../../data structures/string/string.h"
 	"../connection/UDP/UDP.h"
@@ -478,7 +478,7 @@
 	"debug.h"
 	"../../logger/logger.h"
 
-1505211095 c:\dev\ice-client\src\network\stun\head.c
+1508321950 c:\dev\ice-client\src\network\stun\head.c
 
 1505211095 c:\dev\ice-client\src\network\stun\attribute reader.c
 
@@ -497,11 +497,12 @@
 1505211095 c:\dev\ice-client\src\network\stun\attributes\changed_address.c
 	"../../../stream/stream.h"
 
-1505211095 c:\dev\ice-client\src\network\stun\attributes\username.c
+1508320871 c:\dev\ice-client\src\network\stun\attributes\username.c
 
 1505211095 c:\dev\ice-client\src\network\stun\attributes\password.c
 
-1505211095 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
+1508324079 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
+	"../../../cryptography/MD5/MD5.h"
 
 1505211095 c:\dev\ice-client\src\network\stun\attributes\error_code.c
 
@@ -521,7 +522,7 @@
 
 1505211095 c:\dev\ice-client\src\network\stun\attributes\fingerprint.c
 
-1508316915 c:\dev\ice-client\src\network\turn\turn.c
+1508323531 c:\dev\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -538,7 +539,7 @@
 	"debug.h"
 	"debug.c"
 
-1505211095 c:\dev\ice-client\src\network\turn\debug.c
+1508322148 c:\dev\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -546,7 +547,7 @@
 
 1508313786 c:\dev\ice-client\src\network\turn\request.c
 
-1508313817 c:\dev\ice-client\src\network\turn\response.c
+1508318079 c:\dev\ice-client\src\network\turn\response.c
 
 1505211095 c:\dev\ice-client\src\network\turn\attributes\data.c
 
@@ -598,4 +599,9 @@
 	<netdb.h>
 	<arpa/inet.h>
 	<fcntl.h>
+
+1508325267 c:\dev\ice-client\src\cryptography\md5\md5.h
+	"MD5.c"
+
+1508325260 c:\dev\ice-client\src\cryptography\md5\md5.c
 

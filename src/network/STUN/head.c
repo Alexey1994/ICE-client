@@ -1,6 +1,10 @@
 void generate_transaction_ID(Byte *transaction_ID)
 {
     memset(transaction_ID, 0, 12);
+    transaction_ID[0] = 0xb;
+    transaction_ID[1] = 0xa;
+    transaction_ID[2] = 0xb;
+    transaction_ID[3] = 0xe;
 }
 
 
@@ -16,6 +20,7 @@ String* create_STUN_head(unsigned short type)
     String    *head_data = create_string(200);
     STUN_Head *head      = head_data->begin;
 
+    convert_big_to_little_endian(&type, 2);
     head->message_type   = type;
     head->magic_cookie   = STUN_COOKIE;
     generate_transaction_ID(head->transaction_ID);

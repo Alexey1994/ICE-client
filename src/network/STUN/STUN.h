@@ -14,7 +14,7 @@
 
 
 #define DEFAULT_STUN_PORT  3478
-#define	STUN_COOKIE        0x2112a442
+#define	STUN_COOKIE        0x42a41221
 
 
 typedef enum
@@ -51,12 +51,12 @@ STUN_Attribute;
 
 typedef enum
 {
-    BINDING_REQUEST              = 0x0100,
+    BINDING_REQUEST              = 0x0001,
     BINDING_RESPONSE             = 0x0101,
-    BINDING_ERROR_RESPONSE       = 0x1101,
-    SHARED_SECRET_REQUEST        = 0x0200,
-    SHARED_SECRET_RESPONSE       = 0x0201,
-    SHARED_SECRET_ERROR_RESPONSE = 0x1201
+    BINDING_ERROR_RESPONSE       = 0x0111,
+    SHARED_SECRET_REQUEST        = 0x0002,
+    SHARED_SECRET_RESPONSE       = 0x0102,
+    SHARED_SECRET_ERROR_RESPONSE = 0x0112
 }
 STUN_Message_Type;
 

@@ -36,6 +36,7 @@ void allocate_TURN(char *host, short port)
 
     begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
         add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
+        add_USERNAME(request_message, "Lexa");
         //add_LIFETIME(request_message, 2);
         //add_DONT_FRAGMENT(request_message);
     end_TURN_request(connection, request_message);
