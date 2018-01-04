@@ -13,6 +13,7 @@
 #define STUN_HOST "192.168.56.102"
 #define STUN_PORT 3478
 
+
 #define TURN_HOST "192.168.56.102"
 #define TURN_PORT 3478
 
@@ -153,7 +154,11 @@ void test_STUN_connection()
 
 void test_TURN_connection()
 {
-    allocate_TURN(TURN_HOST, TURN_PORT);
+    //allocate_TURN(TURN_HOST, TURN_PORT);
+    //create_TURN_permission(TURN_HOST, TURN_PORT);
+    //bind_TURN_channel(TURN_HOST, TURN_PORT);
+    //send_TURN_data(TURN_HOST, TURN_PORT);
+    receive_TURN_data(TURN_HOST, TURN_PORT);
 }
 
 
@@ -180,22 +185,13 @@ void get_test_vectors()
 }
 
 
-void test_MD5_hash()
-{
-    MD5_Hash hash;
-
-    calculate_MD5_hash(&hash, "Alexey");
-    print_MD5_hash(&hash);
-}
-
-
 int main(int arguments_length, char *arguments[])
 {
     initialize_STUN();
     initialize_TURN();
     //get_test_vectors();
-    //test_TURN_connection();
-    test_MD5_hash();
+    test_TURN_connection();
+    //test_MD5_hash();
 
     /*
     char           mapped_host[16];

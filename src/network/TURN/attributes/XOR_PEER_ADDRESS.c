@@ -2,3 +2,9 @@ void read_XOR_PEER_ADDRESS_attribute(TURN_Attributes *attributes, Byte *attribut
 {
 
 }
+
+
+void add_XOR_PEER_ADDRESS(String *message)
+{
+	add_STUN_atribute_head(message, XOR_PEER_ADDRESS_TURN_ATTRIBUTE, 8);
+}

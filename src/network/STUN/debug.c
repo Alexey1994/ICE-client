@@ -208,7 +208,11 @@ void print_XOR_MAPPED_ADDRESS_attribute(Byte *attribute, int length)
     port = (attribute[2]<<8) + attribute[3];
     ip   = (attribute[4]<<24) + (attribute[5]<<16) + (attribute[6]<<8) + (attribute[7]);
 
-    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n", attribute[4], attribute[5], attribute[6], attribute[7], port);
+    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n",
+        attribute[4] ^ (STUN_COOKIE % 256),
+        attribute[5] ^ ((STUN_COOKIE >> 8) % 256),
+        attribute[6] ^ ((STUN_COOKIE >> 16) % 256),
+        attribute[7] ^ ((STUN_COOKIE >> 24) % 256), port);
     print_log(logbuf);
 
     print_log("\n");

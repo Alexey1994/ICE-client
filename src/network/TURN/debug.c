@@ -31,11 +31,47 @@ void print_XOR_RELAYED_ADDRESS_attribute(Byte *attribute, int length)
     port = (attribute[2]<<8) + attribute[3];
     ip   = (attribute[4]<<24) + (attribute[5]<<16) + (attribute[6]<<8) + (attribute[7]);
 
-    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n", attribute[4], attribute[5], attribute[6], attribute[7], port);
+    //snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n", attribute[4], attribute[5], attribute[6], attribute[7], port);
+    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n",
+        attribute[4] ^ (STUN_COOKIE % 256),
+        attribute[5] ^ ((STUN_COOKIE >> 8) % 256),
+        attribute[6] ^ ((STUN_COOKIE >> 16) % 256),
+        attribute[7] ^ ((STUN_COOKIE >> 24) % 256), port);
     print_log(logbuf);
 
     print_log("\n");
 }
+
+
+void print_XOR_PEER_ADDRESS_attribute(Byte *attribute, int length)
+{
+    char logbuf[200];
+    snprintf(logbuf, 200, "\tXOR PEER ADDRESS, %d bytes\n", length);
+    print_log(logbuf);
+
+    unsigned int   ip;
+    unsigned short port;
+
+    switch(attribute[1])
+    {
+        case 1: print_log("\tIPv4\n"); break;
+        case 2: print_log("\tIPv6\n"); break;
+    }
+
+    port = (attribute[2]<<8) + attribute[3];
+    ip   = (attribute[4]<<24) + (attribute[5]<<16) + (attribute[6]<<8) + (attribute[7]);
+
+    //snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n", attribute[4], attribute[5], attribute[6], attribute[7], port);
+    snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n",
+        attribute[4] ^ (STUN_COOKIE % 256),
+        attribute[5] ^ ((STUN_COOKIE >> 8) % 256),
+        attribute[6] ^ ((STUN_COOKIE >> 16) % 256),
+        attribute[7] ^ ((STUN_COOKIE >> 24) % 256), port);
+    print_log(logbuf);
+
+    print_log("\n");
+}
+
 
 
 void print_LIFETIME_attribute(unsigned int *attribute, int length)
@@ -139,6 +175,12 @@ void print_TURN_attributes(String *message)
         convert_big_to_little_endian(&attribute_length, 2);
         
         length += 4 + attribute_length;
+
+        while(attribute_length % 4)
+        {
+            ++length;
+            ++attribute_length;
+        }
     }
 }
 

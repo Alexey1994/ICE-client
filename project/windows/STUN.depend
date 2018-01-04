@@ -1,59 +1,58 @@
 # depslib dependency file v1.0
-1504329734 source:c:\git\ice-client\src\main.c
+1515070360 source:c:\git\ice-client\src\main.c
 	"main/main.h"
-	"network/network info/network info.h"
+	"network/STUN/STUN.h"
 	"network/TURN/TURN.h"
 	"network/network server/network server.h"
-	"network/connection/UDP/UDP.h"
+	"network/connection/TCP/TCP.h"
 
-1504245258 c:\git\ice-client\src\main\main.h
+1515061324 c:\git\ice-client\src\main\main.h
 	"../logger/logger.h"
 	"Android main.c"
 
-1504245258 c:\git\ice-client\src\logger\logger.h
+1515061324 c:\git\ice-client\src\logger\logger.h
 	"logger.c"
 
-1504245258 c:\git\ice-client\src\logger\logger.c
+1515061324 c:\git\ice-client\src\logger\logger.c
 	<stdio.h>
 
-1504245258 c:\git\ice-client\src\main\android main.c
+1515061324 c:\git\ice-client\src\main\android main.c
 	<jni.h>
 	"../data structures/string/string.h"
 
-1504245258 c:\git\ice-client\src\data structures\string\string.h
+1515061324 c:\git\ice-client\src\data structures\string\string.h
 	"../character/character.h"
 	"string.c"
 
-1504245258 c:\git\ice-client\src\data structures\character\character.h
+1515061324 c:\git\ice-client\src\data structures\character\character.h
 	"../../extends/extends.h"
 	"character.c"
 
-1504245258 c:\git\ice-client\src\extends\extends.h
-	<stdlib.h>
+1515063543 c:\git\ice-client\src\extends\extends.h
 	"extends.c"
 
-1504245258 c:\git\ice-client\src\extends\extends.c
+1515061324 c:\git\ice-client\src\extends\extends.c
 
-1504245258 c:\git\ice-client\src\data structures\character\character.c
+1515061324 c:\git\ice-client\src\data structures\character\character.c
 
-1504245258 c:\git\ice-client\src\data structures\string\string.c
+1515061324 c:\git\ice-client\src\data structures\string\string.c
 	"../../extends/extends.h"
 
 1504245258 c:\git\ice-client\src\network\network info\network info.h
 	"../../data structures/array/array.h"
 	"network info.c"
 
-1504245258 c:\git\ice-client\src\data structures\array\array.h
+1515061324 c:\git\ice-client\src\data structures\array\array.h
 	"../random access structure/random access structure.h"
 	"array.c"
 
-1504245258 c:\git\ice-client\src\data structures\random access structure\random access structure.h
+1515061324 c:\git\ice-client\src\data structures\random access structure\random access structure.h
 	"../../extends/extends.h"
 	"random access structure.c"
 
-1504245258 c:\git\ice-client\src\data structures\random access structure\random access structure.c
+1515061324 c:\git\ice-client\src\data structures\random access structure\random access structure.c
 
-1504245258 c:\git\ice-client\src\data structures\array\array.c
+1515061324 c:\git\ice-client\src\data structures\array\array.c
 	"../../extends/extends.h"
 
 1504245258 c:\git\ice-client\src\network\network info\network info.c
@@ -84,23 +83,23 @@
 	<WinSock2.h>
 	<WS2tcpip.h>
 
-1504245258 c:\git\ice-client\src\thread\thread.h
+1515061324 c:\git\ice-client\src\thread\thread.h
 	"thread.c"
 
-1504245258 c:\git\ice-client\src\thread\thread.c
+1515061324 c:\git\ice-client\src\thread\thread.c
 	"Windows thread.c"
 	"Linux thread.c"
 
-1504245258 c:\git\ice-client\src\thread\windows thread.c
+1515063602 c:\git\ice-client\src\thread\windows thread.c
 	<pthread.h>
 
-1504245258 c:\git\ice-client\src\thread\linux thread.c
+1515061324 c:\git\ice-client\src\thread\linux thread.c
 	<pthread.h>
 
-1504245258 c:\git\ice-client\src\error\error.h
+1515061324 c:\git\ice-client\src\error\error.h
 	"error.c"
 
-1504245258 c:\git\ice-client\src\error\error.c
+1515061324 c:\git\ice-client\src\error\error.c
 	<stdio.h>
 
 1504245258 c:\git\ice-client\src\network\network connection\linux network connection.c
@@ -124,21 +123,20 @@
 1504245258 c:\git\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1504245258 c:\git\ice-client\src\network\turn\turn.h
+1515061324 c:\git\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
-1504245258 c:\git\ice-client\src\network\stun\stun.h
+1515061324 c:\git\ice-client\src\network\stun\stun.h
 	"../../extends/extends.h"
 	"../../data structures/string/string.h"
-	"../network connection/network connection.h"
+	"../connection/UDP/UDP.h"
 	"STUN.c"
 
-1504245258 c:\git\ice-client\src\network\stun\stun.c
+1515061324 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
-	"../network connection/network connection.h"
 	"head.c"
 	"attribute reader.c"
 	"request.c"
@@ -161,66 +159,68 @@
 	"attributes/ALTERNATE_SERVER.c"
 	"attributes/FINGERPRINT.c"
 
-1504245258 c:\git\ice-client\src\stream\stream.h
+1515061324 c:\git\ice-client\src\stream\stream.h
 	"../extends/extends.h"
 	"../data structures/array/array.h"
 	"../data structures/character/character.h"
 	"stream.c"
 
-1504245258 c:\git\ice-client\src\stream\stream.c
+1515061324 c:\git\ice-client\src\stream\stream.c
 
-1504245258 c:\git\ice-client\src\network\stun\debug.h
+1515061324 c:\git\ice-client\src\network\stun\debug.h
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1504245258 c:\git\ice-client\src\network\stun\debug.c
+1515067988 c:\git\ice-client\src\network\stun\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1504245258 c:\git\ice-client\src\network\stun\head.c
+1515067701 c:\git\ice-client\src\network\stun\head.c
 
-1504245258 c:\git\ice-client\src\network\stun\attribute reader.c
+1515061324 c:\git\ice-client\src\network\stun\attribute reader.c
 
-1504245258 c:\git\ice-client\src\network\stun\request.c
+1515061324 c:\git\ice-client\src\network\stun\request.c
 
-1504245258 c:\git\ice-client\src\network\stun\response.c
+1515061324 c:\git\ice-client\src\network\stun\response.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\mapped_address.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\mapped_address.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\response_address.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\response_address.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\change_request.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\change_request.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\source_address.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\source_address.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\changed_address.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\changed_address.c
 	"../../../stream/stream.h"
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\username.c
+1515065260 c:\git\ice-client\src\network\stun\attributes\username.c
+	"../../../cryptography/cryptography.h"
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\password.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\password.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\message_integrity.c
+1515063574 c:\git\ice-client\src\network\stun\attributes\message_integrity.c
+	"../../../cryptography/cryptography.h"
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\error_code.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\error_code.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\unknown_attributes.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\unknown_attributes.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\reflected_from.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\reflected_from.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\realm.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\realm.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\nonce.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\nonce.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\xor_mapped_address.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\xor_mapped_address.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\software.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\software.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\alternate_server.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\alternate_server.c
 
-1504245258 c:\git\ice-client\src\network\stun\attributes\fingerprint.c
+1515061324 c:\git\ice-client\src\network\stun\attributes\fingerprint.c
 
-1504245258 c:\git\ice-client\src\network\turn\turn.c
+1515070344 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -233,51 +233,70 @@
 	"attributes/DONT_FRAGMENT.c"
 	"attributes/XOR_PEER_ADDRESS.c"
 
-1504245258 c:\git\ice-client\src\network\turn\debug.h
+1515061324 c:\git\ice-client\src\network\turn\debug.h
 	"debug.h"
 	"debug.c"
 
-1504245258 c:\git\ice-client\src\network\turn\debug.c
+1515069394 c:\git\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1504245258 c:\git\ice-client\src\network\turn\attribute reader.c
+1515064087 c:\git\ice-client\src\network\turn\attribute reader.c
 
-1504245258 c:\git\ice-client\src\network\turn\request.c
+1515061324 c:\git\ice-client\src\network\turn\request.c
 
-1504245258 c:\git\ice-client\src\network\turn\response.c
+1515061324 c:\git\ice-client\src\network\turn\response.c
 
-1504245258 c:\git\ice-client\src\network\turn\attributes\data.c
+1515069927 c:\git\ice-client\src\network\turn\attributes\data.c
 
-1504245258 c:\git\ice-client\src\network\turn\attributes\lifetime.c
+1515061324 c:\git\ice-client\src\network\turn\attributes\lifetime.c
 
-1504245258 c:\git\ice-client\src\network\turn\attributes\requested_transport.c
+1515061324 c:\git\ice-client\src\network\turn\attributes\requested_transport.c
 
-1504245258 c:\git\ice-client\src\network\turn\attributes\dont_fragment.c
+1515061324 c:\git\ice-client\src\network\turn\attributes\dont_fragment.c
 
-1504245258 c:\git\ice-client\src\network\turn\attributes\xor_peer_address.c
+1515069632 c:\git\ice-client\src\network\turn\attributes\xor_peer_address.c
 
-1504288305 c:\git\ice-client\src\network\network server\network server.h
+1515061324 c:\git\ice-client\src\network\network server\network server.h
+	"../../error/error.h"
+	"../../thread/thread.h"
 	"network server.c"
 
-1504328675 c:\git\ice-client\src\network\network server\network server.c
+1515061324 c:\git\ice-client\src\network\network server\network server.c
 	"Windows network server.c"
 	"Linux network server.c"
 
-1504327948 c:\git\ice-client\src\network\network server\windows network server.c
+1515061324 c:\git\ice-client\src\network\network server\windows network server.c
 
-1504245258 c:\git\ice-client\src\network\network server\linux network server.c
+1515061324 c:\git\ice-client\src\network\network server\linux network server.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
 
-1504329346 c:\git\ice-client\src\network\connection\udp\udp.h
+1515061324 c:\git\ice-client\src\network\connection\udp\udp.h
+	"../../../error/error.h"
 	"UDP.c"
 
-1504328627 c:\git\ice-client\src\network\connection\udp\udp.c
+1515061324 c:\git\ice-client\src\network\connection\udp\udp.c
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1504329911 c:\git\ice-client\src\network\connection\udp\windows udp.c
+1515061324 c:\git\ice-client\src\network\connection\udp\windows udp.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
 
-1504328603 c:\git\ice-client\src\network\connection\udp\linux udp.c
+1515061324 c:\git\ice-client\src\network\connection\udp\linux udp.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
 
 1508325196 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
@@ -604,4 +623,51 @@
 	"MD5.c"
 
 1508325260 c:\dev\ice-client\src\cryptography\md5\md5.c
+
+1515061324 c:\git\ice-client\src\cryptography\md5\md5.h
+	"MD5.c"
+
+1515061324 c:\git\ice-client\src\cryptography\md5\md5.c
+
+1515061324 c:\git\ice-client\src\network\connection\tcp\tcp.h
+	"../../../error/error.h"
+	"TCP.c"
+
+1515061324 c:\git\ice-client\src\network\connection\tcp\tcp.c
+	"Windows TCP.c"
+	"Linux TCP.c"
+
+1515061324 c:\git\ice-client\src\network\connection\tcp\windows tcp.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1515061324 c:\git\ice-client\src\network\connection\tcp\linux tcp.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1515063342 c:\git\ice-client\src\cryptography\cryptography.h
+	"../data structures/buffer/buffer.h"
+	"cryptography.c"
+
+1515063370 c:\git\ice-client\src\data structures\buffer\buffer.h
+	"../../extends/extends.h"
+	"../../output/output.h"
+	"buffer.c"
+
+1515063464 c:\git\ice-client\src\output\output.h
+	"../extends/extends.h"
+	"../data structures/character/character.h"
+	"output.c"
+
+1512213126 c:\git\ice-client\src\output\output.c
+
+1514883710 c:\git\ice-client\src\data structures\buffer\buffer.c
+
+1515066363 c:\git\ice-client\src\cryptography\cryptography.c
 

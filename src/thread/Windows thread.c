@@ -1,10 +1,10 @@
 #include <pthread.h>
 
 
-void run_thread(void(*function)(), void *arg)
+void run_thread(void(*f)(), void *arg)
 {
     pthread_t thread;
-    pthread_create(&thread, 0, function, arg);
+    pthread_create(&thread, 0, f, arg);
 }
 
 
