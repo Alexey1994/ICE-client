@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1515428770 source:c:\git\ice-client\src\main.c
+1515436688 source:c:\git\ice-client\src\main.c
 	"main/main.h"
 	"network/STUN/STUN.h"
 	"network/TURN/TURN.h"
@@ -123,7 +123,7 @@
 1504245258 c:\git\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1515061324 c:\git\ice-client\src\network\turn\turn.h
+1515435752 c:\git\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
@@ -171,7 +171,7 @@
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1515431122 c:\git\ice-client\src\network\stun\debug.c
+1515438470 c:\git\ice-client\src\network\stun\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -220,7 +220,7 @@
 
 1515061324 c:\git\ice-client\src\network\stun\attributes\fingerprint.c
 
-1515070344 c:\git\ice-client\src\network\turn\turn.c
+1515437112 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -232,12 +232,13 @@
 	"attributes/REQUESTED_TRANSPORT.c"
 	"attributes/DONT_FRAGMENT.c"
 	"attributes/XOR_PEER_ADDRESS.c"
+	"attributes/XOR_RELAYED_ADDRESS.c"
 
 1515061324 c:\git\ice-client\src\network\turn\debug.h
 	"debug.h"
 	"debug.c"
 
-1515431137 c:\git\ice-client\src\network\turn\debug.c
+1515438354 c:\git\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -255,7 +256,7 @@
 
 1515061324 c:\git\ice-client\src\network\turn\attributes\dont_fragment.c
 
-1515069632 c:\git\ice-client\src\network\turn\attributes\xor_peer_address.c
+1515438218 c:\git\ice-client\src\network\turn\attributes\xor_peer_address.c
 
 1515061324 c:\git\ice-client\src\network\network server\network server.h
 	"../../error/error.h"
@@ -670,4 +671,6 @@
 1514883710 c:\git\ice-client\src\data structures\buffer\buffer.c
 
 1515066363 c:\git\ice-client\src\cryptography\cryptography.c
+
+1515437001 c:\git\ice-client\src\network\turn\attributes\xor_relayed_address.c
 

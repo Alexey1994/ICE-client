@@ -129,6 +129,7 @@ void initialize_TURN_debug()
     print_TURN_attribute_handlers[DONT_FRAGMENT_TURN_ATTRIBUTE]       = print_DONT_FRAGMENT_attribute;
     print_TURN_attribute_handlers[XOR_RELAYED_ADDRESS_TURN_ATTRIBUTE] = print_XOR_RELAYED_ADDRESS_attribute;
     print_TURN_attribute_handlers[LIFETIME_TURN_ATTRIBUTE]            = print_LIFETIME_attribute;
+    print_TURN_attribute_handlers[XOR_PEER_ADDRESS_TURN_ATTRIBUTE]    = print_XOR_PEER_ADDRESS_attribute;
 }
 
 

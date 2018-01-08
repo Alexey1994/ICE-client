@@ -163,8 +163,11 @@ void test_STUN()
 
 void test_TURN_connection()
 {
-    allocate_TURN(TURN_HOST, TURN_PORT);
-    //create_TURN_permission(TURN_HOST, TURN_PORT);
+    N_32 xor_relayed_host;
+    N_16 xor_relayed_port;
+
+    allocate_TURN(TURN_HOST, TURN_PORT, &xor_relayed_host, &xor_relayed_port);
+    create_TURN_permission(TURN_HOST, TURN_PORT, xor_relayed_host, xor_relayed_port);
     //bind_TURN_channel(TURN_HOST, TURN_PORT);
     //send_TURN_data(TURN_HOST, TURN_PORT);
     //receive_TURN_data(TURN_HOST, TURN_PORT);
@@ -199,7 +202,7 @@ int main(int arguments_length, char *arguments[])
     initialize_STUN();
     initialize_TURN();
     //get_test_vectors();
-    test_STUN();
+    //test_STUN();
     test_TURN_connection();
     //test_MD5_hash();
 

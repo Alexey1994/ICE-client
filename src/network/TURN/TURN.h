@@ -61,6 +61,12 @@ typedef struct
         unsigned short  port;
     }DATA;
 
+    struct
+    {
+        N_32 host;
+        N_16 port;
+    }XOR_RELAYED_ADDRESS;
+
     STUN_Attributes *STUN_attributes;
 }
 TURN_Attributes;
@@ -68,8 +74,8 @@ TURN_Attributes;
 
 void initialize_TURN();
 
-void allocate_TURN(char *host, short port);
-void bind_TURN_channel(char *host, short port);
+//void allocate_TURN(char *host, short port);
+//void bind_TURN_channel(char *host, short port);
 
 #include "TURN.c"
 
