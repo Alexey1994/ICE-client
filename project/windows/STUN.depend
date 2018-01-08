@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1515070360 source:c:\git\ice-client\src\main.c
+1515428770 source:c:\git\ice-client\src\main.c
 	"main/main.h"
 	"network/STUN/STUN.h"
 	"network/TURN/TURN.h"
@@ -171,7 +171,7 @@
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1515067988 c:\git\ice-client\src\network\stun\debug.c
+1515431122 c:\git\ice-client\src\network\stun\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -237,7 +237,7 @@
 	"debug.h"
 	"debug.c"
 
-1515069394 c:\git\ice-client\src\network\turn\debug.c
+1515431137 c:\git\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 

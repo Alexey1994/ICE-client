@@ -205,16 +205,19 @@ void print_XOR_MAPPED_ADDRESS_attribute(Byte *attribute, int length)
         case 2: print_log("\tIPv6\n"); break;
     }
 
-    port = (attribute[2]<<8) + attribute[3];
-    ip   = (attribute[4]<<24) + (attribute[5]<<16) + (attribute[6]<<8) + (attribute[7]);
+    port = *((unsigned short*)(attribute + 2)) ^ (STUN_COOKIE % 65536);
+    ip   = *((unsigned int*)(attribute + 4)) ^ STUN_COOKIE;
+
+    convert_big_to_little_endian(&port, 2);
+    convert_big_to_little_endian(&ip, 4);
 
     snprintf(logbuf, 200, "\t%d.%d.%d.%d:%d\n",
-        attribute[4] ^ (STUN_COOKIE % 256),
-        attribute[5] ^ ((STUN_COOKIE >> 8) % 256),
-        attribute[6] ^ ((STUN_COOKIE >> 16) % 256),
-        attribute[7] ^ ((STUN_COOKIE >> 24) % 256), port);
-    print_log(logbuf);
+        (ip >> 24) % 256,
+        (ip >> 16) % 256,
+        (ip >> 8) % 256,
+        ip % 256, port);
 
+    print_log(logbuf);
     print_log("\n");
 }
 
@@ -293,7 +296,7 @@ void print_STUN_attributes(String *message)
 
         attribute_length = attribute->length;
         convert_big_to_little_endian(&attribute_length, 2);
-        
+
         length += 4 + attribute_length;
     }
 }
