@@ -185,7 +185,7 @@ void print_REALM_attribute(Byte *attribute, int length)
 void print_NONCE_attribute(Byte *attribute, int length)
 {
     char logbuf[200];
-    snprintf(logbuf, 200, "\tNONCE, %d bytes\n", length);
+    snprintf(logbuf, 200, "\tNONCE, %d bytes\n%s\n", length, attribute);
     print_log(logbuf);
 }
 

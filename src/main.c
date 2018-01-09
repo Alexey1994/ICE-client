@@ -1,6 +1,8 @@
 #define ENABLE_DEBUG
 
 #include "main/main.h"
+#include "cryptography/cryptography.h"
+/*
 //#include "network/network info/network info.h"
 #include "network/STUN/STUN.h"
 #include "network/TURN/TURN.h"
@@ -10,11 +12,11 @@
 
 #define CLIENT_ID 2
 
-#define STUN_HOST "192.168.56.101"
+#define STUN_HOST "192.168.56.102"
 #define STUN_PORT 3478
 
 
-#define TURN_HOST "192.168.56.101"
+#define TURN_HOST "192.168.56.102"
 #define TURN_PORT 3478
 
 #define SIGNAL_SERVER_HOST "127.0.0.1"
@@ -194,17 +196,76 @@ void get_test_vectors()
     Server *sender = create_UDP_server("127.0.0.1", 8081, print_test_TURN_vectors, 0);
 
     for(;;);
+}*/
+
+
+void print_hex_character(Byte hex_number)
+{
+    if(hex_number > 9)
+        printf("%c", hex_number - 10 + 'a');
+    else
+        printf("%c", hex_number + '0');
+}
+
+
+void print_hex_number(Byte number)
+{
+    if(number > 0x0f)
+    {
+        print_hex_character(number >> 4);
+        print_hex_character(number & 0x0f);
+    }
+    else
+    {
+        printf("0");
+        print_hex_character(number);
+    }
+}
+
+
+void print_MD5_hash(Byte *hash)
+{
+    N_32 i;
+
+    for(i=0; i<16; ++i)
+        print_hex_number(hash[i]);
+
+    printf("\n");
+}
+
+
+void test_MD5_hash()
+{
+    Buffer data;
+    N_32   hash[4];
+    N_32   test_vector[] = {0x0cc175b9, 0xc0f1b6a8, 0x31c399e2, 0x69772661};
+
+    initialize_buffer(&data, 1);
+    write_in_buffer(&data, 'a');
+
+    calculate_MD5_hash(&data, hash);
+    print_MD5_hash(hash);
+
+    convert_big_to_little_endian(&test_vector[0], 4);
+    convert_big_to_little_endian(&test_vector[1], 4);
+    convert_big_to_little_endian(&test_vector[2], 4);
+    convert_big_to_little_endian(&test_vector[3], 4);
+
+    if(memcmp(hash, test_vector, 16))
+        printf("Test 1 failed\n");
+    else
+        printf("Test 1 success\n");
 }
 
 
 int main(int arguments_length, char *arguments[])
 {
-    initialize_STUN();
-    initialize_TURN();
+    //initialize_STUN();
+    //initialize_TURN();
     //get_test_vectors();
     //test_STUN();
-    test_TURN_connection();
-    //test_MD5_hash();
+    //test_TURN_connection();
+    test_MD5_hash();
 
     /*
     char           mapped_host[16];

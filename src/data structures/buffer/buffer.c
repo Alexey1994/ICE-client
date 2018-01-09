@@ -66,8 +66,7 @@ procedure write_in_buffer(Buffer *buffer, Byte byte)
     if(buffer->end_index >= buffer->reserve)
     {
         buffer->reserve *= 2;
-        //reallocate_array(buffer->data, Byte, buffer->reserve);
-        buffer->data = realloc(buffer->data, buffer->reserve);
+        reallocate_array(buffer->data, Byte, buffer->reserve);
     }
 
     buffer->data[buffer->end_index] = byte;

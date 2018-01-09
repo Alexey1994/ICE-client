@@ -5,7 +5,8 @@
 #include "../data structures/buffer/buffer.h"
 
 
-procedure calculate_SHA_1_hash(Buffer *data, N_32 *hash);
+procedure calculate_SHA_1_hash (Buffer *data, N_32 *hash);
+procedure calculate_MD5_hash   (Buffer *data, N_32 *hash);
 
 
 #include "cryptography.c"
