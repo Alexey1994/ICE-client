@@ -341,12 +341,17 @@ procedure calculate_MD5_hash(Buffer *data, N_32 *hash)
 procedure calculate_HMAC_SHA_1_hash(Buffer *data, Buffer *key, Byte *hash)
 {
     Byte   SHA_1_hash[20];
+    Byte   key_hash[20];
     Buffer new_key;
-
+/*
     initialize_buffer(&new_key, 1);
 
-    if(buffer_length(key) > 64)
+    if(buffer_length(key) > 20)
     {
-
+        calculate_SHA_1_hash(key, key_hash);
+        //for(i=key->begin_index; i<key->end_index; ++i)
     }
+    else
+        for(i=buffer_length(key); i<20; ++i)
+            key_hash[i] = ;*/
 }
