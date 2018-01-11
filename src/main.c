@@ -240,21 +240,63 @@ void test_MD5_hash()
     N_32   hash[4];
     N_32   test_vector[] = {0x0cc175b9, 0xc0f1b6a8, 0x31c399e2, 0x69772661};
 
-    initialize_buffer(&data, 1);
-    write_in_buffer(&data, 'a');
-
-    calculate_MD5_hash(&data, hash);
-    print_MD5_hash(hash);
-
     convert_big_to_little_endian(&test_vector[0], 4);
     convert_big_to_little_endian(&test_vector[1], 4);
     convert_big_to_little_endian(&test_vector[2], 4);
     convert_big_to_little_endian(&test_vector[3], 4);
 
+    initialize_buffer(&data, 1);
+    write_in_buffer(&data, 'a');
+
+    calculate_MD5_hash(&data, hash);
+    //print_MD5_hash(hash);
+
     if(memcmp(hash, test_vector, 16))
-        printf("Test 1 failed\n");
+        printf("Test 1(MD5) failed\n");
     else
-        printf("Test 1 success\n");
+        printf("Test 1(MD5) success\n");
+}
+
+
+void print_SHA_1_hash(Byte *hash)
+{
+    N_32 i;
+
+    for(i=0; i<20; ++i)
+        print_hex_number(hash[i]);
+
+    printf("\n");
+}
+
+
+void test_HMAC_SHA_1_hash()
+{
+    Buffer data;
+    Buffer key;
+    Byte   hash[20];
+    N_32   test_vector[] = {0x5b0c157d, 0x4e767244, 0x4c410335, 0x61554839, 0xed1fd2d6};
+
+    convert_big_to_little_endian(&test_vector[0], 4);
+    convert_big_to_little_endian(&test_vector[1], 4);
+    convert_big_to_little_endian(&test_vector[2], 4);
+    convert_big_to_little_endian(&test_vector[3], 4);
+    convert_big_to_little_endian(&test_vector[4], 4);
+
+    initialize_buffer(&data, 1);
+    initialize_buffer(&key, 1);
+
+    write_in_buffer(&data, '1');
+    write_in_buffer(&key, '1');
+
+    calculate_HMAC_SHA_1_hash(&data, &key, hash);
+    //print_SHA_1_hash(hash);
+
+    printf("Test 1(HMAC SHA-1) ");
+
+    if(memcmp(hash, test_vector, 20))
+        printf("failed\n");
+    else
+        printf("success\n");
 }
 
 
@@ -265,7 +307,8 @@ int main(int arguments_length, char *arguments[])
     //get_test_vectors();
     //test_STUN();
     //test_TURN_connection();
-    test_MD5_hash();
+    //test_MD5_hash();
+    test_HMAC_SHA_1_hash();
 
     /*
     char           mapped_host[16];

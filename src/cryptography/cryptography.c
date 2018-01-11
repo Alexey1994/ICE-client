@@ -262,13 +262,6 @@ private procedure update_MD5_values(N_32 *values, N_32 *block, N_8 i, N_32 F, N_
     values[3] = values[2];
     values[2] = values[1];
     values[1] = values[1] + left_rotate_32(F, MD5_s_constants[i]);
-    /*N_32 temp;
-
-    temp = values[3];
-    values[3] = values[2];
-    values[2] = values[1];
-    values[1] = values[1] + left_rotate_32(values[0] + F + MD5_K_constants[i] + block[g], MD5_s_constants[i]);
-    values[0] = temp;*/
 }
 
 
@@ -340,18 +333,56 @@ procedure calculate_MD5_hash(Buffer *data, N_32 *hash)
 
 procedure calculate_HMAC_SHA_1_hash(Buffer *data, Buffer *key, Byte *hash)
 {
+    N_32   i;
     Byte   SHA_1_hash[20];
-    Byte   key_hash[20];
-    Buffer new_key;
-/*
-    initialize_buffer(&new_key, 1);
+    Byte   new_key[64];
+    Byte   inner_hash[20];
+    Buffer inner_data;
+    Output inner_data_output;
+    Buffer outer_data;
+    Output outer_data_output;
 
-    if(buffer_length(key) > 20)
+    initialize_buffer(&inner_data, 1);
+    initialize_buffer_output(&inner_data, &inner_data_output);
+
+    initialize_buffer(&outer_data, 1);
+    initialize_buffer_output(&outer_data, &outer_data_output);
+
+    if(buffer_length(key) <= 64)
     {
-        calculate_SHA_1_hash(key, key_hash);
-        //for(i=key->begin_index; i<key->end_index; ++i)
+        for(i=key->begin_index; i<key->end_index; ++i)
+            new_key[i] = key->data[i];
+
+        for(i=key->end_index; i<64; ++i)
+            new_key[i] = 0;
     }
     else
-        for(i=buffer_length(key); i<20; ++i)
-            key_hash[i] = ;*/
+    {
+        calculate_SHA_1_hash(key, new_key);
+
+        for(i=20; i<64; ++i)
+            new_key[i] = 0;
+    }
+
+    for(i=0; i<64; ++i)
+        write_byte(&inner_data_output, new_key[i] ^ 0x36);
+
+    for(i=data->begin_index; i<data->end_index; ++i)
+        write_byte(&inner_data_output, data->data[i]);
+
+    calculate_SHA_1_hash(&inner_data, inner_hash);
+
+    for(i=0; i<64; ++i)
+        write_byte(&outer_data_output, new_key[i] ^ 0x5c);
+
+    for(i=0; i<20; ++i)
+        write_byte(&outer_data_output, inner_hash[i]);
+
+    calculate_SHA_1_hash(&outer_data, hash);
+
+    deinitialize_output(&inner_data_output);
+    deinitialize_buffer(&inner_data);
+
+    deinitialize_output(&outer_data_output);
+    deinitialize_buffer(&outer_data);
 }
