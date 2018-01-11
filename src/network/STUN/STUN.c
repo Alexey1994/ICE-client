@@ -29,23 +29,23 @@
 
 void initialize_STUN()
 {
-    read_attribute_handlers[MAPPED_ADDRESS]     = read_MAPPED_ADDRESS_attribute;
-    read_attribute_handlers[RESPONSE_ADDRESS]   = read_RESPONSE_ADDRESS_attribute;
-    read_attribute_handlers[CHANGE_REQUEST]     = read_CHANGE_REQUEST_attribute;
-    read_attribute_handlers[SOURCE_ADDRESS]     = read_SOURCE_ADDRESS_attribute;
-    read_attribute_handlers[CHANGED_ADDRESS]    = read_CHANGED_ADDRESS_attribute;
-    read_attribute_handlers[USERNAME]           = read_USERNAME_attribute;
-    read_attribute_handlers[PASSWORD]           = read_PASSWORD_attribute;
-    read_attribute_handlers[MESSAGE_INTEGRITY]  = read_MESSAGE_INTEGRITY_attribute;
-    read_attribute_handlers[ERROR_CODE]         = read_ERROR_CODE_attribute;
-    read_attribute_handlers[UNKNOWN_ATTRIBUTES] = read_UNKNOWN_ATTRIBUTES_attribute;
-    read_attribute_handlers[REFLECTED_FROM]     = read_REFLECTED_FROM_attribute;
-    read_attribute_handlers[REALM]              = read_REALM_attribute;
-    read_attribute_handlers[NONCE]              = read_NONCE_attribute;
-    read_attribute_handlers[XOR_MAPPED_ADDRESS] = read_XOR_MAPPED_ADDRESS_attribute;
-    read_attribute_handlers[SOFTWARE]           = read_SOFTWARE_attribute;
-    read_attribute_handlers[ALTERNATE_SERVER]   = read_ALTERNATE_SERVER_attribute;
-    read_attribute_handlers[FINGERPRINT]        = read_FINGERPRINT_attribute;
+    read_attribute_handlers[MAPPED_ADDRESS_STUN_ATTRIBUTE]     = read_MAPPED_ADDRESS_attribute;
+    read_attribute_handlers[RESPONSE_ADDRESS_STUN_ATTRIBUTE]   = read_RESPONSE_ADDRESS_attribute;
+    read_attribute_handlers[CHANGE_REQUEST_STUN_ATTRIBUTE]     = read_CHANGE_REQUEST_attribute;
+    read_attribute_handlers[SOURCE_ADDRESS_STUN_ATTRIBUTE]     = read_SOURCE_ADDRESS_attribute;
+    read_attribute_handlers[CHANGED_ADDRESS_STUN_ATTRIBUTE]    = read_CHANGED_ADDRESS_attribute;
+    read_attribute_handlers[USERNAME_STUN_ATTRIBUTE]           = read_USERNAME_attribute;
+    read_attribute_handlers[PASSWORD_STUN_ATTRIBUTE]           = read_PASSWORD_attribute;
+    read_attribute_handlers[MESSAGE_INTEGRITY_STUN_ATTRIBUTE]  = read_MESSAGE_INTEGRITY_attribute;
+    read_attribute_handlers[ERROR_CODE_STUN_ATTRIBUTE]         = read_ERROR_CODE_attribute;
+    read_attribute_handlers[UNKNOWN_ATTRIBUTES_STUN_ATTRIBUTE] = read_UNKNOWN_ATTRIBUTES_attribute;
+    read_attribute_handlers[REFLECTED_FROM_STUN_ATTRIBUTE]     = read_REFLECTED_FROM_attribute;
+    read_attribute_handlers[REALM_STUN_ATTRIBUTE]              = read_REALM_attribute;
+    read_attribute_handlers[NONCE_STUN_ATTRIBUTE]              = read_NONCE_attribute;
+    read_attribute_handlers[XOR_MAPPED_ADDRESS_STUN_ATTRIBUTE] = read_XOR_MAPPED_ADDRESS_attribute;
+    read_attribute_handlers[SOFTWARE_STUN_ATTRIBUTE]           = read_SOFTWARE_attribute;
+    read_attribute_handlers[ALTERNATE_SERVER_STUN_ATTRIBUTE]   = read_ALTERNATE_SERVER_attribute;
+    read_attribute_handlers[FINGERPRINT_STUN_ATTRIBUTE]        = read_FINGERPRINT_attribute;
 
 #ifdef ENABLE_DEBUG
     initialize_STUN_debug();
@@ -96,9 +96,9 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
 
     begin_STUN_request(&request_message, BINDING_REQUEST);
         add_USERNAME(request_message, "lex");
-        add_NONCE(request_message, "2e131a5fb210812c");
-        add_REALM(request_message);
-        add_MESSAGE_INTEGRITY(request_message);
+        //add_NONCE(request_message, "2e131a5fb210812c");
+        add_REALM(request_message, "realm");
+        add_MESSAGE_INTEGRITY(request_message, "lex", "realm", "1");
     end_STUN_request(connection, request_message);
 
     attributes = get_response_STUN_attributes(connection);

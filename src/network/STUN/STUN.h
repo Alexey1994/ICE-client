@@ -19,24 +19,24 @@
 
 typedef enum
 {
-    MAPPED_ADDRESS     = 0x0001,
-    RESPONSE_ADDRESS   = 0x0002,
-    CHANGE_REQUEST     = 0x0003,
-    SOURCE_ADDRESS     = 0x0004,
-    CHANGED_ADDRESS    = 0x0005,
-    USERNAME           = 0x0006,
-    PASSWORD           = 0x0007,
-    MESSAGE_INTEGRITY  = 0x0008,
-    ERROR_CODE         = 0x0009,
-    UNKNOWN_ATTRIBUTES = 0x000a,
-    REFLECTED_FROM     = 0x000b,
-    REALM              = 0x0014,
-    NONCE              = 0x0015,
-    XOR_MAPPED_ADDRESS = 0x0020,
+    MAPPED_ADDRESS_STUN_ATTRIBUTE     = 0x0001,
+    RESPONSE_ADDRESS_STUN_ATTRIBUTE   = 0x0002,
+    CHANGE_REQUEST_STUN_ATTRIBUTE     = 0x0003,
+    SOURCE_ADDRESS_STUN_ATTRIBUTE     = 0x0004,
+    CHANGED_ADDRESS_STUN_ATTRIBUTE    = 0x0005,
+    USERNAME_STUN_ATTRIBUTE           = 0x0006,
+    PASSWORD_STUN_ATTRIBUTE           = 0x0007,
+    MESSAGE_INTEGRITY_STUN_ATTRIBUTE  = 0x0008,
+    ERROR_CODE_STUN_ATTRIBUTE         = 0x0009,
+    UNKNOWN_ATTRIBUTES_STUN_ATTRIBUTE = 0x000a,
+    REFLECTED_FROM_STUN_ATTRIBUTE     = 0x000b,
+    REALM_STUN_ATTRIBUTE              = 0x0014,
+    NONCE_STUN_ATTRIBUTE              = 0x0015,
+    XOR_MAPPED_ADDRESS_STUN_ATTRIBUTE = 0x0020,
 
-    SOFTWARE           = 0x8022,
-    ALTERNATE_SERVER   = 0x8023,
-    FINGERPRINT        = 0x8028
+    SOFTWARE_STUN_ATTRIBUTE           = 0x8022,
+    ALTERNATE_SERVER_STUN_ATTRIBUTE   = 0x8023,
+    FINGERPRINT_STUN_ATTRIBUTE        = 0x8028
 }
 STUN_Attribute_Type;
 
@@ -84,6 +84,15 @@ typedef struct
         Byte           *host;
         unsigned short  port;
     }CHANGED_ADDRESS;
+
+    struct
+    {
+        N_8   length;
+        Byte *data;
+    }NONCE;
+
+    Character *REALM;
+    N_16       ERROR_CODE;
 }
 STUN_Attributes;
 

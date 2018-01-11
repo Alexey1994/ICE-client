@@ -67,7 +67,7 @@ typedef struct
         N_16 port;
     }XOR_RELAYED_ADDRESS;
 
-    STUN_Attributes *STUN_attributes;
+    STUN_Attributes STUN_attributes;
 }
 TURN_Attributes;
 

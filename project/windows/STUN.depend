@@ -299,7 +299,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1515659148 source:c:\dev\ice-client\src\main.c
+1515685151 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
 	"cryptography/cryptography.h"
 	"network/STUN/STUN.h"
@@ -424,11 +424,11 @@
 1504676136 c:\dev\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1515435754 c:\dev\ice-client\src\network\turn\turn.h
+1515663208 c:\dev\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
-1515061326 c:\dev\ice-client\src\network\stun\stun.h
+1515667005 c:\dev\ice-client\src\network\stun\stun.h
 	"../../extends/extends.h"
 	"../../data structures/string/string.h"
 	"../connection/UDP/UDP.h"
@@ -456,7 +456,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1515061326 c:\dev\ice-client\src\network\stun\stun.c
+1515667027 c:\dev\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -494,7 +494,7 @@
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1515481497 c:\dev\ice-client\src\network\stun\debug.c
+1515665267 c:\dev\ice-client\src\network\stun\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -517,33 +517,33 @@
 1515061326 c:\dev\ice-client\src\network\stun\attributes\changed_address.c
 	"../../../stream/stream.h"
 
-1515065262 c:\dev\ice-client\src\network\stun\attributes\username.c
+1515665282 c:\dev\ice-client\src\network\stun\attributes\username.c
 	"../../../cryptography/cryptography.h"
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\password.c
 
-1515063576 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
+1515679891 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
 	"../../../cryptography/cryptography.h"
 
-1515061326 c:\dev\ice-client\src\network\stun\attributes\error_code.c
+1515664830 c:\dev\ice-client\src\network\stun\attributes\error_code.c
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\unknown_attributes.c
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\reflected_from.c
 
-1515061326 c:\dev\ice-client\src\network\stun\attributes\realm.c
+1515666555 c:\dev\ice-client\src\network\stun\attributes\realm.c
 
-1515481440 c:\dev\ice-client\src\network\stun\attributes\nonce.c
+1515667397 c:\dev\ice-client\src\network\stun\attributes\nonce.c
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\xor_mapped_address.c
 
-1515061326 c:\dev\ice-client\src\network\stun\attributes\software.c
+1515665376 c:\dev\ice-client\src\network\stun\attributes\software.c
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\alternate_server.c
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\fingerprint.c
 
-1515481411 c:\dev\ice-client\src\network\turn\turn.c
+1515669665 c:\dev\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -565,11 +565,11 @@
 	"debug.h"
 	"../../logger/logger.h"
 
-1515064088 c:\dev\ice-client\src\network\turn\attribute reader.c
+1515663268 c:\dev\ice-client\src\network\turn\attribute reader.c
 
 1515061326 c:\dev\ice-client\src\network\turn\request.c
 
-1515061326 c:\dev\ice-client\src\network\turn\response.c
+1515663411 c:\dev\ice-client\src\network\turn\response.c
 
 1515069928 c:\dev\ice-client\src\network\turn\attributes\data.c
 
@@ -694,7 +694,7 @@
 
 1515497392 c:\dev\ice-client\src\data structures\buffer\buffer.c
 
-1515658865 c:\dev\ice-client\src\cryptography\cryptography.c
+1515659176 c:\dev\ice-client\src\cryptography\cryptography.c
 
 1515437002 c:\dev\ice-client\src\network\turn\attributes\xor_relayed_address.c
 

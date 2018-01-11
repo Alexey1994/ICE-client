@@ -7,7 +7,7 @@ void read_SOFTWARE_attribute(STUN_Attributes *attributes, Byte *attribute, int l
 void add_SOFTWARE(String *message, char *text)
 {
 	char buf[512];
-	add_STUN_atribute_head(message, SOFTWARE, 508);
+	add_STUN_atribute_head(message, SOFTWARE_STUN_ATTRIBUTE, 508);
 
 	snprintf(buf, 16, "%s", text);
 

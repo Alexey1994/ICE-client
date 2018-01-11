@@ -14,7 +14,7 @@ Boolean read_TURN_attribute(TURN_Attribute *attribute, TURN_Attributes *attribut
         if(!STUN_attribute_handler)
             goto error;
 
-        STUN_attribute_handler(attributes, (Byte*)attribute + 4, attribute->length);
+        STUN_attribute_handler(&attributes->STUN_attributes, (Byte*)attribute + 4, attribute->length);
 
         goto Ok;
     }
@@ -38,7 +38,7 @@ Boolean read_TURN_attributes(TURN_Attributes *attributes, String *message)
     {
         convert_big_to_little_endian(&attribute->type, 2);
         convert_big_to_little_endian(&attribute->length, 2);
-        
+
         if(!read_TURN_attribute(attribute, attributes))
             goto error;
 
@@ -57,7 +57,7 @@ Boolean read_TURN_attributes(TURN_Attributes *attributes, String *message)
 error:
     return 0;
 }
-
+/*
 
 TURN_Attributes* create_TURN_attributes_from_message(String *message)
 {
@@ -74,4 +74,4 @@ TURN_Attributes* create_TURN_attributes_from_message(String *message)
 void destroy_TURN_attributes(TURN_Attributes *attributes)
 {
     free(attributes);
-}
+}*/

@@ -43,17 +43,17 @@ error:
 }
 
 
-TURN_Attributes* get_response_TURN_attributes(UDP_Connection *connection)
+Boolean TURN_attributes_response(TURN_Attributes *attributes, UDP_Connection *connection)
 {
     String *response_message = TURN_response(connection);
 
     if(!response_message)
         goto error;
 
-    TURN_Attributes *attributes = create_TURN_attributes_from_message(response_message);
+    read_TURN_attributes(attributes, response_message);
     destroy_string(response_message);
 
-    return attributes;
+    return 1;
 
 error:
     return 0;

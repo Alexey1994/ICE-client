@@ -7,23 +7,23 @@ static void (*print_STUN_attribute_handlers[65536])(Byte *attribute, int attribu
 
 void initialize_STUN_debug()
 {
-    print_STUN_attribute_handlers[MAPPED_ADDRESS]     = print_MAPPED_ADDRESS_attribute;
-    print_STUN_attribute_handlers[RESPONSE_ADDRESS]   = print_RESPONSE_ADDRESS_attribute;
-    print_STUN_attribute_handlers[CHANGE_REQUEST]     = print_CHANGE_REQUEST_attribute;
-    print_STUN_attribute_handlers[SOURCE_ADDRESS]     = print_SOURCE_ADDRESS_attribute;
-    print_STUN_attribute_handlers[CHANGED_ADDRESS]    = print_CHANGED_ADDRESS_attribute;
-    print_STUN_attribute_handlers[USERNAME]           = print_USERNAME_attribute;
-    print_STUN_attribute_handlers[PASSWORD]           = print_PASSWORD_attribute;
-    print_STUN_attribute_handlers[MESSAGE_INTEGRITY]  = print_MESSAGE_INTEGRITY_attribute;
-    print_STUN_attribute_handlers[ERROR_CODE]         = print_ERROR_CODE_attribute;
-    print_STUN_attribute_handlers[UNKNOWN_ATTRIBUTES] = print_UNKNOWN_ATTRIBUTES_attribute;
-    print_STUN_attribute_handlers[REFLECTED_FROM]     = print_REFLECTED_FROM_attribute;
-    print_STUN_attribute_handlers[REALM]              = print_REALM_attribute;
-    print_STUN_attribute_handlers[NONCE]              = print_NONCE_attribute;
-    print_STUN_attribute_handlers[XOR_MAPPED_ADDRESS] = print_XOR_MAPPED_ADDRESS_attribute;
-    print_STUN_attribute_handlers[SOFTWARE]           = print_SOFTWARE_attribute;
-    print_STUN_attribute_handlers[ALTERNATE_SERVER]   = print_ALTERNATE_SERVER_attribute;
-    print_STUN_attribute_handlers[FINGERPRINT]        = print_FINGERPRINT_attribute;
+    print_STUN_attribute_handlers[MAPPED_ADDRESS_STUN_ATTRIBUTE]     = print_MAPPED_ADDRESS_attribute;
+    print_STUN_attribute_handlers[RESPONSE_ADDRESS_STUN_ATTRIBUTE]   = print_RESPONSE_ADDRESS_attribute;
+    print_STUN_attribute_handlers[CHANGE_REQUEST_STUN_ATTRIBUTE]     = print_CHANGE_REQUEST_attribute;
+    print_STUN_attribute_handlers[SOURCE_ADDRESS_STUN_ATTRIBUTE]     = print_SOURCE_ADDRESS_attribute;
+    print_STUN_attribute_handlers[CHANGED_ADDRESS_STUN_ATTRIBUTE]    = print_CHANGED_ADDRESS_attribute;
+    print_STUN_attribute_handlers[USERNAME_STUN_ATTRIBUTE]           = print_USERNAME_attribute;
+    print_STUN_attribute_handlers[PASSWORD_STUN_ATTRIBUTE]           = print_PASSWORD_attribute;
+    print_STUN_attribute_handlers[MESSAGE_INTEGRITY_STUN_ATTRIBUTE]  = print_MESSAGE_INTEGRITY_attribute;
+    print_STUN_attribute_handlers[ERROR_CODE_STUN_ATTRIBUTE]         = print_ERROR_CODE_attribute;
+    print_STUN_attribute_handlers[UNKNOWN_ATTRIBUTES_STUN_ATTRIBUTE] = print_UNKNOWN_ATTRIBUTES_attribute;
+    print_STUN_attribute_handlers[REFLECTED_FROM_STUN_ATTRIBUTE]     = print_REFLECTED_FROM_attribute;
+    print_STUN_attribute_handlers[REALM_STUN_ATTRIBUTE]              = print_REALM_attribute;
+    print_STUN_attribute_handlers[NONCE_STUN_ATTRIBUTE]              = print_NONCE_attribute;
+    print_STUN_attribute_handlers[XOR_MAPPED_ADDRESS_STUN_ATTRIBUTE] = print_XOR_MAPPED_ADDRESS_attribute;
+    print_STUN_attribute_handlers[SOFTWARE_STUN_ATTRIBUTE]           = print_SOFTWARE_attribute;
+    print_STUN_attribute_handlers[ALTERNATE_SERVER_STUN_ATTRIBUTE]   = print_ALTERNATE_SERVER_attribute;
+    print_STUN_attribute_handlers[FINGERPRINT_STUN_ATTRIBUTE]        = print_FINGERPRINT_attribute;
 }
 
 

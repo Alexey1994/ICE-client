@@ -13,7 +13,7 @@ void add_USERNAME(String *message, char *username)
 
 	username_length = strlen(username);
 
-	add_STUN_atribute_head(message, USERNAME, username_length);
+	add_STUN_atribute_head(message, USERNAME_STUN_ATTRIBUTE, username_length);
 	write_byte_array_to_string(message, username, username_length);
 
 	while(username_length%4)
