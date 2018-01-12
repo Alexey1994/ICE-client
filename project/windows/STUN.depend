@@ -299,7 +299,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1515685151 source:c:\dev\ice-client\src\main.c
+1515752309 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
 	"cryptography/cryptography.h"
 	"network/STUN/STUN.h"
@@ -522,7 +522,7 @@
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\password.c
 
-1515679891 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
+1515752862 c:\dev\ice-client\src\network\stun\attributes\message_integrity.c
 	"../../../cryptography/cryptography.h"
 
 1515664830 c:\dev\ice-client\src\network\stun\attributes\error_code.c
@@ -543,7 +543,7 @@
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\fingerprint.c
 
-1515669665 c:\dev\ice-client\src\network\turn\turn.c
+1515747349 c:\dev\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -694,7 +694,7 @@
 
 1515497392 c:\dev\ice-client\src\data structures\buffer\buffer.c
 
-1515659176 c:\dev\ice-client\src\cryptography\cryptography.c
+1515749539 c:\dev\ice-client\src\cryptography\cryptography.c
 
 1515437002 c:\dev\ice-client\src\network\turn\attributes\xor_relayed_address.c
 

@@ -290,34 +290,115 @@ void print_SHA_1_hash(Byte *hash)
 }
 
 
-void test_HMAC_SHA_1_hash()
+procedure initialize_HMAC_SHA_1_test(Buffer *data, Output *data_output, Buffer *key, Output *key_output)
 {
-    Buffer data;
-    Buffer key;
-    Byte   hash[20];
-    N_32   test_vector[] = {0x5b0c157d, 0x4e767244, 0x4c410335, 0x61554839, 0xed1fd2d6};
+    initialize_buffer(data, 1);
+    initialize_buffer_output(data, data_output);
 
-    convert_big_to_little_endian(&test_vector[0], 4);
-    convert_big_to_little_endian(&test_vector[1], 4);
-    convert_big_to_little_endian(&test_vector[2], 4);
-    convert_big_to_little_endian(&test_vector[3], 4);
-    convert_big_to_little_endian(&test_vector[4], 4);
+    initialize_buffer(key, 1);
+    initialize_buffer_output(key, key_output);
+}
 
-    initialize_buffer(&data, 1);
-    initialize_buffer(&key, 1);
 
-    write_in_buffer(&data, '1');
-    write_in_buffer(&key, '1');
+void test_HMAC_SHA_1_hash_item(N_32 *test_vector, N_32 test_number, Buffer *key, Buffer *data)
+{
+    Byte hash[20];
 
-    calculate_HMAC_SHA_1_hash(&data, &key, hash);
-    //print_SHA_1_hash(hash);
+    calculate_HMAC_SHA_1_hash(data, key, hash);
 
-    printf("Test 1(HMAC SHA-1) ");
+    printf("Test %d (HMAC SHA-1) ", test_number);
 
     if(memcmp(hash, test_vector, 20))
+    {
         printf("failed\n");
+        print_SHA_1_hash(test_vector);
+        print_SHA_1_hash(hash);
+        printf("\n");
+    }
     else
         printf("success\n");
+}
+
+
+void test_HMAC_SHA_1_hash()
+{
+    N_32   i;
+    N_32   j;
+    Buffer data;
+    Output data_output;
+    Buffer key;
+    Output key_output;
+    Byte   hash[20];
+    N_32   test_vectors[7][5] = {
+        {0xb6173186, 0x55057264, 0xe28bc0b6, 0xfb378c8e, 0xf146be00},
+        {0xeffcdf6a, 0xe5eb2fa2, 0xd27416d5, 0xf184df9c, 0x259a7c79},
+        {0x4c9007f4, 0x026250c6, 0xbc8414f9, 0xbf50c86c, 0x2d7235da},
+        {0x4c1a0342, 0x4b55e07f, 0xe7f27be1, 0xd58bb932, 0x4a9a5a04},
+        {0xaa4ae5e1, 0x5272d00e, 0x95705637, 0xce8a3b55, 0xed402112},
+        {0xe8e99d0f, 0x45237d78, 0x6d6bbaa7, 0x965c7808, 0xbbff1a91}
+    };
+
+    for(i=0; i<7; ++i)
+        for(j=0; j<5; ++j)
+            convert_big_to_little_endian(&test_vectors[i][j], 4);
+
+    initialize_HMAC_SHA_1_test(&data, &data_output, &key, &key_output);
+
+    write_null_terminated_byte_array(&data_output, "Hi There");
+
+    for(i=0; i<20; ++i)
+        write_in_buffer(&key, 0x0b);
+
+    test_HMAC_SHA_1_hash_item(test_vectors[0], 1, &key, &data);
+
+
+    initialize_HMAC_SHA_1_test(&data, &data_output, &key, &key_output);
+
+    write_null_terminated_byte_array(&data_output, "what do ya want for nothing?");
+    write_null_terminated_byte_array(&key_output, "Jefe");
+
+    test_HMAC_SHA_1_hash_item(test_vectors[1], 2, &key, &data);
+
+
+    initialize_HMAC_SHA_1_test(&data, &data_output, &key, &key_output);
+
+    for(i=0; i<50; ++i)
+        write_byte(&data_output, 0xcd);
+
+    for(i=0; i<25; ++i)
+        write_byte(&key_output, i+1);
+
+    test_HMAC_SHA_1_hash_item(test_vectors[2], 3, &key, &data);
+
+
+    initialize_HMAC_SHA_1_test(&data, &data_output, &key, &key_output);
+
+    write_null_terminated_byte_array(&data_output, "Test With Truncation");
+
+    for(i=0; i<20; ++i)
+        write_byte(&key_output, 0x0c);
+
+    test_HMAC_SHA_1_hash_item(test_vectors[3], 4, &key, &data);
+
+
+    initialize_HMAC_SHA_1_test(&data, &data_output, &key, &key_output);
+
+    write_null_terminated_byte_array(&data_output, "Test Using Larger Than Block-Size Key - Hash Key First");
+
+    for(i=0; i<80; ++i)
+        write_byte(&key_output, 0xaa);
+
+    test_HMAC_SHA_1_hash_item(test_vectors[4], 5, &key, &data);
+
+
+    initialize_HMAC_SHA_1_test(&data, &data_output, &key, &key_output);
+
+    write_null_terminated_byte_array(&data_output, "Test Using Larger Than Block-Size Key and Larger Than One Block-Size Data");
+
+    for(i=0; i<80; ++i)
+        write_byte(&key_output, 0xaa);
+
+    test_HMAC_SHA_1_hash_item(test_vectors[5], 6, &key, &data);
 }
 
 
@@ -349,7 +430,6 @@ void test_MESSAGE_INTEGRITY_hash()
     for(i=0; i<16; ++i)
         write_byte(&key_output, MD5_hash[i]);
 
-    //write_null_terminated_byte_array(&data_output,
     write_byte_array(
         &data_output,
         /*"\x00\x01\x00\x54\x21\x12\xA4\x42"
@@ -392,6 +472,12 @@ void test_MESSAGE_INTEGRITY_hash()
      "\x00\x20\x00\x08"
      "\x00\x01\xa1\x47"
      "\xe1\x12\xa6\x43"
+
+    "\x00\x08\x00\x14"
+			"\x2b\x91\xf5\x99\xfd\x9e\x90\xc3\x8c\x74\x89\xf9"
+			"\x2a\xf9\xba\x53\xf0\x6b\xe7\xd7"
+			"\x80\x28\x00\x04"
+			"\xc0\x7d\x4c\x96"
      //"\x00\x08\x00\x14"
 
         "\x00\x00\x00\x00"
@@ -409,7 +495,7 @@ void test_MESSAGE_INTEGRITY_hash()
         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00"
         "\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00",
-        0x48 - 20 - 4
+        0x3c//0x48 - 20 - 4
     );
 
     //write_in_buffer(&data, '1');
@@ -436,8 +522,8 @@ int main(int arguments_length, char *arguments[])
     //get_test_vectors();
     //test_STUN();
     //test_STUN_authenticate();
-    //test_TURN_connection();
-    test_MESSAGE_INTEGRITY_hash();
+    test_TURN_connection();
+    //test_MESSAGE_INTEGRITY_hash();
     //test_MD5_hash();
     //test_HMAC_SHA_1_hash();
 

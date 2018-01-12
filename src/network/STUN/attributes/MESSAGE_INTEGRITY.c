@@ -37,17 +37,27 @@ void add_MESSAGE_INTEGRITY(String *message, Character *username, Character *real
 	for(i=0; i<16; ++i)
         write_in_buffer(&key, MD5_key[i]);
 
+    printf("Key size: %d. Key: [", buffer_length(&key));
+    for(i=key.begin_index; i<key.end_index; ++i)
+        printf("%02x", key.data[i]);
+    printf("]\n");
+
 
     initialize_buffer(&data, 1);
     initialize_buffer_output(&data, &data_output);
 
-    set_STUN_content_length(message->begin, message->length);
+    set_STUN_content_length(message->begin, message->length + 4);
 
     for(i=0; i<message->length; ++i)
         write_byte(&data_output, message->begin[i]);
 
     while(message->length % 64)
         write_byte(&data_output, 0);
+
+    printf("Data size: %d. Data: [", buffer_length(&data));
+    for(i=data.begin_index; i<data.end_index; ++i)
+        printf("%02x", data.data[i]);
+    printf("]\n");
 
 
     calculate_HMAC_SHA_1_hash(&data, &key, HMAC_SHA1_hash);

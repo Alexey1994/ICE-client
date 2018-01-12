@@ -73,8 +73,7 @@ void allocate_TURN_with_authentication(UDP_Connection *connection, char *host, s
         add_USERNAME(request_message, username);
         add_REALM(request_message, realm);
         add_NONCE(request_message, NONCE, NONCE_length);
-        //add_MESSAGE_INTEGRITY(request_message, username, realm, password);
-        add_MESSAGE_INTEGRITY(request_message, username, "realm", password);
+        add_MESSAGE_INTEGRITY(request_message, username, realm, password);
         //add_LIFETIME(request_message, 2);
     end_TURN_request(connection, request_message);
 
