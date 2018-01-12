@@ -26,15 +26,9 @@ void initialize_TURN()
 }
 
 
-void allocate_TURN(UDP_Connection *connection, char *host, short port, TURN_Attributes *attributes)
+void allocate_TURN(UDP_Connection *connection, TURN_Attributes *attributes)
 {
-    //UDP_Connection *connection = create_UDP(host, port);
-
-    if(!connection)
-        goto error;
-
-
-    String          *request_message;
+    String *request_message;
 
     begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
         add_REQUESTED_TRANSPORT(request_message, TCP_CONNECTION);
@@ -57,15 +51,17 @@ error:
 }
 
 
-void allocate_TURN_with_authentication(UDP_Connection *connection, char *host, short port, TURN_Attributes *attributes, Byte *NONCE, N_32 NONCE_length, Character *username, Character *realm, Character *password)
+void allocate_TURN_with_authentication(
+    UDP_Connection  *connection,
+    TURN_Attributes *attributes,
+    Byte            *NONCE,
+    N_32             NONCE_length,
+    Character       *username,
+    Character       *realm,
+    Buffer          *key
+)
 {
-    //UDP_Connection *connection = create_UDP(host, port);
-
-    if(!connection)
-        goto error;
-
-
-    String          *request_message;
+    String *request_message;
 
     begin_TURN_request(&request_message, ALLOCATE_TURN_MESSAGE);
         add_REQUESTED_TRANSPORT(request_message, TCP_CONNECTION);
@@ -73,12 +69,10 @@ void allocate_TURN_with_authentication(UDP_Connection *connection, char *host, s
         add_USERNAME(request_message, username);
         add_REALM(request_message, realm);
         add_NONCE(request_message, NONCE, NONCE_length);
-        add_MESSAGE_INTEGRITY(request_message, username, realm, password);
-        //add_LIFETIME(request_message, 2);
+        add_MESSAGE_INTEGRITY(request_message, key);
     end_TURN_request(connection, request_message);
 
     TURN_attributes_response(attributes, connection);
-    //destroy_UDP(connection);
 
     if(!attributes)
         goto error;
@@ -90,23 +84,20 @@ error:
 }
 
 
-void create_TURN_permission(char *host, short port, TURN_Attributes *attributes, N_32 permissions_host, N_16 permissions_port)
+void create_TURN_permission(
+    UDP_Connection  *connection,
+    TURN_Attributes *attributes,
+    Byte            *permissions_host,
+    N_16             permissions_port
+)
 {
-    UDP_Connection *connection = create_UDP(host, port);
-
-    if(!connection)
-        goto error;
-
-    //TURN_Attributes *attributes;
-    String          *request_message;
+    String *request_message;
 
     begin_TURN_request(&request_message, CREATE_PERMISSION_TURN_MESSAGE);
         add_XOR_PEER_ADDRESS(request_message, permissions_host, permissions_port);
-        add_USERNAME(request_message, "lexey");
     end_TURN_request(connection, request_message);
 
     TURN_attributes_response(attributes, connection);
-    destroy_UDP(connection);
 
     if(!attributes)
         goto error;
@@ -118,23 +109,55 @@ error:
 }
 
 
-void send_TURN_data(char *host, short port, TURN_Attributes *attributes)
+void create_TURN_permission_with_authentication(
+    UDP_Connection  *connection,
+    TURN_Attributes *attributes,
+    Byte            *NONCE,
+    N_32             NONCE_length,
+    Character       *username,
+    Character       *realm,
+    Buffer          *key,
+    Byte            *permissions_host,
+    N_16             permissions_port
+)
 {
-    UDP_Connection *connection = create_UDP(host, port);
+    String *request_message;
 
-    if(!connection)
-        goto error;
-
-    //TURN_Attributes *attributes;
-    String          *request_message;
-
-    begin_TURN_request(&request_message, SEND_TURN_MESSAGE);
-        //add_REQUESTED_TRANSPORT(request_message, UDP_CONNECTION);
-        //add_DONT_FRAGMENT(request_message);
+    begin_TURN_request(&request_message, CREATE_PERMISSION_TURN_MESSAGE);
+        add_XOR_PEER_ADDRESS(request_message, permissions_host, permissions_port);
+        add_USERNAME(request_message, username);
+        add_REALM(request_message, realm);
+        add_NONCE(request_message, NONCE, NONCE_length);
+        add_MESSAGE_INTEGRITY(request_message, key);
     end_TURN_request(connection, request_message);
 
     TURN_attributes_response(attributes, connection);
-    destroy_UDP(connection);
+
+    if(!attributes)
+        goto error;
+
+    return;
+
+error:
+    return;
+}
+
+
+void send_TURN_data(UDP_Connection *connection, TURN_Attributes *attributes, Byte *peer_host, N_16 peer_port)
+{
+    String *request_message;
+
+    begin_TURN_request(&request_message, SEND_TURN_MESSAGE);
+        add_XOR_PEER_ADDRESS(request_message, peer_host, peer_port);
+        //add_DATA(request_message);
+        //add_USERNAME(request_message, username);
+        //add_REALM(request_message, realm);
+        //add_NONCE(request_message, NONCE, NONCE_length);
+        //add_MESSAGE_INTEGRITY(request_message, key);
+        add_DONT_FRAGMENT(request_message);
+    end_TURN_request(connection, request_message);
+
+    TURN_attributes_response(attributes, connection);
 
     if(!attributes)
         goto error;

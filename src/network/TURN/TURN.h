@@ -45,7 +45,7 @@ typedef enum
 {
     ALLOCATE_TURN_MESSAGE          = 0x0003,
     REFRESH_TURN_MESSAGE           = 0x0004,
-    SEND_TURN_MESSAGE              = 0x0006,
+    SEND_TURN_MESSAGE              = 0x0016,
     DATA_TURN_MESSAGE              = 0x0007,
     CREATE_PERMISSION_TURN_MESSAGE = 0x0008,
     CHANNEL_BIND_TURN_MESSAGE      = 0x0009
@@ -63,10 +63,18 @@ typedef struct
 
     struct
     {
-        N_32 host;
-        N_16 port;
+        //N_32 host;
+        Byte *host;
+        N_16  port;
     }XOR_RELAYED_ADDRESS;
-
+/*
+    struct
+    {
+        //N_32 host;
+        Byte *host;
+        N_16  port;
+    }XOR_PEER_ADDRESS;
+*/
     STUN_Attributes STUN_attributes;
 }
 TURN_Attributes;

@@ -83,6 +83,12 @@ typedef struct
     {
         Byte           *host;
         unsigned short  port;
+    }XOR_MAPPED_ADDRESS;
+
+    struct
+    {
+        Byte           *host;
+        unsigned short  port;
     }CHANGED_ADDRESS;
 
     struct

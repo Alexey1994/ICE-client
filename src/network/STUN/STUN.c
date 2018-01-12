@@ -53,6 +53,24 @@ void initialize_STUN()
 }
 
 
+void initialize_long_authentication_key(Buffer *key, Character *username, Character *realm, Character *password)
+{
+    Output key_output;
+
+	initialize_buffer_output(key, &key_output);
+
+    write_null_terminated_byte_array(&key_output, username);
+    write_byte(&key_output, ':');
+
+    write_null_terminated_byte_array(&key_output, realm);
+    write_byte(&key_output, ':');
+
+    write_null_terminated_byte_array(&key_output, password);
+
+    deinitialize_output(&key_output);
+}
+
+
 Boolean get_STUN_mapped_address(char *host, unsigned short port, char *mapped_host, unsigned short *mapped_port)
 {
     UDP_Connection *connection  =  create_UDP(host, port);
@@ -98,7 +116,7 @@ Boolean authenticate_on_STUN_server(char *host, unsigned short port)
         add_USERNAME(request_message, "lex");
         //add_NONCE(request_message, "2e131a5fb210812c");
         add_REALM(request_message, "realm");
-        add_MESSAGE_INTEGRITY(request_message, "lex", "realm", "1");
+        //add_MESSAGE_INTEGRITY(request_message, "lex", "realm", "1");
     end_STUN_request(connection, request_message);
 
     attributes = get_response_STUN_attributes(connection);
