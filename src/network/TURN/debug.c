@@ -8,7 +8,7 @@ static void (*print_TURN_attribute_handlers[65536])(Byte *attribute, int attribu
 void print_DATA_attribute(Byte *attribute, int length)
 {
     char logbuf[200];
-    snprintf(logbuf, 200, "\tRESPONSE ADDRESS, %d bytes\n", length);
+    snprintf(logbuf, 200, "\tDATA, %d bytes\n", length);
     print_log(logbuf);
 }
 

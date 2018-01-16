@@ -33,21 +33,23 @@ void add_XOR_PEER_ADDRESS(String *message, Byte *host, N_16 port)
     convert_big_to_little_endian(&port, 2);
     //convert_big_to_little_endian(&host, 4);
 
-    push_in_string(message, 0 ^ STUN_COOKIE);
-    push_in_string(message, 0 ^ (STUN_COOKIE>>8));
+    push_in_string(message, port ^ STUN_COOKIE);
+    push_in_string(message, (port>>8) ^ (STUN_COOKIE>>8));
 
     ip = 0;
     number = 0;
 
-    while(*host != '.')
+    while(*host && *host != '.')
     {
         number = number*10 + (*host - '0');
         ++host;
     }
 
+    ++host;
     ip += number;
+    number = 0;
 
-    while(*host != '.')
+    while(*host && *host != '.')
     {
         number = number*10 + (*host - '0');
         ++host;
@@ -55,8 +57,9 @@ void add_XOR_PEER_ADDRESS(String *message, Byte *host, N_16 port)
 
     ++host;
     ip += number<<8;
+    number = 0;
 
-    while(*host != '.')
+    while(*host && *host != '.')
     {
         number = number*10 + (*host - '0');
         ++host;
@@ -64,14 +67,16 @@ void add_XOR_PEER_ADDRESS(String *message, Byte *host, N_16 port)
 
     ++host;
     ip += number<<16;
+    number = 0;
 
-    while(*host != '.')
+    while(*host && *host != '.')
     {
         number = number*10 + (*host - '0');
         ++host;
     }
 
     ip += number<<24;
+    number = 0;
 
     ip = ip ^ STUN_COOKIE;
 

@@ -46,7 +46,7 @@ typedef enum
     ALLOCATE_TURN_MESSAGE          = 0x0003,
     REFRESH_TURN_MESSAGE           = 0x0004,
     SEND_TURN_MESSAGE              = 0x0016,
-    DATA_TURN_MESSAGE              = 0x0007,
+    DATA_TURN_MESSAGE              = 0x0017,
     CREATE_PERMISSION_TURN_MESSAGE = 0x0008,
     CHANNEL_BIND_TURN_MESSAGE      = 0x0009
 }

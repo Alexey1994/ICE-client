@@ -149,19 +149,19 @@ void send_TURN_data(UDP_Connection *connection, TURN_Attributes *attributes, Byt
 
     begin_TURN_request(&request_message, SEND_TURN_MESSAGE);
         add_XOR_PEER_ADDRESS(request_message, peer_host, peer_port);
-        //add_DATA(request_message);
+        add_DATA(request_message);
         //add_USERNAME(request_message, username);
         //add_REALM(request_message, realm);
         //add_NONCE(request_message, NONCE, NONCE_length);
         //add_MESSAGE_INTEGRITY(request_message, key);
-        add_DONT_FRAGMENT(request_message);
+        //add_DONT_FRAGMENT(request_message);
     end_TURN_request(connection, request_message);
-
+/*
     TURN_attributes_response(attributes, connection);
 
     if(!attributes)
         goto error;
-
+*/
     return;
 
 error:
@@ -169,15 +169,9 @@ error:
 }
 
 
-void receive_TURN_data(char *host, short port, TURN_Attributes *attributes)
+void receive_TURN_data(UDP_Connection *connection, TURN_Attributes *attributes)
 {
-    UDP_Connection *connection = create_UDP(host, port);
-
-    if(!connection)
-        goto error;
-
-    //TURN_Attributes *attributes;
-    String          *request_message;
+    String *request_message;
 
     begin_TURN_request(&request_message, DATA_TURN_MESSAGE);
         //add_XOR_PEER_ADDRESS(request_message);
@@ -186,7 +180,6 @@ void receive_TURN_data(char *host, short port, TURN_Attributes *attributes)
     end_TURN_request(connection, request_message);
 
     TURN_attributes_response(attributes, connection);
-    destroy_UDP(connection);
 
     if(!attributes)
         goto error;

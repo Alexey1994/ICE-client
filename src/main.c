@@ -10,16 +10,16 @@
 //#include "network/connection/UDP/UDP.h"
 #include "network/connection/TCP/TCP.h"
 
-#define CLIENT_ID 1
+#define CLIENT_ID 2
 
-#define STUN_HOST "192.168.56.102"
+#define STUN_HOST "192.168.56.101"
 #define STUN_PORT 3478
 
 
-#define TURN_HOST "192.168.56.102"
+#define TURN_HOST "192.168.56.101"
 #define TURN_PORT 3478
 
-#define SIGNAL_SERVER_HOST "192.168.56.102"
+#define SIGNAL_SERVER_HOST "192.168.56.101"
 #define SIGNAL_SERVER_PORT 8080
 
 
@@ -220,7 +220,7 @@ void test_TURN_connection(Character *username, Character *password)
 
         printf("my address: %s:%d\n", attributes2.XOR_RELAYED_ADDRESS.host, attributes2.XOR_RELAYED_ADDRESS.port);
 
-        Server *sender = create_UDP_server(attributes2.XOR_RELAYED_ADDRESS.host, attributes2.XOR_RELAYED_ADDRESS.port, sender_listener, 0);
+        //Server *sender = create_UDP_server(attributes2.XOR_RELAYED_ADDRESS.host, attributes2.XOR_RELAYED_ADDRESS.port, sender_listener, 0);
         //printf("listen messages on address: %s:%d\n", attributes2.STUN_attributes.XOR_MAPPED_ADDRESS.host, attributes2.STUN_attributes.XOR_MAPPED_ADDRESS.port);
 
         sleep_thread(10000);
@@ -246,6 +246,8 @@ void test_TURN_connection(Character *username, Character *password)
         free(attributes.STUN_attributes.NONCE.data);
 */
 
+
+/*
     memset(&attributes3, 0, sizeof(attributes3));
     create_TURN_permission_with_authentication(
         connection,
@@ -257,15 +259,34 @@ void test_TURN_connection(Character *username, Character *password)
         &long_term_key,
         attributes2.XOR_RELAYED_ADDRESS.host,//client_host,//"127.0.0.1",
         attributes2.XOR_RELAYED_ADDRESS.port//client_port//3478
-    );
+    );*/
+
 
 
     memset(&attributes4, 0, sizeof(attributes4));
-    send_TURN_data(connection, &attributes4, client_host, client_port);
+    //for(;;)
+    {
+    //send_TURN_data(connection, &attributes4, client_host, client_port);
+    //receive_TURN_data(connection, &attributes4);
+    }
+//return;
 
+    //Server *sender = create_UDP_server(attributes2.XOR_RELAYED_ADDRESS.host, attributes2.XOR_RELAYED_ADDRESS.port, sender_listener, 0);
+    printf("listen on %d port\n", attributes2.XOR_RELAYED_ADDRESS.port);
+    Server *sender = create_UDP_server("192.168.56.1", attributes2.XOR_RELAYED_ADDRESS.port, sender_listener, 0);
 
+    for(;;);
+/*
+    UDP_Connection  *client_connection;
+    client_connection = create_UDP("192.168.56.101", attributes2.XOR_RELAYED_ADDRESS.port);//create_UDP(client_host, client_port);
+for(;;)
+{
+    Byte buf[30];
+    read_from_UDP(client_connection, buf, 30);
+    printf(buf);
 
-
+    write_in_UDP(client_connection, "Hi", 3);
+}*/
     //create_TURN_permission(TURN_HOST, TURN_PORT, &attributes, xor_relayed_host, xor_relayed_port);
     //bind_TURN_channel(TURN_HOST, TURN_PORT);
     //send_TURN_data(TURN_HOST, TURN_PORT);

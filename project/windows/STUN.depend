@@ -299,7 +299,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1515768366 source:c:\dev\ice-client\src\main.c
+1516095871 source:c:\dev\ice-client\src\main.c
 	"main/main.h"
 	"cryptography/cryptography.h"
 	"network/STUN/STUN.h"
@@ -424,7 +424,7 @@
 1504676136 c:\dev\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1515767283 c:\dev\ice-client\src\network\turn\turn.h
+1516095366 c:\dev\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
@@ -442,7 +442,7 @@
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1515061326 c:\dev\ice-client\src\network\connection\udp\windows udp.c
+1516091754 c:\dev\ice-client\src\network\connection\udp\windows udp.c
 	<stdio.h>
 	<errno.h>
 	<WinSock2.h>
@@ -543,7 +543,7 @@
 
 1515061326 c:\dev\ice-client\src\network\stun\attributes\fingerprint.c
 
-1515763162 c:\dev\ice-client\src\network\turn\turn.c
+1516096161 c:\dev\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -571,7 +571,7 @@
 
 1515663411 c:\dev\ice-client\src\network\turn\response.c
 
-1515069928 c:\dev\ice-client\src\network\turn\attributes\data.c
+1516094065 c:\dev\ice-client\src\network\turn\attributes\data.c
 
 1515061326 c:\dev\ice-client\src\network\turn\attributes\lifetime.c
 
@@ -696,5 +696,5 @@
 
 1515749539 c:\dev\ice-client\src\cryptography\cryptography.c
 
-1515768192 c:\dev\ice-client\src\network\turn\attributes\xor_relayed_address.c
+1515768879 c:\dev\ice-client\src\network\turn\attributes\xor_relayed_address.c
 

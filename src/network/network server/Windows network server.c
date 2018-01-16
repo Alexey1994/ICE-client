@@ -85,8 +85,8 @@ Server* create_UDP_server(
         goto error;
     }
 
-    unsigned non_blocking = 1;
-    ioctlsocket(server->source, FIONBIO, &non_blocking);
+    //unsigned non_blocking = 1;
+    //ioctlsocket(server->source, FIONBIO, &non_blocking);
 
     arguments = new(Server_Update_arguments);
 
