@@ -1,59 +1,59 @@
 # depslib dependency file v1.0
-1504561990 source:/home/lex/git/ICE-client/src/main.c
+1516179610 source:/home/lex/git/ICE-client/src/main.c
 	"main/main.h"
-	"network/network info/network info.h"
+	"cryptography/cryptography.h"
+	"network/STUN/STUN.h"
 	"network/TURN/TURN.h"
 	"network/network server/network server.h"
-	"network/connection/UDP/UDP.h"
+	"network/connection/TCP/TCP.h"
 
-1504551635 /home/lex/git/ICE-client/src/main/main.h
+1516177385 /home/lex/git/ICE-client/src/main/main.h
 	"../logger/logger.h"
 	"Android main.c"
 
-1504551635 /home/lex/git/ICE-client/src/logger/logger.h
+1516177385 /home/lex/git/ICE-client/src/logger/logger.h
 	"logger.c"
 
-1504551635 /home/lex/git/ICE-client/src/logger/logger.c
+1516177385 /home/lex/git/ICE-client/src/logger/logger.c
 	<stdio.h>
 
-1504551635 /home/lex/git/ICE-client/src/main/Android main.c
+1516177385 /home/lex/git/ICE-client/src/main/Android main.c
 	<jni.h>
 	"../data structures/string/string.h"
 
-1504551635 /home/lex/git/ICE-client/src/data structures/string/string.h
+1516177385 /home/lex/git/ICE-client/src/data structures/string/string.h
 	"../character/character.h"
 	"string.c"
 
-1504551635 /home/lex/git/ICE-client/src/data structures/character/character.h
+1516177385 /home/lex/git/ICE-client/src/data structures/character/character.h
 	"../../extends/extends.h"
 	"character.c"
 
-1504551635 /home/lex/git/ICE-client/src/extends/extends.h
-	<stdlib.h>
+1516177385 /home/lex/git/ICE-client/src/extends/extends.h
 	"extends.c"
 
-1504551635 /home/lex/git/ICE-client/src/extends/extends.c
+1516177385 /home/lex/git/ICE-client/src/extends/extends.c
 
-1504551635 /home/lex/git/ICE-client/src/data structures/character/character.c
+1516177385 /home/lex/git/ICE-client/src/data structures/character/character.c
 
-1504551635 /home/lex/git/ICE-client/src/data structures/string/string.c
+1516177385 /home/lex/git/ICE-client/src/data structures/string/string.c
 	"../../extends/extends.h"
 
 1504551635 /home/lex/git/ICE-client/src/network/network info/network info.h
 	"../../data structures/array/array.h"
 	"network info.c"
 
-1504551635 /home/lex/git/ICE-client/src/data structures/array/array.h
+1516177385 /home/lex/git/ICE-client/src/data structures/array/array.h
 	"../random access structure/random access structure.h"
 	"array.c"
 
-1504551635 /home/lex/git/ICE-client/src/data structures/random access structure/random access structure.h
+1516177385 /home/lex/git/ICE-client/src/data structures/random access structure/random access structure.h
 	"../../extends/extends.h"
 	"random access structure.c"
 
-1504551635 /home/lex/git/ICE-client/src/data structures/random access structure/random access structure.c
+1516177385 /home/lex/git/ICE-client/src/data structures/random access structure/random access structure.c
 
-1504551635 /home/lex/git/ICE-client/src/data structures/array/array.c
+1516177385 /home/lex/git/ICE-client/src/data structures/array/array.c
 	"../../extends/extends.h"
 
 1504551635 /home/lex/git/ICE-client/src/network/network info/network info.c
@@ -84,23 +84,23 @@
 	<WinSock2.h>
 	<WS2tcpip.h>
 
-1504551635 /home/lex/git/ICE-client/src/thread/thread.h
+1516177385 /home/lex/git/ICE-client/src/thread/thread.h
 	"thread.c"
 
-1504551635 /home/lex/git/ICE-client/src/thread/thread.c
+1516177385 /home/lex/git/ICE-client/src/thread/thread.c
 	"Windows thread.c"
 	"Linux thread.c"
 
-1504551635 /home/lex/git/ICE-client/src/thread/Windows thread.c
+1516177385 /home/lex/git/ICE-client/src/thread/Windows thread.c
 	<pthread.h>
 
-1504551635 /home/lex/git/ICE-client/src/thread/Linux thread.c
+1516179398 /home/lex/git/ICE-client/src/thread/Linux thread.c
 	<pthread.h>
 
-1504551635 /home/lex/git/ICE-client/src/error/error.h
+1516177385 /home/lex/git/ICE-client/src/error/error.h
 	"error.c"
 
-1504551635 /home/lex/git/ICE-client/src/error/error.c
+1516177385 /home/lex/git/ICE-client/src/error/error.c
 	<stdio.h>
 
 1504552512 /home/lex/git/ICE-client/src/network/network connection/Linux network connection.c
@@ -124,21 +124,20 @@
 1504551635 /home/lex/git/ICE-client/src/system library/Windows system library.c
 	<windows.h>
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/TURN.h
+1516177385 /home/lex/git/ICE-client/src/network/TURN/TURN.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
-1504557265 /home/lex/git/ICE-client/src/network/STUN/STUN.h
+1516177385 /home/lex/git/ICE-client/src/network/STUN/STUN.h
 	"../../extends/extends.h"
 	"../../data structures/string/string.h"
 	"../connection/UDP/UDP.h"
 	"STUN.c"
 
-1504557061 /home/lex/git/ICE-client/src/network/STUN/STUN.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/STUN.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
-	"../network connection/network connection.h"
 	"head.c"
 	"attribute reader.c"
 	"request.c"
@@ -161,66 +160,68 @@
 	"attributes/ALTERNATE_SERVER.c"
 	"attributes/FINGERPRINT.c"
 
-1504551635 /home/lex/git/ICE-client/src/stream/stream.h
+1516177385 /home/lex/git/ICE-client/src/stream/stream.h
 	"../extends/extends.h"
 	"../data structures/array/array.h"
 	"../data structures/character/character.h"
 	"stream.c"
 
-1504551635 /home/lex/git/ICE-client/src/stream/stream.c
+1516177385 /home/lex/git/ICE-client/src/stream/stream.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/debug.h
+1516177385 /home/lex/git/ICE-client/src/network/STUN/debug.h
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/debug.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/head.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/head.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attribute reader.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attribute reader.c
 
-1504556949 /home/lex/git/ICE-client/src/network/STUN/request.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/request.c
 
-1504557387 /home/lex/git/ICE-client/src/network/STUN/response.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/response.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/MAPPED_ADDRESS.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/MAPPED_ADDRESS.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/RESPONSE_ADDRESS.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/RESPONSE_ADDRESS.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/CHANGE_REQUEST.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/CHANGE_REQUEST.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/SOURCE_ADDRESS.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/SOURCE_ADDRESS.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/CHANGED_ADDRESS.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/CHANGED_ADDRESS.c
 	"../../../stream/stream.h"
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/USERNAME.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/USERNAME.c
+	"../../../cryptography/cryptography.h"
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/PASSWORD.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/PASSWORD.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/MESSAGE_INTEGRITY.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/MESSAGE_INTEGRITY.c
+	"../../../cryptography/cryptography.h"
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/ERROR_CODE.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/ERROR_CODE.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/UNKNOWN_ATTRIBUTES.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/UNKNOWN_ATTRIBUTES.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/REFLECTED_FROM.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/REFLECTED_FROM.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/REALM.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/REALM.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/NONCE.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/NONCE.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/XOR_MAPPED_ADDRESS.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/XOR_MAPPED_ADDRESS.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/SOFTWARE.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/SOFTWARE.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/ALTERNATE_SERVER.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/ALTERNATE_SERVER.c
 
-1504551635 /home/lex/git/ICE-client/src/network/STUN/attributes/FINGERPRINT.c
+1516177385 /home/lex/git/ICE-client/src/network/STUN/attributes/FINGERPRINT.c
 
-1504555374 /home/lex/git/ICE-client/src/network/TURN/TURN.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/TURN.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -232,37 +233,38 @@
 	"attributes/REQUESTED_TRANSPORT.c"
 	"attributes/DONT_FRAGMENT.c"
 	"attributes/XOR_PEER_ADDRESS.c"
+	"attributes/XOR_RELAYED_ADDRESS.c"
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/debug.h
+1516177385 /home/lex/git/ICE-client/src/network/TURN/debug.h
 	"debug.h"
 	"debug.c"
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/debug.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/attribute reader.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attribute reader.c
 
-1504555257 /home/lex/git/ICE-client/src/network/TURN/request.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/request.c
 
-1504555288 /home/lex/git/ICE-client/src/network/TURN/response.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/response.c
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/attributes/DATA.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attributes/DATA.c
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/attributes/LIFETIME.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attributes/LIFETIME.c
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/attributes/REQUESTED_TRANSPORT.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attributes/REQUESTED_TRANSPORT.c
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/attributes/DONT_FRAGMENT.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attributes/DONT_FRAGMENT.c
 
-1504551635 /home/lex/git/ICE-client/src/network/TURN/attributes/XOR_PEER_ADDRESS.c
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attributes/XOR_PEER_ADDRESS.c
 
-1504555531 /home/lex/git/ICE-client/src/network/network server/network server.h
+1516177385 /home/lex/git/ICE-client/src/network/network server/network server.h
 	"../../error/error.h"
 	"../../thread/thread.h"
 	"network server.c"
 
-1504551635 /home/lex/git/ICE-client/src/network/network server/network server.c
+1516177385 /home/lex/git/ICE-client/src/network/network server/network server.c
 	"Windows network server.c"
 	"Linux network server.c"
 
@@ -270,9 +272,9 @@
 
 1504255524 /home/lex/git/ICE-client/src/network/network server/linux network server.c
 
-1504551885 /home/lex/git/ICE-client/src/network/network server/Windows network server.c
+1516177385 /home/lex/git/ICE-client/src/network/network server/Windows network server.c
 
-1504560496 /home/lex/git/ICE-client/src/network/network server/Linux network server.c
+1516177385 /home/lex/git/ICE-client/src/network/network server/Linux network server.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>
@@ -280,16 +282,21 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1504551635 /home/lex/git/ICE-client/src/network/connection/UDP/UDP.h
+1516177385 /home/lex/git/ICE-client/src/network/connection/UDP/UDP.h
+	"../../../error/error.h"
 	"UDP.c"
 
-1504551635 /home/lex/git/ICE-client/src/network/connection/UDP/UDP.c
+1516177385 /home/lex/git/ICE-client/src/network/connection/UDP/UDP.c
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1504551635 /home/lex/git/ICE-client/src/network/connection/UDP/Windows UDP.c
+1516183476 /home/lex/git/ICE-client/src/network/connection/UDP/Windows UDP.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
 
-1504556963 /home/lex/git/ICE-client/src/network/connection/UDP/Linux UDP.c
+1516184119 /home/lex/git/ICE-client/src/network/connection/UDP/Linux UDP.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>
@@ -515,6 +522,50 @@
 	<WS2tcpip.h>
 
 1508231851 /home/lex/dev/ICE-client/src/network/connection/TCP/Linux TCP.c
+	<errno.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netdb.h>
+	<arpa/inet.h>
+	<fcntl.h>
+
+1516177385 /home/lex/git/ICE-client/src/cryptography/cryptography.h
+	"../data structures/buffer/buffer.h"
+	"cryptography.c"
+
+1516177385 /home/lex/git/ICE-client/src/data structures/buffer/buffer.h
+	"../../extends/extends.h"
+	"../../output/output.h"
+	"buffer.c"
+
+1516177385 /home/lex/git/ICE-client/src/output/output.h
+	"../extends/extends.h"
+	"../data structures/character/character.h"
+	"output.c"
+
+1516177385 /home/lex/git/ICE-client/src/output/output.c
+
+1516177385 /home/lex/git/ICE-client/src/data structures/buffer/buffer.c
+
+1516177385 /home/lex/git/ICE-client/src/cryptography/cryptography.c
+
+1516177385 /home/lex/git/ICE-client/src/network/TURN/attributes/XOR_RELAYED_ADDRESS.c
+
+1516177385 /home/lex/git/ICE-client/src/network/connection/TCP/TCP.h
+	"../../../error/error.h"
+	"TCP.c"
+
+1516177385 /home/lex/git/ICE-client/src/network/connection/TCP/TCP.c
+	"Windows TCP.c"
+	"Linux TCP.c"
+
+1516177385 /home/lex/git/ICE-client/src/network/connection/TCP/Windows TCP.c
+	<stdio.h>
+	<errno.h>
+	<WinSock2.h>
+	<WS2tcpip.h>
+
+1516177385 /home/lex/git/ICE-client/src/network/connection/TCP/Linux TCP.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>

@@ -42,7 +42,7 @@ UDP_Connection* create_UDP (Byte *host, int port)
 
     //while(!connect(socket_connection, &sock_addr, sizeof(sock_addr)))
     //connect(socket_connection, &sock_addr, sizeof(sock_addr));
-    connect(connection->socket, &sock_addr, sizeof(sock_addr));
+    //connect(connection->socket, &sock_addr, sizeof(sock_addr));
 
     return connection;
 

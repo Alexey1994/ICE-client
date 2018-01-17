@@ -16,7 +16,7 @@
 #define STUN_PORT 3478
 
 
-#define TURN_HOST "turn1.northeurope.cloudapp.azure.com"
+#define TURN_HOST "127.0.0.1"
 #define TURN_PORT 3478
 
 #define SIGNAL_SERVER_HOST "127.0.0.1"

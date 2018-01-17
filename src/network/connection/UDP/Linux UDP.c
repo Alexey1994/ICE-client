@@ -29,14 +29,6 @@ UDP_Connection* create_UDP (Byte *host, int port)
         goto error;
     }
 
-    //unsigned non_blocking = 1;
-    //ioctlsocket(connection->socket, FIONBIO, &non_blocking);
-
-    //while(connect(socket_connection, &sock_addr, sizeof(sock_addr)) == EINPROGRESS);
-
-    //while(!connect(socket_connection, &sock_addr, sizeof(sock_addr)))
-    //connect(socket_connection, &sock_addr, sizeof(sock_addr));
-
     return connection;
 
 error:
@@ -48,7 +40,7 @@ error:
 
 void destroy_UDP (UDP_Connection *connection)
 {
-
+    close(connection->socket);
 }
 
 
@@ -60,5 +52,10 @@ void write_in_UDP (UDP_Connection *connection, Byte *data, int length_data)
 
 void read_from_UDP (UDP_Connection *connection, Byte *data, int length_data)
 {
-    recvfrom(connection->socket, data, length_data, 0, 0, 0);
+    struct sockaddr_in address;
+    N_32               sockaddr_size;
+
+    sockaddr_size = sizeof(struct sockaddr_in);
+    recvfrom(connection->socket, data, length_data, 0, &address, &sockaddr_size);
+    printf("error code%d\n", errno);
 }
