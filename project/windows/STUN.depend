@@ -1,6 +1,7 @@
 # depslib dependency file v1.0
-1515436688 source:c:\git\ice-client\src\main.c
+1516218960 source:c:\git\ice-client\src\main.c
 	"main/main.h"
+	"cryptography/cryptography.h"
 	"network/STUN/STUN.h"
 	"network/TURN/TURN.h"
 	"network/network server/network server.h"
@@ -93,7 +94,7 @@
 1515063602 c:\git\ice-client\src\thread\windows thread.c
 	<pthread.h>
 
-1515061324 c:\git\ice-client\src\thread\linux thread.c
+1516210989 c:\git\ice-client\src\thread\linux thread.c
 	<pthread.h>
 
 1515061324 c:\git\ice-client\src\error\error.h
@@ -123,17 +124,17 @@
 1504245258 c:\git\ice-client\src\system library\windows system library.c
 	<windows.h>
 
-1515435752 c:\git\ice-client\src\network\turn\turn.h
+1516210989 c:\git\ice-client\src\network\turn\turn.h
 	"../STUN/STUN.h"
 	"TURN.c"
 
-1515061324 c:\git\ice-client\src\network\stun\stun.h
+1516210989 c:\git\ice-client\src\network\stun\stun.h
 	"../../extends/extends.h"
 	"../../data structures/string/string.h"
 	"../connection/UDP/UDP.h"
 	"STUN.c"
 
-1515061324 c:\git\ice-client\src\network\stun\stun.c
+1516210989 c:\git\ice-client\src\network\stun\stun.c
 	"../../stream/stream.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -171,7 +172,7 @@
 	"../../data structures/string/string.h"
 	"debug.c"
 
-1515438470 c:\git\ice-client\src\network\stun\debug.c
+1516210989 c:\git\ice-client\src\network\stun\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
@@ -194,33 +195,33 @@
 1515061324 c:\git\ice-client\src\network\stun\attributes\changed_address.c
 	"../../../stream/stream.h"
 
-1515065260 c:\git\ice-client\src\network\stun\attributes\username.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\username.c
 	"../../../cryptography/cryptography.h"
 
 1515061324 c:\git\ice-client\src\network\stun\attributes\password.c
 
-1515063574 c:\git\ice-client\src\network\stun\attributes\message_integrity.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\message_integrity.c
 	"../../../cryptography/cryptography.h"
 
-1515061324 c:\git\ice-client\src\network\stun\attributes\error_code.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\error_code.c
 
 1515061324 c:\git\ice-client\src\network\stun\attributes\unknown_attributes.c
 
 1515061324 c:\git\ice-client\src\network\stun\attributes\reflected_from.c
 
-1515061324 c:\git\ice-client\src\network\stun\attributes\realm.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\realm.c
 
-1515061324 c:\git\ice-client\src\network\stun\attributes\nonce.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\nonce.c
 
-1515061324 c:\git\ice-client\src\network\stun\attributes\xor_mapped_address.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\xor_mapped_address.c
 
-1515061324 c:\git\ice-client\src\network\stun\attributes\software.c
+1516210989 c:\git\ice-client\src\network\stun\attributes\software.c
 
 1515061324 c:\git\ice-client\src\network\stun\attributes\alternate_server.c
 
 1515061324 c:\git\ice-client\src\network\stun\attributes\fingerprint.c
 
-1515437112 c:\git\ice-client\src\network\turn\turn.c
+1516210989 c:\git\ice-client\src\network\turn\turn.c
 	"TURN.h"
 	"../../data structures/string/string.h"
 	"debug.h"
@@ -238,17 +239,17 @@
 	"debug.h"
 	"debug.c"
 
-1515438354 c:\git\ice-client\src\network\turn\debug.c
+1516210989 c:\git\ice-client\src\network\turn\debug.c
 	"debug.h"
 	"../../logger/logger.h"
 
-1515064087 c:\git\ice-client\src\network\turn\attribute reader.c
+1516210989 c:\git\ice-client\src\network\turn\attribute reader.c
 
 1515061324 c:\git\ice-client\src\network\turn\request.c
 
-1515061324 c:\git\ice-client\src\network\turn\response.c
+1516210989 c:\git\ice-client\src\network\turn\response.c
 
-1515069927 c:\git\ice-client\src\network\turn\attributes\data.c
+1516210989 c:\git\ice-client\src\network\turn\attributes\data.c
 
 1515061324 c:\git\ice-client\src\network\turn\attributes\lifetime.c
 
@@ -256,7 +257,7 @@
 
 1515061324 c:\git\ice-client\src\network\turn\attributes\dont_fragment.c
 
-1515438218 c:\git\ice-client\src\network\turn\attributes\xor_peer_address.c
+1516210989 c:\git\ice-client\src\network\turn\attributes\xor_peer_address.c
 
 1515061324 c:\git\ice-client\src\network\network server\network server.h
 	"../../error/error.h"
@@ -267,7 +268,7 @@
 	"Windows network server.c"
 	"Linux network server.c"
 
-1515061324 c:\git\ice-client\src\network\network server\windows network server.c
+1516210989 c:\git\ice-client\src\network\network server\windows network server.c
 
 1515061324 c:\git\ice-client\src\network\network server\linux network server.c
 	<errno.h>
@@ -277,21 +278,22 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1515061324 c:\git\ice-client\src\network\connection\udp\udp.h
+1516216996 c:\git\ice-client\src\network\connection\udp\udp.h
 	"../../../error/error.h"
+	"../../../data structures/buffer/buffer.h"
 	"UDP.c"
 
 1515061324 c:\git\ice-client\src\network\connection\udp\udp.c
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1515061324 c:\git\ice-client\src\network\connection\udp\windows udp.c
+1516218476 c:\git\ice-client\src\network\connection\udp\windows udp.c
 	<stdio.h>
 	<errno.h>
 	<WinSock2.h>
 	<WS2tcpip.h>
 
-1515061324 c:\git\ice-client\src\network\connection\udp\linux udp.c
+1516210989 c:\git\ice-client\src\network\connection\udp\linux udp.c
 	<errno.h>
 	<sys/socket.h>
 	<netinet/in.h>
@@ -654,7 +656,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1515063342 c:\git\ice-client\src\cryptography\cryptography.h
+1516210989 c:\git\ice-client\src\cryptography\cryptography.h
 	"../data structures/buffer/buffer.h"
 	"cryptography.c"
 
@@ -670,11 +672,11 @@
 
 1512213126 c:\git\ice-client\src\output\output.c
 
-1514883710 c:\git\ice-client\src\data structures\buffer\buffer.c
+1516210989 c:\git\ice-client\src\data structures\buffer\buffer.c
 
-1515066363 c:\git\ice-client\src\cryptography\cryptography.c
+1516210989 c:\git\ice-client\src\cryptography\cryptography.c
 
-1515437001 c:\git\ice-client\src\network\turn\attributes\xor_relayed_address.c
+1516210989 c:\git\ice-client\src\network\turn\attributes\xor_relayed_address.c
 
 1515493804 c:\dev\ice-client\src\cryptography\cryptography.h
 	"../data structures/buffer/buffer.h"

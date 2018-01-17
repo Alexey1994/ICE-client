@@ -3,6 +3,7 @@
 
 
 #include "../../../error/error.h"
+#include "../../../data structures/buffer/buffer.h"
 
 
 #define NO_ERRORS     0
@@ -11,8 +12,12 @@
 
 typedef struct
 {
-	int   socket;
-	Byte *address;
+	int     socket;
+	int     receive_socket;
+	Byte   *address;
+	Byte   *receiver_address;
+    Buffer  buffer;
+    N_32    data_receiver_ID;
 }
 UDP_Connection;
 
