@@ -11,6 +11,8 @@ TCP_Connection* create_TCP (Byte *host, int port)
 {
 	struct sockaddr_in *sock_addr;
     TCP_Connection     *connection;
+    struct hostent     *host_address;
+    int                 i;
 
     if(!wsa_data)
     {
@@ -20,9 +22,19 @@ TCP_Connection* create_TCP (Byte *host, int port)
 
     sock_addr = new(struct sockaddr_in);
 
-    sock_addr->sin_family      = AF_INET;
-    sock_addr->sin_addr.s_addr = inet_addr(host);
+    host_address = gethostbyname(host);
+
+    if(!host_address)
+    {
+        print_error("TCP host ");
+        print_error(host);
+        print_error(" not found\n");
+        goto error;
+    }
+
+    sock_addr->sin_family      = host_address->h_addrtype;
     sock_addr->sin_port        = htons(port);
+    sock_addr->sin_addr.s_addr = *((N_32*)host_address->h_addr_list[0]);
 
     connection = new(TCP_Connection);
 

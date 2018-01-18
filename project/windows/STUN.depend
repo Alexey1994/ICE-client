@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1516218960 source:c:\git\ice-client\src\main.c
+1516272902 source:c:\git\ice-client\src\main.c
 	"main/main.h"
 	"cryptography/cryptography.h"
 	"network/STUN/STUN.h"
@@ -213,7 +213,7 @@
 
 1516210989 c:\git\ice-client\src\network\stun\attributes\nonce.c
 
-1516210989 c:\git\ice-client\src\network\stun\attributes\xor_mapped_address.c
+1516267535 c:\git\ice-client\src\network\stun\attributes\xor_mapped_address.c
 
 1516210989 c:\git\ice-client\src\network\stun\attributes\software.c
 
@@ -278,7 +278,7 @@
 	<arpa/inet.h>
 	<fcntl.h>
 
-1516216996 c:\git\ice-client\src\network\connection\udp\udp.h
+1516258476 c:\git\ice-client\src\network\connection\udp\udp.h
 	"../../../error/error.h"
 	"../../../data structures/buffer/buffer.h"
 	"UDP.c"
@@ -287,7 +287,7 @@
 	"Windows UDP.c"
 	"Linux UDP.c"
 
-1516218476 c:\git\ice-client\src\network\connection\udp\windows udp.c
+1516263301 c:\git\ice-client\src\network\connection\udp\windows udp.c
 	<stdio.h>
 	<errno.h>
 	<WinSock2.h>
@@ -642,7 +642,7 @@
 	"Windows TCP.c"
 	"Linux TCP.c"
 
-1515061324 c:\git\ice-client\src\network\connection\tcp\windows tcp.c
+1516273044 c:\git\ice-client\src\network\connection\tcp\windows tcp.c
 	<stdio.h>
 	<errno.h>
 	<WinSock2.h>
@@ -676,7 +676,7 @@
 
 1516210989 c:\git\ice-client\src\cryptography\cryptography.c
 
-1516210989 c:\git\ice-client\src\network\turn\attributes\xor_relayed_address.c
+1516267530 c:\git\ice-client\src\network\turn\attributes\xor_relayed_address.c
 
 1515493804 c:\dev\ice-client\src\cryptography\cryptography.h
 	"../data structures/buffer/buffer.h"

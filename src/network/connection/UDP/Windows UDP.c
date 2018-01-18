@@ -10,17 +10,22 @@ static WSADATA *wsa_data = 0;
 private procedure receive_UDP_data(UDP_Connection *connection)
 {
     Z_32 bytes_readed;
-
+//printf("Connection ID %d, socket: %d, data: %d, data length: %d\n", connection, connection->socket, connection->buffer.data, connection->buffer.reserve);
     while(connection->data_receiver_ID)
     {
         //bytes_readed = recvfrom(connection->socket, connection->buffer.data, connection->buffer.reserve, 0, 0, 0);
-        int size_connection_address = sizeof(struct sockaddr_in);
+        //int size_connection_address = sizeof(struct sockaddr_in);
         //bytes_readed = recvfrom(connection->receive_socket, connection->buffer.data, connection->buffer.reserve, 0, connection->address, &size_connection_address);
         bytes_readed = recv(connection->socket, connection->buffer.data, connection->buffer.reserve, 0);//recvfrom(connection->socket, connection->buffer.data, connection->buffer.reserve, 0, connection->address, &size_connection_address);
+        //bytes_readed = recvfrom(connection->socket, connection->buffer.data, connection->buffer.reserve, 0, connection->address, &size_connection_address);
         printf("read %d\n", bytes_readed);
 
         if(bytes_readed>0)
             connection->buffer.end_index = bytes_readed;
+        else
+        {
+            printf("read error code %d\n", WSAGetLastError());
+        }
     }
 
     //closesocket(connection->receive_socket);
@@ -57,14 +62,15 @@ UDP_Connection* create_UDP (Byte *host, int port)
     sock_addr->sin_port        = htons(port);
     sock_addr->sin_addr.s_addr = *((N_32*)host_address->h_addr_list[0]);
 
-    printf("%s %d.%d.%d.%d\n", host,
-           sock_addr->sin_addr.s_addr%256,
-           (sock_addr->sin_addr.s_addr>>8)%256,
-           (sock_addr->sin_addr.s_addr>>16)%256,
-           (sock_addr->sin_addr.s_addr>>24)%256);
+    printf("connect to address %d.%d.%d.%d:%d\n",
+        sock_addr->sin_addr.s_addr%256,
+        (sock_addr->sin_addr.s_addr>>8)%256,
+        (sock_addr->sin_addr.s_addr>>16)%256,
+        (sock_addr->sin_addr.s_addr>>24)%256,
+        port);
 
     connection = new(UDP_Connection);
-
+//printf("Connection ID %d\n", connection);
     connection->address = sock_addr;
     connection->socket  = socket(host_address->h_addrtype, SOCK_DGRAM, IPPROTO_UDP);
 
@@ -77,6 +83,7 @@ UDP_Connection* create_UDP (Byte *host, int port)
     //unsigned non_blocking = 1;
     //ioctlsocket(connection->socket, FIONBIO, &non_blocking);
 
+    connect(connection->socket, connection->address, sizeof(struct sockaddr_in));
     initialize_buffer(&connection->buffer, 4096);
     //connection->data_receiver_ID = run_thread(&receive_UDP_data, connection);
 
@@ -128,4 +135,6 @@ void read_from_UDP (UDP_Connection *connection, Byte *data, int length_data)
 
     for(i=0; i<length_data && i<buffer_length(&connection->buffer); ++i)
         data[i] = connection->buffer.data[i];
+
+    connection->buffer.end_index = 0;
 }
