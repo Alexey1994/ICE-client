@@ -1,0 +1,9 @@
+version: "2"
+services:
+  global-network:
+    container_name: global-network
+    image: global-network
+    mem_limit: 500m
+    ports:
+      - "8080:8080"
+      - "3478:3478/udp"
